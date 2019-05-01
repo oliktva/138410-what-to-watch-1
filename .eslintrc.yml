@@ -16,3 +16,6 @@ plugins: ['react']
 settings:
   react:
     version: '16'
+
+rules:
+  indent: [error, 2]
