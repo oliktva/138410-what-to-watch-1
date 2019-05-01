@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "outDir": "./public/",
+    "sourceMap": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    "noImplicitThis": false,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["*"]
+    }
+  },
+  "include": ["./src/**/*"],
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
+}
