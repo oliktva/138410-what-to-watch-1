@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode development",
     "start": "webpack-dev-server",
-    "eslint": "eslint src/**/*.js",
+    "eslint": "eslint --ext .js --ext .jsx src/",
     "test": "npm run eslint"
   },
   "devDependencies": {
