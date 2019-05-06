@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react';
 
-export interface FilmProps { name: string; img: string; };
+export interface FilmProps {name: string; img: string}
 
-const Main = ({ films }: { films: FilmProps[] }) => {
+const Main = ({films}: {films: FilmProps[]}): JSX.Element => {
   return (
     <Fragment>
       <div className="visually-hidden">
@@ -116,9 +116,9 @@ const Main = ({ films }: { films: FilmProps[] }) => {
             </li>
           </ul>
           <div className="catalog__movies-list">
-            {films.map((film, index) => (
-              <Fragment>
-                <article className="small-movie-card catalog__movies-card" key={index}>
+            {films.map((film, index): JSX.Element => (
+              <Fragment key={index}>
+                <article className="small-movie-card catalog__movies-card">
                   <button className="small-movie-card__play-btn" type="button">Play</button>
                   <div className="small-movie-card__image">
                     <img src={film.img} alt={film.name} width="280" height="175" />

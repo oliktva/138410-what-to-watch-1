@@ -64,7 +64,7 @@ const films = [{
   img: `img/midnight-special.jpg`
 }];
 
-const App = () => (
+const App = (): JSX.Element => (
   <Main films={films} />
 );
 
