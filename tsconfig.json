@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "outDir": "./public/",
     "sourceMap": true,
     "module": "es6",
@@ -16,10 +20,6 @@
       "*": ["*"]
     }
   },
-  "lib": [
-    "esnext",
-    "dom"
-  ],
   "include": ["./src/**/*"],
   "exclude": [
     "node_modules",

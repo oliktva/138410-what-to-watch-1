@@ -1,8 +1,9 @@
 import React from 'react';
 
 import Main from 'src/components/main/main';
+import {FilmProps} from "src/types/films";
 
-const films = [{
+const films: FilmProps[] = [{
   name: `Fantastic Beasts`,
   img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`
 }, {
