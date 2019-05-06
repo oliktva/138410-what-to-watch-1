@@ -7,18 +7,26 @@
     "build": "webpack --mode development",
     "start": "webpack-dev-server",
     "eslint": "eslint --ext .js --ext .ts --ext .tsx src/",
-    "test": "npm run eslint"
+    "test": "npm run eslint && jest"
   },
   "devDependencies": {
     "@babel/core": "7.4.4",
     "@babel/preset-env": "7.4.4",
     "@babel/preset-react": "7.0.0",
+    "@types/enzyme": "3.9.1",
+    "@types/jest": "24.0.12",
     "@typescript-eslint/eslint-plugin": "1.7.0",
     "@typescript-eslint/parser": "1.7.0",
+    "babel-jest": "24.8.0",
     "babel-loader": "8.0.5",
+    "enzyme": "3.9.0",
+    "enzyme-adapter-react-16": "1.12.1",
     "eslint": "5.13.0",
     "eslint-config-htmlacademy": "0.5.2",
     "eslint-plugin-react": "7.12.4",
+    "jest": "24.8.0",
+    "react-test-renderer": "16.8.6",
+    "ts-jest": "24.0.2",
     "ts-loader": "5.4.5",
     "typescript": "3.4.5",
     "webpack": "4.30.0",
@@ -34,5 +42,14 @@
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6"
+  },
+  "jest": {
+    "modulePaths": [
+      "<rootDir>"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    }
   }
 }

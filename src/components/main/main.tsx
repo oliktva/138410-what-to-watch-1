@@ -1,5 +1,7 @@
 import React, {Fragment} from 'react';
 
+import SmallMovieCard from 'src/components/small-movie-card/small-movie-card';
+
 import {FilmProps, filmsPropTypes} from 'src/types/films';
 
 const Main = ({films}: {films: FilmProps[]}): JSX.Element => {
@@ -117,17 +119,11 @@ const Main = ({films}: {films: FilmProps[]}): JSX.Element => {
           </ul>
           <div className="catalog__movies-list">
             {films.map((film, index): JSX.Element => (
-              <Fragment key={index}>
-                <article className="small-movie-card catalog__movies-card">
-                  <button className="small-movie-card__play-btn" type="button">Play</button>
-                  <div className="small-movie-card__image">
-                    <img src={film.img} alt={film.name} width="280" height="175" />
-                  </div>
-                  <h3 className="small-movie-card__title">
-                    <a className="small-movie-card__link" href="movie-page.html">{film.name}</a>
-                  </h3>
-                </article>
-              </Fragment>
+              <SmallMovieCard
+                key={index}
+                film={film}
+                onClick={(): void => {}}
+              />
             ))}
           </div>
           <div className="catalog__more">
