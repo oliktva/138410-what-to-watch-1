@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 
-export interface FilmProps {name: string; img: string}
+import {FilmProps, filmsPropTypes} from 'src/types/films';
 
 const Main = ({films}: {films: FilmProps[]}): JSX.Element => {
   return (
@@ -150,5 +150,7 @@ const Main = ({films}: {films: FilmProps[]}): JSX.Element => {
     </Fragment>
   );
 };
+
+Main.propTypes = filmsPropTypes;
 
 export default Main;

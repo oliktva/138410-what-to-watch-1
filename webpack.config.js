@@ -1,7 +1,7 @@
 const path = require(`path`);
 
 module.exports = {
-  entry: `./src/index.js`,
+  entry: `./src/index.tsx`,
   output: {
     filename: `bundle.js`,
     path: path.join(__dirname, `public`)
@@ -22,6 +22,7 @@ module.exports = {
     open: true,
   },
   resolve: {
+    modules: [path.resolve(`./`), `node_modules`, `src`],
     extensions: [`.ts`, `.tsx`, `.js`, `.jsx`],
   },
   devtool: `source-map`
