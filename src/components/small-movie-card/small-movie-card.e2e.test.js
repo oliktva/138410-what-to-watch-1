@@ -11,7 +11,7 @@ const film = {
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`App correctly renders after relaunch`, () => {
+it(`plays video correctly`, () => {
   const clickHandler = jest.fn();
 
   const app = shallow(
@@ -21,7 +21,7 @@ it(`App correctly renders after relaunch`, () => {
     />
   );
 
-  const startButton = app.find(`.small-movie-card__link`);
-  startButton.simulate(`click`);
+  const playButton = app.find(`.small-movie-card__play-btn`);
+  playButton.simulate(`click`);
   expect(clickHandler).toHaveBeenCalledTimes(1);
 });

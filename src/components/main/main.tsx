@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 
-import SmallMovieCard from 'src/components/small-movie-card/small-movie-card';
+import SmallMovieCardsList from 'src/components/small-movie-cards-list/small-movie-cards-list';
 
 import {FilmProps, filmsPropTypes} from 'src/types/films';
 
@@ -118,13 +118,7 @@ const Main = ({films}: {films: FilmProps[]}): JSX.Element => {
             </li>
           </ul>
           <div className="catalog__movies-list">
-            {films.map((film, index): JSX.Element => (
-              <SmallMovieCard
-                key={index}
-                film={film}
-                onClick={(): void => {}}
-              />
-            ))}
+            <SmallMovieCardsList films={films} />
           </div>
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -147,6 +141,8 @@ const Main = ({films}: {films: FilmProps[]}): JSX.Element => {
   );
 };
 
-Main.propTypes = filmsPropTypes;
+Main.propTypes = {
+  films: filmsPropTypes.isRequired
+};
 
 export default Main;
