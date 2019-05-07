@@ -6,7 +6,7 @@ exports[`renders correctly 1`] = `
 >
   <button
     className="small-movie-card__play-btn"
-    onClick={[MockFunction]}
+    onClick={[Function]}
     type="button"
   >
     Play

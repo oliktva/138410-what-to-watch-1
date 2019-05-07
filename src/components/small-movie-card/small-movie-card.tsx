@@ -5,9 +5,9 @@ import {FilmProps, filmPropTypes} from 'src/types/films';
 
 interface Props {
   film: FilmProps;
-  onClick(): void;
-  onMouseEnter(): void;
-  onMouseLeave(): void;
+  onClick(film: FilmProps): void;
+  onMouseEnter?(): void;
+  onMouseLeave?(): void;
 }
 
 const SmallMovieCard = (props: Props): JSX.Element => {
@@ -18,7 +18,7 @@ const SmallMovieCard = (props: Props): JSX.Element => {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <button className="small-movie-card__play-btn" onClick={onClick} type="button">
+      <button className="small-movie-card__play-btn" onClick={(): void => onClick(film)} type="button">
         Play
       </button>
       <div className="small-movie-card__image">

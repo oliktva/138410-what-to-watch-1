@@ -24,4 +24,5 @@ it(`plays video correctly`, () => {
   const playButton = app.find(`.small-movie-card__play-btn`);
   playButton.simulate(`click`);
   expect(clickHandler).toHaveBeenCalledTimes(1);
+  expect(clickHandler).toHaveBeenCalledWith(film);
 });

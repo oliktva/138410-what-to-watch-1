@@ -27,15 +27,15 @@ class SmallMovieCardsList extends PureComponent<Props, State> {
     };
   }
 
-  private _playVideoHandler(film: FilmProps): void {
+  private _handlePlayVideo(film: FilmProps): void {
     this.setState({playCard: film});
   }
 
-  private _hoverHandler(film: FilmProps): void {
+  private _handleHoverHandler(film: FilmProps): void {
     this.setState({activeCard: film});
   }
 
-  private _clearHandler(): void {
+  private _handleClear(): void {
     this.setState({activeCard: null, playCard: null});
   }
 
@@ -46,9 +46,9 @@ class SmallMovieCardsList extends PureComponent<Props, State> {
       <SmallMovieCard
         key={index}
         film={film}
-        onClick={(): void => this._playVideoHandler(film)}
-        onMouseEnter={(): void => this._hoverHandler(film)}
-        onMouseLeave={(): void => this._clearHandler()}
+        onClick={(f: FilmProps): void => this._handlePlayVideo(f)}
+        onMouseEnter={(): void => this._handleHoverHandler(film)}
+        onMouseLeave={(): void => this._handleClear()}
       />
     ));
   }
