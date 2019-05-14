@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import SmallMovieCard from './small-movie-card';
+import Videoplayer from './videoplayer';
 
 const film = {
   id: 1,
@@ -13,9 +13,12 @@ const film = {
 it(`renders correctly`, () => {
   const tree = renderer
     .create(
-      <SmallMovieCard
-        film={film}
+      <Videoplayer
+        src={film.video}
+        preview={film.img}
         isPlaying={false}
+        onPlay={jest.fn()}
+        onPause={jest.fn()}
       />
     ).toJSON();
   expect(tree).toMatchSnapshot();

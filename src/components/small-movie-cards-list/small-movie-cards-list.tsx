@@ -10,7 +10,6 @@ interface Props {
 
 interface State {
   activeCard: FilmProps | null;
-  playCard: FilmProps | null;
 }
 
 class SmallMovieCardsList extends PureComponent<Props, State> {
@@ -22,32 +21,30 @@ class SmallMovieCardsList extends PureComponent<Props, State> {
     super(props);
 
     this.state = {
-      activeCard: null,
-      playCard: null
+      activeCard: null
     };
   }
 
-  private _handlePlayVideo(film: FilmProps): void {
-    this.setState({playCard: film});
-  }
-
   private _handleHover(film: FilmProps): void {
-    this.setState({activeCard: film});
+    setTimeout((): void => {
+      this.setState({activeCard: film});
+    }, 1000);
   }
 
   private _handleClear(): void {
-    this.setState({activeCard: null, playCard: null});
+    this.setState({activeCard: null});
   }
 
   public render(): JSX.Element[] {
     const {films} = this.props;
+    const {activeCard} = this.state;
 
-    return films.map((film, index): JSX.Element => (
+    return films.map((film): JSX.Element => (
       <SmallMovieCard
-        key={index}
+        key={film.id}
         film={film}
-        onClick={(f: FilmProps): void => this._handlePlayVideo(f)}
-        onMouseEnter={(): void => this._handleHover(film)}
+        isPlaying={activeCard ? film.id === activeCard.id : false}
+        onMouseEnter={(f: FilmProps): void => this._handleHover(f)}
         onMouseLeave={(): void => this._handleClear()}
       />
     ));

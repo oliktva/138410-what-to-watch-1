@@ -5,24 +5,27 @@ import Adapter from 'enzyme-adapter-react-16';
 import SmallMovieCard from './small-movie-card';
 
 const film = {
+  id: 1,
   name: `Dardjeeling Limited`,
-  img: `img/dardjeeling-limited.jpg`
+  img: `img/dardjeeling-limited.jpg`,
+  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
 };
 
 Enzyme.configure({adapter: new Adapter()});
 
 it(`plays video correctly`, () => {
-  const clickHandler = jest.fn();
+  const hoverHandler = jest.fn();
 
   const app = shallow(
     <SmallMovieCard
       film={film}
-      onClick={clickHandler}
+      isPlaying={false}
+      onMouseEnter={hoverHandler}
     />
   );
 
-  const playButton = app.find(`.small-movie-card__play-btn`);
-  playButton.simulate(`click`);
-  expect(clickHandler).toHaveBeenCalledTimes(1);
-  expect(clickHandler).toHaveBeenCalledWith(film);
+  const playButton = app.find(`.small-movie-card`);
+  playButton.simulate(`mouseEnter`);
+  expect(hoverHandler).toHaveBeenCalledTimes(1);
+  expect(hoverHandler).toHaveBeenCalledWith(film);
 });
