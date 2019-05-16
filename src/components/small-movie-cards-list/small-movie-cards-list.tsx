@@ -10,7 +10,6 @@ interface Props {
 
 interface State {
   activeCard: FilmProps | null;
-  timeoutId: number | null;
 }
 
 class SmallMovieCardsList extends PureComponent<Props, State> {
@@ -18,22 +17,25 @@ class SmallMovieCardsList extends PureComponent<Props, State> {
     films: filmsPropTypes.isRequired
   }
 
+  private _timeoutId: number | null = null;
+
   public constructor(props: Props) {
     super(props);
 
     this.state = {
-      activeCard: null,
-      timeoutId: null
+      activeCard: null
     };
   }
 
   public componentWillUnmount(): void {
     this._clearTimeout();
+    this._timeoutId = null;
   }
 
   private _handleHover(film: FilmProps): void {
     const timeoutId = window.setTimeout((): void => {
-      this.setState({activeCard: film, timeoutId: null});
+      this._setTimeout(null);
+      this.setState({activeCard: film});
     }, 1000);
 
     this._setTimeout(timeoutId);
@@ -44,14 +46,13 @@ class SmallMovieCardsList extends PureComponent<Props, State> {
     this.setState({activeCard: null});
   }
 
-  private _setTimeout(timeoutId: number): void {
-    this.setState({timeoutId});
+  private _setTimeout(timeoutId: number | null): void {
+    this._timeoutId = timeoutId;
   }
 
   private _clearTimeout(): void {
-    const {timeoutId} = this.state;
-    if (timeoutId) {
-      window.clearTimeout(timeoutId);
+    if (this._timeoutId) {
+      window.clearTimeout(this._timeoutId);
     }
   }
 
