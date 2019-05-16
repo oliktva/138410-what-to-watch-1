@@ -29,7 +29,7 @@ class SmallMovieCardsList extends PureComponent<Props, State> {
 
   public componentWillUnmount(): void {
     this._clearTimeout();
-    this._timeoutId = null;
+    this._setTimeout(null);
   }
 
   private _handleHover(film: FilmProps): void {
