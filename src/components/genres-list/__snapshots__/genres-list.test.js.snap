@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ul
+  className="catalog__genres-list"
+>
+  <li
+    className="catalog__genres-item catalog__genres-item--active"
+    onClick={[Function]}
+  >
+    <span
+      className="catalog__genres-link"
+    >
+      All genres
+    </span>
+  </li>
+  <li
+    className="catalog__genres-item"
+    onClick={[Function]}
+  >
+    <span
+      className="catalog__genres-link"
+    >
+      Drama
+    </span>
+  </li>
+  <li
+    className="catalog__genres-item"
+    onClick={[Function]}
+  >
+    <span
+      className="catalog__genres-link"
+    >
+      Adventure
+    </span>
+  </li>
+  <li
+    className="catalog__genres-item"
+    onClick={[Function]}
+  >
+    <span
+      className="catalog__genres-link"
+    >
+      Thriller
+    </span>
+  </li>
+</ul>
+`;
