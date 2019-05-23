@@ -4,7 +4,8 @@ export const filmPropTypes = PropTypes.shape({
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
-  video: PropTypes.string.isRequired
+  video: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
 });
 
 export const filmsPropTypes = PropTypes.arrayOf(filmPropTypes.isRequired);
@@ -14,4 +15,5 @@ export interface FilmProps {
   img: string;
   video: string;
   id: number;
+  genre: string;
 }

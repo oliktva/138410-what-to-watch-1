@@ -56,19 +56,23 @@ class SmallMovieCardsList extends PureComponent<Props, State> {
     }
   }
 
-  public render(): JSX.Element[] {
+  public render(): JSX.Element {
     const {films} = this.props;
     const {activeCard} = this.state;
 
-    return films.map((film): JSX.Element => (
-      <SmallMovieCard
-        key={film.id}
-        film={film}
-        isPlaying={activeCard ? film.id === activeCard.id : false}
-        onMouseEnter={(f: FilmProps): void => this._handleHover(f)}
-        onMouseLeave={(): void => this._handleClear()}
-      />
-    ));
+    return (
+      <div className="catalog__movies-list">
+        {films.map((film): JSX.Element => (
+          <SmallMovieCard
+            key={film.id}
+            film={film}
+            isPlaying={activeCard ? film.id === activeCard.id : false}
+            onMouseEnter={(f: FilmProps): void => this._handleHover(f)}
+            onMouseLeave={(): void => this._handleClear()}
+          />
+        ))}
+      </div>
+    );
   }
 }
 
