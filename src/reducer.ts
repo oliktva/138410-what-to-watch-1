@@ -3,7 +3,7 @@ import {FilmProps} from 'src/types/films';
 
 import {films} from 'src/mocks/films';
 
-export const SET_FILTER = `SET_FILTER`;
+export const SET_GENRE = `SET_GENRE`;
 export const LOAD_FILMS_SUCCESS = `LOAD_FILMS_SUCCESS`;
 
 const ALL_GENRES = `All genres`;
@@ -14,7 +14,7 @@ export interface State {
 }
 
 interface SetFilterAction {
-  type: typeof SET_FILTER;
+  type: typeof SET_GENRE;
   payload: GenreProps;
 }
 
@@ -33,7 +33,7 @@ const initialState: State = {
 export const ActionCreator = {
   setFilterByGenre: (genre: GenreProps): SetFilterAction => {
     return {
-      type: SET_FILTER,
+      type: SET_GENRE,
       payload: genre
     };
   },
@@ -54,7 +54,7 @@ const reducer = (state: State = initialState, action: Action): State => {
         films: action.payload
       };
 
-    case SET_FILTER:
+    case SET_GENRE:
       return {
         ...state,
         genre: action.payload
