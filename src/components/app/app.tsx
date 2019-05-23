@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, ComponentClass} from 'react';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -92,4 +92,6 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
 
 export {App};
 
-export default connect<StateProps, DispatchProps, {}, State>(mapStateToProps, mapDispatchToProps)(App);
+const connectedApp: any = connect<StateProps, DispatchProps, {}, State>(mapStateToProps, mapDispatchToProps)(App);
+
+export default connectedApp as ComponentClass<{}>;;
