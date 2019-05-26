@@ -94,4 +94,4 @@ export {App};
 
 const connectedApp: any = connect<StateProps, DispatchProps, {}, State>(mapStateToProps, mapDispatchToProps)(App);
 
-export default connectedApp as ComponentClass<{}>;;
+export default connectedApp as ComponentClass<{}>;
