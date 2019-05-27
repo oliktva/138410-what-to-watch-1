@@ -14,10 +14,10 @@ export const getGenres = (films: FilmProps[]): GenreProps[] => {
     }, []);
 
   return [ALL_GENRES, ...filmsGenres];
-}
+};
 
 export const getFilmsByGenre = (films: FilmProps[], genre: GenreProps): FilmProps[] => {
   return genre === ALL_GENRES ?
     films :
     films.filter((f: FilmProps): boolean => f.genre === genre);
-}
+};

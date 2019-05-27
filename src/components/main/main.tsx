@@ -10,7 +10,7 @@ import SmallMovieCardsList from 'src/components/small-movie-cards-list/small-mov
 import GenresList from 'src/components/genres-list/genres-list';
 
 import {FilmProps, filmsPropTypes} from 'src/types/films';
-import {GenreProps, genrePropTypes, genresPropTypes} from 'src/types/genres';
+import {GenreProps, genrePropTypes} from 'src/types/genres';
 
 interface StateProps {
   films: FilmProps[];
@@ -18,7 +18,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  loadFilms: () => void
+  loadFilms: () => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -36,7 +36,7 @@ class Main extends PureComponent<Props> {
     loadFilms();
   }
 
-  render() {
+  public render(): JSX.Element {
     const {films, genre} = this.props;
     const genres = getGenres(films);
     const filmsByGenre = getFilmsByGenre(films, genre);
