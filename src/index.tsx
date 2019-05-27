@@ -6,7 +6,11 @@ import {Provider} from 'react-redux';
 import reducer from 'src/reducer';
 import App from 'src/components/app/app';
 
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+);
 const target = document.querySelector(`#root`);
 
 render(

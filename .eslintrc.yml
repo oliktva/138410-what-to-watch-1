@@ -24,3 +24,4 @@ settings:
 rules:
   indent: [error, 2, { "SwitchCase": 1 }]
   '@typescript-eslint/indent': [error, 2]
+  '@typescript-eslint/no-explicit-any': 0

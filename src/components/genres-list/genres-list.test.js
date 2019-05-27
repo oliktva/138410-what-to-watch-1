@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import GenresList from './genres-list';
+import {GenresList} from './genres-list';
 
 const genres = [`All genres`, `Drama`, `Adventure`, `Thriller`];
 
@@ -10,7 +10,7 @@ it(`renders correctly`, () => {
     .create(<GenresList
       genres={genres}
       active="All genres"
-      onGenreChange={jest.fn()}
+      setFilterByGenre={jest.fn()}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

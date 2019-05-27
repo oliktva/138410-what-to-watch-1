@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import SmallMovieCardsList from './small-movie-cards-list';
+import {SmallMovieCardsList} from './small-movie-cards-list';
 
 const films = [{
   id: 1,
@@ -127,7 +127,12 @@ const films = [{
 
 it(`renders correctly`, () => {
   const tree = renderer
-    .create(<SmallMovieCardsList films={films} />)
+    .create(<SmallMovieCardsList
+      films={films}
+      activeCard={null}
+      setActiveCard={jest.fn()}
+      resetActiveCard={jest.fn()}
+    />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

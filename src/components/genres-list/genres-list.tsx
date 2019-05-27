@@ -1,15 +1,27 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
+import {Dispatch} from 'redux';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
+import {State, ActionCreator, Action} from 'src/reducer';
 import {GenreProps, genrePropTypes, genresPropTypes} from 'src/types/genres';
 
-interface Props {
-  genres: GenreProps[];
+interface StateProps {
   active: GenreProps;
-  onGenreChange: (genre: GenreProps) => void;
 }
 
-const GenresList = (props: Props): JSX.Element => {
-  const {genres, active, onGenreChange} = props;
+interface DispatchProps {
+  setFilterByGenre: (genre: GenreProps) => void;
+}
+
+interface OwnProps {
+  genres: GenreProps[];
+}
+
+type Props = StateProps & DispatchProps & OwnProps;
+
+const GenresList: FunctionComponent<Props> = (props: Props): JSX.Element => {
+  const {genres, active, setFilterByGenre} = props;
 
   return (
     <ul className="catalog__genres-list">
@@ -19,7 +31,7 @@ const GenresList = (props: Props): JSX.Element => {
           `catalog__genres-item`;
 
         return (
-          <li className={className} key={genre} onClick={(): void => onGenreChange(genre)}>
+          <li className={className} key={genre} onClick={(): void => setFilterByGenre(genre)}>
             <span className="catalog__genres-link">{genre}</span>
           </li>
         );
@@ -28,9 +40,23 @@ const GenresList = (props: Props): JSX.Element => {
   );
 };
 
+const mapStateToProps = (state: State): StateProps => ({
+  active: state.genre
+});
+
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+  setFilterByGenre: (genre: GenreProps): Action => dispatch(ActionCreator.setFilterByGenre(genre))
+});
+
 GenresList.propTypes = {
   genres: genresPropTypes.isRequired,
-  active: genrePropTypes.isRequired
+  active: genrePropTypes.isRequired,
+  setFilterByGenre: PropTypes.func.isRequired
 };
 
-export default GenresList;
+export {GenresList};
+
+const ConnectedComponent: any =
+ connect<StateProps, DispatchProps, OwnProps, State>(mapStateToProps, mapDispatchToProps)(GenresList);
+
+export default ConnectedComponent as FunctionComponent<OwnProps>;

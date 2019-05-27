@@ -63,12 +63,7 @@ const genre = `All genres`;
 
 it(`renders correctly`, () => {
   const tree = renderer
-    .create(<App
-      films={films}
-      genre={genre}
-      loadFilms={jest.fn()}
-      setFilterByGenre={jest.fn()}
-    />)
+    .create(<App />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

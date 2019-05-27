@@ -59,15 +59,15 @@ const films = [{
   genre: `Adventure`
 }];
 
-const genres = [`All genres`, `Drama`, `Adventure`, `Thriller`];
+const genre = `All genres`;
 
 it(`renders correctly`, () => {
   const tree = renderer
     .create(<Main
       films={films}
-      genres={genres}
-      active={genres[0]}
-      onGenreChange={jest.fn()}
+      genre={genre}
+      loadFilms={jest.fn()}
+      setFilterByGenre={jest.fn()}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

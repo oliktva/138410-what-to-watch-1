@@ -9,18 +9,13 @@ interface Props {
   isPlaying: boolean;
 }
 
-interface State {
-  isLoading: boolean;
-  isPlaying: boolean;
-}
-
 const propTypes = {
   src: PropTypes.string.isRequired,
   preview: PropTypes.string.isRequired,
   isPlaying: PropTypes.bool.isRequired
 };
 
-class Videoplayer extends PureComponent<Props, State> {
+class Videoplayer extends PureComponent<Props> {
   public static propTypes = propTypes;
 
   private _videoRef: RefObject<HTMLVideoElement>;
@@ -29,11 +24,6 @@ class Videoplayer extends PureComponent<Props, State> {
     super(props);
 
     this._videoRef = React.createRef();
-
-    this.state = {
-      isLoading: true,
-      isPlaying: props.isPlaying,
-    };
   }
 
   public componentDidMount(): void {
@@ -45,23 +35,8 @@ class Videoplayer extends PureComponent<Props, State> {
       video.poster = preview;
       video.muted = true;
 
-      video.oncanplaythrough = (): void => {
-        this.setState({
-          isLoading: false,
-        });
-      };
-
-      video.onplay = (): void => {
-        this.setState({
-          isPlaying: true,
-        });
-      };
-
       video.onpause = (): void => {
         this._resetPlayer(video);
-        this.setState({
-          isPlaying: false,
-        });
       };
     }
   }

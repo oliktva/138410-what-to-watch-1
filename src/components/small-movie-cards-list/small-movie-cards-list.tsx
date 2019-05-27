@@ -1,31 +1,23 @@
 import React, {PureComponent} from 'react';
 
+import withActiveCard from 'src/hocs/with-active-card/with-active-card';
 import SmallMovieCard from 'src/components/small-movie-card/small-movie-card';
 
 import {FilmProps, filmsPropTypes} from 'src/types/films';
 
 interface Props {
   films: FilmProps[];
-}
-
-interface State {
   activeCard: FilmProps | null;
+  setActiveCard: (film: FilmProps) => void;
+  resetActiveCard: () => void;
 }
 
-class SmallMovieCardsList extends PureComponent<Props, State> {
+class SmallMovieCardsList extends PureComponent<Props> {
   public static propTypes = {
     films: filmsPropTypes.isRequired
   }
 
   private _timeoutId: number | null = null;
-
-  public constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      activeCard: null
-    };
-  }
 
   public componentWillUnmount(): void {
     this._clearTimeout();
@@ -35,7 +27,7 @@ class SmallMovieCardsList extends PureComponent<Props, State> {
   private _handleHover(film: FilmProps): void {
     const timeoutId = window.setTimeout((): void => {
       this._setTimeout(null);
-      this.setState({activeCard: film});
+      this.props.setActiveCard(film);
     }, 1000);
 
     this._setTimeout(timeoutId);
@@ -43,7 +35,7 @@ class SmallMovieCardsList extends PureComponent<Props, State> {
 
   private _handleClear(): void {
     this._clearTimeout();
-    this.setState({activeCard: null});
+    this.props.resetActiveCard();
   }
 
   private _setTimeout(timeoutId: number | null): void {
@@ -57,8 +49,7 @@ class SmallMovieCardsList extends PureComponent<Props, State> {
   }
 
   public render(): JSX.Element {
-    const {films} = this.props;
-    const {activeCard} = this.state;
+    const {films, activeCard} = this.props;
 
     return (
       <div className="catalog__movies-list">
@@ -76,4 +67,6 @@ class SmallMovieCardsList extends PureComponent<Props, State> {
   }
 }
 
-export default SmallMovieCardsList;
+export {SmallMovieCardsList};
+
+export default withActiveCard(SmallMovieCardsList);
