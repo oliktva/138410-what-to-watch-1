@@ -20,7 +20,7 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-const GenresList: FunctionComponent<Props> = (props: Props): JSX.Element => {
+const GenresList = (props: Props): JSX.Element => {
   const {genres, active, setFilterByGenre} = props;
 
   return (
