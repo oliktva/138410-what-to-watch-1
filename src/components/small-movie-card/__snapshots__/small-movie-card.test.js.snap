@@ -5,8 +5,10 @@ exports[`renders correctly 1`] = `
   className="small-movie-card catalog__movies-card"
   onMouseEnter={[Function]}
 >
-  <video
-    className="player__video"
+  <Videoplayer
+    isPlaying={false}
+    preview="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+    src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
   />
   <h3
     className="small-movie-card__title"
@@ -15,7 +17,7 @@ exports[`renders correctly 1`] = `
       className="small-movie-card__link"
       href="movie-page.html"
     >
-      Dardjeeling Limited
+      Fantastic Beasts
     </a>
   </h3>
 </article>

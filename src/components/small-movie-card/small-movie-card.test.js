@@ -1,23 +1,19 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import Enzyme, {shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import toJson from 'enzyme-to-json';
 
 import SmallMovieCard from './small-movie-card';
+import {film} from 'src/fixtures/films';
 
-const film = {
-  id: 1,
-  name: `Dardjeeling Limited`,
-  img: `img/dardjeeling-limited.jpg`,
-  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  genre: `Adventure`
-};
+Enzyme.configure({adapter: new Adapter()});
 
 it(`renders correctly`, () => {
-  const tree = renderer
-    .create(
-      <SmallMovieCard
-        film={film}
-        isPlaying={false}
-      />
-    ).toJSON();
-  expect(tree).toMatchSnapshot();
+  const smallMovieCard = shallow(
+    <SmallMovieCard
+      film={film}
+      isPlaying={false}
+    />
+  );
+  expect(toJson(smallMovieCard)).toMatchSnapshot();
 });

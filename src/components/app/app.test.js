@@ -1,11 +1,14 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import Enzyme, {shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import toJson from 'enzyme-to-json';
 
 import App from './app';
 
+Enzyme.configure({adapter: new Adapter()});
+
 it(`renders correctly`, () => {
-  const tree = renderer
-    .create(<App />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const app = shallow(<App />);
+
+  expect(toJson(app)).toMatchSnapshot();
 });
