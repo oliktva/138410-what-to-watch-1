@@ -11,8 +11,8 @@ Enzyme.configure({adapter: new Adapter()});
 it(`renders correctly`, () => {
   const tree = shallow(
     <Videoplayer
-      src={film.video}
-      preview={film.img}
+      src={film.previewVideoLink}
+      preview={film.previewImage}
       isPlaying={false}
       onPlay={jest.fn()}
       onPause={jest.fn()}

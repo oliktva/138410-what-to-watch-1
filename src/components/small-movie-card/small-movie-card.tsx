@@ -26,8 +26,8 @@ const SmallMovieCard = (props: Props): JSX.Element => {
       onMouseLeave={onMouseLeave}
     >
       <Videoplayer
-        src={film.video}
-        preview={film.img}
+        src={film.previewVideoLink}
+        preview={film.previewImage}
         isPlaying={isPlaying}
       />
       <h3 className="small-movie-card__title">

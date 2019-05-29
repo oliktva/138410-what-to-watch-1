@@ -7,8 +7,8 @@ exports[`renders correctly 1`] = `
 >
   <Videoplayer
     isPlaying={false}
-    preview="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-    src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+    preview="https://es31-server.appspot.com/wtw/static/film/preview/pulp-fiction.jpg"
+    src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
   />
   <h3
     className="small-movie-card__title"
@@ -17,7 +17,7 @@ exports[`renders correctly 1`] = `
       className="small-movie-card__link"
       href="movie-page.html"
     >
-      Fantastic Beasts
+      Pulp Fiction
     </a>
   </h3>
 </article>

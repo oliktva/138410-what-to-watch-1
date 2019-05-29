@@ -3,17 +3,41 @@ import PropTypes from 'prop-types';
 export const filmPropTypes = PropTypes.shape({
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
-  video: PropTypes.string.isRequired,
+  posterImage: PropTypes.string.isRequired,
+  previewImage: PropTypes.string.isRequired,
+  backgroundImage: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  scoresCount: PropTypes.number.isRequired,
+  director: PropTypes.string.isRequired,
+  starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  runTime: PropTypes.number.isRequired,
   genre: PropTypes.string.isRequired,
+  released: PropTypes.number.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  videoLink: PropTypes.string.isRequired,
+  previewVideoLink: PropTypes.string.isRequired
 });
 
 export const filmsPropTypes = PropTypes.arrayOf(filmPropTypes.isRequired);
 
 export interface FilmProps {
-  name: string;
-  img: string;
-  video: string;
   id: number;
+  name: string;
+  posterImage: string;
+  previewImage: string;
+  backgroundImage: string;
+  backgroundColor: string;
+  description: string;
+  rating: number;
+  scoresCount: number;
+  director: string;
+  starring: string[];
+  runTime: number;
   genre: string;
+  released: number;
+  isFavorite: boolean;
+  videoLink: string;
+  previewVideoLink: string;
 }

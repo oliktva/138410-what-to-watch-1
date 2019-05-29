@@ -3,18 +3,19 @@ import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {State, ActionCreator, Action} from 'src/reducer';
-import {getGenres, getFilmsByGenre} from 'src/helpers/genre-helper';
+import {getGenres, getFilmsByGenre} from 'src/reducers/films/selectors';
+import {Operation, Action} from 'src/reducers/films/films';
 
 import SmallMovieCardsList from 'src/components/small-movie-cards-list/small-movie-cards-list';
 import GenresList from 'src/components/genres-list/genres-list';
 
+import {State} from 'src/reducers/reducer';
 import {FilmProps, filmsPropTypes} from 'src/types/films';
-import {GenreProps, genrePropTypes} from 'src/types/genres';
+import {GenreProps, genresPropTypes} from 'src/types/genres';
 
 interface StateProps {
-  films: FilmProps[];
-  genre: GenreProps;
+  filmsByGenre: FilmProps[];
+  genres: GenreProps[];
 }
 
 interface DispatchProps {
@@ -25,8 +26,8 @@ type Props = StateProps & DispatchProps;
 
 class Main extends PureComponent<Props> {
   public static propTypes = {
-    films: filmsPropTypes.isRequired,
-    genre: genrePropTypes.isRequired,
+    filmsByGenre: filmsPropTypes.isRequired,
+    genres: genresPropTypes.isRequired,
     loadFilms: PropTypes.func.isRequired
   };
 
@@ -37,9 +38,7 @@ class Main extends PureComponent<Props> {
   }
 
   public render(): JSX.Element {
-    const {films, genre} = this.props;
-    const genres = getGenres(films);
-    const filmsByGenre = getFilmsByGenre(films, genre);
+    const {genres, filmsByGenre} = this.props;
 
     return (
       <Fragment>
@@ -146,12 +145,12 @@ class Main extends PureComponent<Props> {
 }
 
 const mapStateToProps = (state: State): StateProps => ({
-  films: state.films,
-  genre: state.genre
+  genres: getGenres(state),
+  filmsByGenre: getFilmsByGenre(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  loadFilms: (): Action => dispatch(ActionCreator.loadFilms())
+  loadFilms: (): Action => dispatch(Operation.loadFilms() as any)
 });
 
 export {Main};

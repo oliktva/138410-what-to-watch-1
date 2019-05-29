@@ -1,123 +1,57 @@
 export const films = [{
-  id: 1,
-  name: `Fantastic Beasts`,
-  img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  genre: `Adventure`
-}, {
-  id: 2,
-  name: `Bohemian Rhapsody`,
-  img: `img/bohemian-rhapsody.jpg`,
-  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  genre: `Adventure`
-}, {
-  id: 3,
-  name: `Macbeth`,
-  img: `img/macbeth.jpg`,
-  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  genre: `Adventure`
-}, {
-  id: 4,
-  name: `Aviator`,
-  img: `img/aviator.jpg`,
-  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  genre: `Adventure`
-}, {
-  id: 5,
-  name: `We need to talk about Kevin`,
-  img: `img/we-need-to-talk-about-kevin.jpg`,
-  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  genre: `Adventure`
-}, {
-  id: 6,
-  name: `What We Do in the Shadows`,
-  img: `img/what-we-do-in-the-shadows.jpg`,
-  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  genre: `Adventure`
-}, {
-  id: 7,
-  name: `Revenant`,
-  img: `img/revenant.jpg`,
-  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  genre: `Adventure`
-}, {
-  id: 8,
-  name: `Johnny English`,
-  img: `img/johnny-english.jpg`,
-  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  genre: `Adventure`
-}, {
-  id: 9,
-  name: `Shutter Island`,
-  img: `img/shutter-island.jpg`,
-  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  genre: `Adventure`
-}, {
-  id: 10,
   name: `Pulp Fiction`,
-  img: `img/pulp-fiction.jpg`,
-  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  genre: `Adventure`
+  posterImage: `https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg`,
+  previewImage: `https://es31-server.appspot.com/wtw/static/film/preview/pulp-fiction.jpg`,
+  backgroundImage: `https://es31-server.appspot.com/wtw/static/film/background/Pulp_Fiction.jpg`,
+  backgroundColor: `#795433`,
+  description: `The lives of two mob hitmen, a boxer, a gangster & his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.`,
+  rating: 8.9,
+  scoresCount: 1635992,
+  director: `Quentin Tarantino`,
+  starring: [`John Travolta`, `Uma Thurman`, `Samuel L. Jackson`],
+  runTime: 153,
+  genre: `Crime`,
+  released: 1994,
+  id: 1,
+  isFavorite: false,
+  videoLink: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+  previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
 }, {
-  id: 11,
-  name: `No Country for Old Men`,
-  img: `img/no-country-for-old-men.jpg`,
-  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  genre: `Adventure`
-}, {
-  id: 12,
-  name: `Snatch`,
-  img: `img/snatch.jpg`,
-  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  genre: `Adventure`
-}, {
-  id: 13,
-  name: `Moonrise Kingdom`,
-  img: `img/moonrise-kingdom.jpg`,
-  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  genre: `Adventure`
-}, {
-  id: 14,
-  name: `Seven Years in Tibet`,
-  img: `img/seven-years-in-tibet.jpg`,
-  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  genre: `Adventure`
-}, {
-  id: 15,
-  name: `Midnight Special`,
-  img: `img/midnight-special.jpg`,
-  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  genre: `Adventure`
-}, {
-  id: 16,
   name: `War of the Worlds`,
-  img: `img/war-of-the-worlds.jpg`,
-  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  genre: `Adventure`
+  posterImage: `https://es31-server.appspot.com/wtw/static/film/poster/War_of_the_Worlds.jpg`,
+  previewImage: `https://es31-server.appspot.com/wtw/static/film/preview/war-of-the-worlds.jpg`,
+  backgroundImage: `https://es31-server.appspot.com/wtw/static/film/background/War_of_the_Worlds.jpg`,
+  backgroundColor: `#9B7E61`,
+  description: `As Earth is invaded by alien tripod fighting machines, one family fights for survival.`,
+  rating: 6.5,
+  scoresCount: 386834,
+  director: `Steven Spielberg`,
+  starring: [`Tom Cruise`, `Dakota Fanning`, `Tim Robbins`],
+  runTime: 116,
+  genre: `Adventure`,
+  released: 2005,
+  id: 2,
+  isFavorite: false,
+  videoLink: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
+  previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
 }, {
-  id: 17,
-  name: `Dardjeeling Limited`,
-  img: `img/dardjeeling-limited.jpg`,
-  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  genre: `Adventure`
-}, {
-  id: 18,
-  name: `Orlando`,
-  img: `img/orlando.jpg`,
-  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  genre: `Adventure`
-}, {
-  id: 19,
-  name: `Mindhunter`,
-  img: `img/mindhunter.jpg`,
-  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  genre: `Adventure`
-}, {
-  id: 20,
-  name: `Midnight Special`,
-  img: `img/midnight-special.jpg`,
-  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  genre: `Adventure`
+  name: `Gangs of new york`,
+  posterImage: `https://es31-server.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`,
+  previewImage: `https://es31-server.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg`,
+  backgroundImage: `https://es31-server.appspot.com/wtw/static/film/background/gangs_of_new_york.jpg`,
+  backgroundColor: `#A6B7AC`,
+  description: `In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father's killer.`,
+  rating: 7.5,
+  scoresCount: 370881,
+  director: `Martin Scorsese`,
+  starring: [`Leonardo DiCaprio`, `Cameron Diaz`, `Daniel Day-Lewis`],
+  runTime: 167,
+  genre: `Crime`,
+  released: 2002,
+  id: 3,
+  isFavorite: false,
+  videoLink: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
+  previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
 }];
 
 export const film = films[0];

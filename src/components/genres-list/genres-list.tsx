@@ -3,7 +3,10 @@ import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {State, ActionCreator, Action} from 'src/reducer';
+import {ActionCreator, Action} from 'src/reducers/films/films';
+import {getGenre} from 'src/reducers/films/selectors';
+
+import {State} from 'src/reducers/reducer';
 import {GenreProps, genrePropTypes, genresPropTypes} from 'src/types/genres';
 
 interface StateProps {
@@ -41,7 +44,7 @@ const GenresList = (props: Props): JSX.Element => {
 };
 
 const mapStateToProps = (state: State): StateProps => ({
-  active: state.genre
+  active: getGenre(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

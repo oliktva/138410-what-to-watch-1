@@ -7,11 +7,27 @@ exports[`renders correctly 1`] = `
   <SmallMovieCard
     film={
       Object {
-        "genre": "Adventure",
+        "backgroundColor": "#795433",
+        "backgroundImage": "https://es31-server.appspot.com/wtw/static/film/background/Pulp_Fiction.jpg",
+        "description": "The lives of two mob hitmen, a boxer, a gangster & his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+        "director": "Quentin Tarantino",
+        "genre": "Crime",
         "id": 1,
-        "img": "img/fantastic-beasts-the-crimes-of-grindelwald.jpg",
-        "name": "Fantastic Beasts",
-        "video": "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
+        "isFavorite": false,
+        "name": "Pulp Fiction",
+        "posterImage": "https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg",
+        "previewImage": "https://es31-server.appspot.com/wtw/static/film/preview/pulp-fiction.jpg",
+        "previewVideoLink": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "rating": 8.9,
+        "released": 1994,
+        "runTime": 153,
+        "scoresCount": 1635992,
+        "starring": Array [
+          "John Travolta",
+          "Uma Thurman",
+          "Samuel L. Jackson",
+        ],
+        "videoLink": "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4",
       }
     }
     isPlaying={false}
@@ -22,11 +38,27 @@ exports[`renders correctly 1`] = `
   <SmallMovieCard
     film={
       Object {
+        "backgroundColor": "#9B7E61",
+        "backgroundImage": "https://es31-server.appspot.com/wtw/static/film/background/War_of_the_Worlds.jpg",
+        "description": "As Earth is invaded by alien tripod fighting machines, one family fights for survival.",
+        "director": "Steven Spielberg",
         "genre": "Adventure",
         "id": 2,
-        "img": "img/bohemian-rhapsody.jpg",
-        "name": "Bohemian Rhapsody",
-        "video": "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
+        "isFavorite": false,
+        "name": "War of the Worlds",
+        "posterImage": "https://es31-server.appspot.com/wtw/static/film/poster/War_of_the_Worlds.jpg",
+        "previewImage": "https://es31-server.appspot.com/wtw/static/film/preview/war-of-the-worlds.jpg",
+        "previewVideoLink": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "rating": 6.5,
+        "released": 2005,
+        "runTime": 116,
+        "scoresCount": 386834,
+        "starring": Array [
+          "Tom Cruise",
+          "Dakota Fanning",
+          "Tim Robbins",
+        ],
+        "videoLink": "http://media.xiph.org/mango/tears_of_steel_1080p.webm",
       }
     }
     isPlaying={false}
@@ -37,270 +69,31 @@ exports[`renders correctly 1`] = `
   <SmallMovieCard
     film={
       Object {
-        "genre": "Adventure",
+        "backgroundColor": "#A6B7AC",
+        "backgroundImage": "https://es31-server.appspot.com/wtw/static/film/background/gangs_of_new_york.jpg",
+        "description": "In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father's killer.",
+        "director": "Martin Scorsese",
+        "genre": "Crime",
         "id": 3,
-        "img": "img/macbeth.jpg",
-        "name": "Macbeth",
-        "video": "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
+        "isFavorite": false,
+        "name": "Gangs of new york",
+        "posterImage": "https://es31-server.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg",
+        "previewImage": "https://es31-server.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg",
+        "previewVideoLink": "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
+        "rating": 7.5,
+        "released": 2002,
+        "runTime": 167,
+        "scoresCount": 370881,
+        "starring": Array [
+          "Leonardo DiCaprio",
+          "Cameron Diaz",
+          "Daniel Day-Lewis",
+        ],
+        "videoLink": "http://media.xiph.org/mango/tears_of_steel_1080p.webm",
       }
     }
     isPlaying={false}
     key="3"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 4,
-        "img": "img/aviator.jpg",
-        "name": "Aviator",
-        "video": "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
-      }
-    }
-    isPlaying={false}
-    key="4"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 5,
-        "img": "img/we-need-to-talk-about-kevin.jpg",
-        "name": "We need to talk about Kevin",
-        "video": "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
-      }
-    }
-    isPlaying={false}
-    key="5"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 6,
-        "img": "img/what-we-do-in-the-shadows.jpg",
-        "name": "What We Do in the Shadows",
-        "video": "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
-      }
-    }
-    isPlaying={false}
-    key="6"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 7,
-        "img": "img/revenant.jpg",
-        "name": "Revenant",
-        "video": "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
-      }
-    }
-    isPlaying={false}
-    key="7"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 8,
-        "img": "img/johnny-english.jpg",
-        "name": "Johnny English",
-        "video": "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
-      }
-    }
-    isPlaying={false}
-    key="8"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 9,
-        "img": "img/shutter-island.jpg",
-        "name": "Shutter Island",
-        "video": "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
-      }
-    }
-    isPlaying={false}
-    key="9"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 10,
-        "img": "img/pulp-fiction.jpg",
-        "name": "Pulp Fiction",
-        "video": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
-      }
-    }
-    isPlaying={false}
-    key="10"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 11,
-        "img": "img/no-country-for-old-men.jpg",
-        "name": "No Country for Old Men",
-        "video": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
-      }
-    }
-    isPlaying={false}
-    key="11"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 12,
-        "img": "img/snatch.jpg",
-        "name": "Snatch",
-        "video": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
-      }
-    }
-    isPlaying={false}
-    key="12"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 13,
-        "img": "img/moonrise-kingdom.jpg",
-        "name": "Moonrise Kingdom",
-        "video": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
-      }
-    }
-    isPlaying={false}
-    key="13"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 14,
-        "img": "img/seven-years-in-tibet.jpg",
-        "name": "Seven Years in Tibet",
-        "video": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
-      }
-    }
-    isPlaying={false}
-    key="14"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 15,
-        "img": "img/midnight-special.jpg",
-        "name": "Midnight Special",
-        "video": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
-      }
-    }
-    isPlaying={false}
-    key="15"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 16,
-        "img": "img/war-of-the-worlds.jpg",
-        "name": "War of the Worlds",
-        "video": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
-      }
-    }
-    isPlaying={false}
-    key="16"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 17,
-        "img": "img/dardjeeling-limited.jpg",
-        "name": "Dardjeeling Limited",
-        "video": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
-      }
-    }
-    isPlaying={false}
-    key="17"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 18,
-        "img": "img/orlando.jpg",
-        "name": "Orlando",
-        "video": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
-      }
-    }
-    isPlaying={false}
-    key="18"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 19,
-        "img": "img/mindhunter.jpg",
-        "name": "Mindhunter",
-        "video": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
-      }
-    }
-    isPlaying={false}
-    key="19"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  />
-  <SmallMovieCard
-    film={
-      Object {
-        "genre": "Adventure",
-        "id": 20,
-        "img": "img/midnight-special.jpg",
-        "name": "Midnight Special",
-        "video": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
-      }
-    }
-    isPlaying={false}
-    key="20"
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   />
