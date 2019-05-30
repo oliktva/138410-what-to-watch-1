@@ -15,8 +15,8 @@ it(`sets active card correctly`, () => {
   const component = shallow(<MockComponentWrapped />);
   let {email, password} = component.props();
 
-  expect(email).toEqual(null);
-  expect(password).toEqual(null);
+  expect(email).toEqual(undefined);
+  expect(password).toEqual(undefined);
 
   component.props().setEmailValue(emailValue);
   email = component.props().email;

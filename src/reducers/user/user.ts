@@ -10,10 +10,10 @@ export const LOG_IN_USER = `LOG_IN_USER`;
 
 export interface State {
   isAuthorizationRequired: boolean;
-  id: number | null;
-  email: string | null;
-  name: string | null;
-  avatarUrl: string | null;
+  id?: number;
+  email?: string;
+  name?: string;
+  avatarUrl?: string;
 }
 
 interface IsAuthorizationRequiredProps {
@@ -34,10 +34,10 @@ export type Action = ToggleAuthorizationRequiredAction | LogInUserAction;
 
 export const initialState: State = {
   isAuthorizationRequired: true,
-  id: null,
-  email: null,
-  name: null,
-  avatarUrl: null
+  id: undefined,
+  email: undefined,
+  name: undefined,
+  avatarUrl: undefined
 };
 
 export const ActionCreator = {

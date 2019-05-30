@@ -1,8 +1,10 @@
 import React, {PureComponent} from 'react';
 
+type Value = string | undefined;
+
 interface State {
-  email: string | null;
-  password: string | null;
+  email: Value;
+  password: Value;
 }
 
 const withLoginData = (Component: any): any => {
@@ -11,19 +13,19 @@ const withLoginData = (Component: any): any => {
       super(props);
 
       this.state = {
-        email: null,
-        password: null
+        email: undefined,
+        password: undefined
       };
 
       this._setEmailValue = this._setEmailValue.bind(this);
       this._setPasswordValue = this._setPasswordValue.bind(this);
     }
 
-    private _setEmailValue(value: string | null): void {
+    private _setEmailValue(value: Value): void {
       this.setState({email: value});
     }
 
-    private _setPasswordValue(value: string | null): void {
+    private _setPasswordValue(value: Value): void {
       this.setState({password: value});
     }
 
