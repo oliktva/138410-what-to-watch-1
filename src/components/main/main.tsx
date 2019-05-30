@@ -1,15 +1,15 @@
 import React, {PureComponent, Fragment, ComponentClass} from 'react';
-import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {getGenres, getFilmsByGenre} from 'src/reducers/films/selectors';
-import {Operation, Action} from 'src/reducers/films/films';
+import {Operation} from 'src/reducers/films/films';
 
 import SmallMovieCardsList from 'src/components/small-movie-cards-list/small-movie-cards-list';
 import GenresList from 'src/components/genres-list/genres-list';
 
 import {State} from 'src/reducers/reducer';
+import {ThunkDispatch} from 'src/reducers/films/films';
 import {FilmProps, filmsPropTypes} from 'src/types/films';
 import {GenreProps, genresPropTypes} from 'src/types/genres';
 
@@ -149,8 +149,8 @@ const mapStateToProps = (state: State): StateProps => ({
   filmsByGenre: getFilmsByGenre(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  loadFilms: (): Action => dispatch(Operation.loadFilms())
+const mapDispatchToProps = (dispatch: ThunkDispatch): DispatchProps => ({
+  loadFilms: (): Promise<void> => dispatch(Operation.loadFilms())
 });
 
 export {Main};

@@ -5,16 +5,15 @@ import toJson from 'enzyme-to-json';
 
 import {Main} from './main';
 import {films} from 'src/fixtures/films';
-import {genre} from 'src/fixtures/genres';
+import {genres} from 'src/fixtures/genres';
 
 Enzyme.configure({adapter: new Adapter()});
 
 it(`renders correctly`, () => {
   const main = shallow(<Main
-    films={films}
-    genre={genre}
+    filmsByGenre={films}
+    genres={genres}
     loadFilms={jest.fn()}
-    setFilterByGenre={jest.fn()}
   />);
   expect(toJson(main)).toMatchSnapshot();
 });

@@ -28,8 +28,8 @@ interface LoadFilmsAction extends ReduxAction {
 
 export type Action = SetFilterAction | LoadFilmsAction;
 
-type ThunkDispatch = ReduxThunkDispatch<State, AxiosInstance, Action>;
-type ThunkAction = ReduxThunkAction<Promise<void>, State, AxiosInstance, Action>;
+export type ThunkDispatch = ReduxThunkDispatch<State, AxiosInstance, Action>;
+export type ThunkAction = ReduxThunkAction<Promise<void>, State, AxiosInstance, Action>;
 
 export const initialState: State = {
   genre: ALL_GENRES,
