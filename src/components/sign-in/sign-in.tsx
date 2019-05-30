@@ -14,6 +14,8 @@ import Footer from 'src/components/footer/footer';
 import {State, ThunkDispatch} from 'src/types/reducer';
 import {UserProps, UserPropTypes} from 'src/types/user';
 
+type Value = string | undefined;
+
 interface StateProps {
   user: UserProps;
 }
@@ -23,10 +25,10 @@ interface DispatchProps {
 }
 
 interface OwnProps {
-  email: string | null;
-  password: string | null;
-  setEmailValue: (value: string | null) => void;
-  setPasswordValue: (value: string | null) => void;
+  email: Value;
+  password: Value;
+  setEmailValue: (value: Value) => void;
+  setPasswordValue: (value: Value) => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
