@@ -150,7 +150,7 @@ const mapStateToProps = (state: State): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  loadFilms: (): Action => dispatch(Operation.loadFilms() as any)
+  loadFilms: (): Action => dispatch(Operation.loadFilms())
 });
 
 export {Main};
