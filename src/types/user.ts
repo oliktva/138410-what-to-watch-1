@@ -8,8 +8,8 @@ export const UserPropTypes = PropTypes.shape({
 });
 
 export interface UserProps {
-  id: number | null;
-  email: string | null;
-  name: string | null;
-  avatarUrl: string | null;
+  id?: number;
+  email?: string;
+  name?: string;
+  avatarUrl?: string;
 }
