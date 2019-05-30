@@ -5,6 +5,7 @@ import camelcaseKeys from 'camelcase-keys';
 
 import {GenreProps} from 'src/types/genres';
 import {FilmProps} from 'src/types/films';
+import {ThunkDispatch, ThunkAction, State as AppState} from 'src/types/reducer';
 
 export const SET_GENRE = `SET_GENRE`;
 export const LOAD_FILMS_SUCCESS = `LOAD_FILMS_SUCCESS`;
@@ -54,7 +55,7 @@ export const ActionCreator = {
 
 export const Operation = {
   loadFilms: (): ThunkAction => {
-    return (dispatch: ThunkDispatch, _getState: () => State, api: AxiosInstance): Promise<void> => {
+    return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
       return api.get(`/films`)
         .then((response: AxiosResponse): void => {
           const data = camelcaseKeys(response.data) as FilmProps[];

@@ -2,7 +2,7 @@ import {createSelector} from 'reselect';
 
 import namespaces from 'src/reducers/namespaces';
 
-import {State} from 'src/reducers/reducer';
+import {State} from 'src/types/reducer';
 import {FilmProps} from 'src/types/films';
 import {GenreProps} from 'src/types/genres';
 
