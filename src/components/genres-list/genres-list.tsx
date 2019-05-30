@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import {ActionCreator, Action} from 'src/reducers/films/films';
 import {getGenre} from 'src/reducers/films/selectors';
 
-import {State} from 'src/reducers/reducer';
+import {State} from 'src/types/reducer';
 import {GenreProps, genrePropTypes, genresPropTypes} from 'src/types/genres';
 
 interface StateProps {

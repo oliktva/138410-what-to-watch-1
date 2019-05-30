@@ -1,15 +1,16 @@
 import {combineReducers} from 'redux';
-import filmsReducer, {State as FilmsState, initialState as filmsInitialState} from './films/films';
+
+import {State} from 'src/types/reducer';
+import filmsReducer, {initialState as filmsInitialState} from './films/films';
+import userReducer, {initialState as userInitialState} from './user/user';
 import Namespaces from './namespaces';
 
-export interface State {
-  [Namespaces.FILMS]: FilmsState;
-}
-
 export const initialState = {
-  [Namespaces.FILMS]: filmsInitialState
+  [Namespaces.FILMS]: filmsInitialState,
+  [Namespaces.USER]: userInitialState
 };
 
 export default combineReducers<State>({
-  [Namespaces.FILMS]: filmsReducer
+  [Namespaces.FILMS]: filmsReducer,
+  [Namespaces.USER]: userReducer
 });
