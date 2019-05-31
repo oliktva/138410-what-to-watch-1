@@ -83,6 +83,9 @@ export const Operation = {
         const data = camelcaseKeys(response.data) as UserProps;
 
         dispatch(ActionCreator.logInUser(data));
+        dispatch(ActionCreator.toggleAuthorizationRequired({
+          isAuthorizationRequired: false
+        }));
       }).catch((error: AxiosError): void => {
         dispatch(ActionCreator.logInUserError(error.message));
       });
