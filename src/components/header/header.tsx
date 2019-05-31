@@ -5,10 +5,11 @@ import {UserProps, UserPropTypes} from 'src/types/user';
 
 interface Props {
   user: UserProps;
-  className: string;
+  className?: string;
+  needAuthorizationHandler?: () => void
 }
 
-const Header = ({user, className}: Props): JSX.Element => (
+const Header = ({user, needAuthorizationHandler, className}: Props): JSX.Element => (
   <header className={`page-header ${className}`}>
     <div className="logo">
       <a className="logo__link">
@@ -23,7 +24,7 @@ const Header = ({user, className}: Props): JSX.Element => (
           <img src={user.avatarUrl} alt="User avatar" width="63" height="63" />
         </div>
       ) : (
-        <a href="sign-in.html" className="user-block__link">Sign in</a>
+        <span className="user-block__link" onClick={needAuthorizationHandler}>Sign in</span>
       )}
     </div>
   </header>
@@ -31,11 +32,13 @@ const Header = ({user, className}: Props): JSX.Element => (
 
 Header.propTypes = {
   user: UserPropTypes.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  needAuthorizationHandler: PropTypes.func
 };
 
 Header.defaultProps = {
-  className: ``
+  className: ``,
+  needAuthorizationHandler: () => {}
 };
 
 export default Header;
