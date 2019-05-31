@@ -1,4 +1,4 @@
-import axios, {AxiosInstance, AxiosResponse, AxiosError} from 'axios';
+import axios, {AxiosInstance} from 'axios';
 
 const configureAPI = (): AxiosInstance => {
   const instance = axios.create({
@@ -6,13 +6,6 @@ const configureAPI = (): AxiosInstance => {
     timeout: 5000,
     withCredentials: true
   });
-
-  const onSuccess = (response: AxiosResponse): AxiosResponse => response;
-  const onFail = (err: AxiosError): AxiosError => {
-    return err;
-  };
-
-  instance.interceptors.response.use(onSuccess, onFail);
 
   return instance;
 };

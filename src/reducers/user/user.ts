@@ -1,5 +1,5 @@
 import {Action as ReduxAction} from 'redux';
-import {AxiosResponse, AxiosInstance} from 'axios';
+import {AxiosResponse, AxiosError, AxiosInstance} from 'axios';
 import camelcaseKeys from 'camelcase-keys';
 
 import {UserProps} from 'src/types/user';
@@ -7,6 +7,7 @@ import {ThunkDispatch, ThunkAction, State as AppState} from 'src/types/reducer';
 
 export const TOGGLE_AUTHORIZATION_REQUIRED = `TOGGLE_AUTHORIZATION_REQUIRED`;
 export const LOG_IN_USER = `LOG_IN_USER`;
+export const LOG_IN_USER_ERROR = `LOG_IN_USER_ERROR`;
 
 export interface State {
   isAuthorizationRequired: boolean;
@@ -14,6 +15,7 @@ export interface State {
   email?: string;
   name?: string;
   avatarUrl?: string;
+  error?: string;
 }
 
 interface IsAuthorizationRequiredProps {
@@ -30,14 +32,20 @@ interface LogInUserAction extends ReduxAction {
   payload: UserProps;
 }
 
-export type Action = ToggleAuthorizationRequiredAction | LogInUserAction;
+interface LogInUserErrorAction extends ReduxAction {
+  type: typeof LOG_IN_USER_ERROR;
+  payload: string;
+}
+
+export type Action = ToggleAuthorizationRequiredAction | LogInUserAction | LogInUserErrorAction;
 
 export const initialState: State = {
-  isAuthorizationRequired: true,
+  isAuthorizationRequired: false,
   id: undefined,
   email: undefined,
   name: undefined,
-  avatarUrl: undefined
+  avatarUrl: undefined,
+  error: undefined
 };
 
 export const ActionCreator = {
@@ -55,6 +63,13 @@ export const ActionCreator = {
       type: LOG_IN_USER,
       payload: user
     };
+  },
+
+  logInUserError: (error: string): LogInUserErrorAction => {
+    return {
+      type: LOG_IN_USER_ERROR,
+      payload: error
+    };
   }
 };
 
@@ -68,6 +83,8 @@ export const Operation = {
         const data = camelcaseKeys(response.data) as UserProps;
 
         dispatch(ActionCreator.logInUser(data));
+      }).catch((error: AxiosError): void => {
+        dispatch(ActionCreator.logInUserError(error.message));
       });
     };
   }
@@ -84,7 +101,14 @@ const reducer = (state: State = initialState, action: Action): State => {
     case LOG_IN_USER:
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
+        error: undefined
+      };
+
+    case LOG_IN_USER_ERROR:
+      return {
+        ...state,
+        error: action.payload
       };
 
     default:

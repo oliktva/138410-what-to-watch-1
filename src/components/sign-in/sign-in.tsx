@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {compose} from 'recompose';
 import PropTypes from 'prop-types';
 
-import {getUser} from 'src/reducers/user/selectors';
+import {getUser, getError} from 'src/reducers/user/selectors';
 import {Operation} from 'src/reducers/user/user';
 import withLoginData from 'src/hocs/with-login-data/with-login-data';
 
@@ -18,6 +18,7 @@ type Value = string | undefined;
 
 interface StateProps {
   user: UserProps;
+  error?: string;
 }
 
 interface DispatchProps {
@@ -39,14 +40,10 @@ class SignIn extends PureComponent<Props> {
     logInUser: PropTypes.func.isRequired,
     email: PropTypes.string,
     password: PropTypes.string,
+    error: PropTypes.string,
     setEmailValue: PropTypes.func.isRequired,
     setPasswordValue: PropTypes.func.isRequired
   };
-
-  public static defaultProps = {
-    email: null,
-    password: null
-  }
 
   public constructor(props: any) {
     super(props);
@@ -85,7 +82,7 @@ class SignIn extends PureComponent<Props> {
   }
 
   public render(): JSX.Element {
-    const {user} = this.props;
+    const {user, error} = this.props;
 
     return (
       <PageWrapper>
@@ -93,6 +90,11 @@ class SignIn extends PureComponent<Props> {
           <Header user={user} className="user-page__head" />
           <div className="sign-in user-page__content">
             <form className="sign-in__form" onSubmit={this._onSubmit}>
+              {error && (
+                <div className="sign-in__message">
+                  <p>{error}</p>
+                </div>
+              )}
               <div className="sign-in__fields">
                 <div className="sign-in__field">
                   <input
@@ -130,7 +132,8 @@ class SignIn extends PureComponent<Props> {
 }
 
 const mapStateToProps = (state: State): StateProps => ({
-  user: getUser(state)
+  user: getUser(state),
+  error: getError(state)
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch): DispatchProps => ({

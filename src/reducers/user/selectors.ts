@@ -9,6 +9,10 @@ export const getUser = (state: State): UserProps => {
   return {id, email, name, avatarUrl};
 };
 
+export const getError = (state: State): (string | undefined) => {
+  return state[namespaces.USER].error;
+};
+
 export const getIsAuthorizationRequired = (state: State): boolean => {
   return state[namespaces.USER].isAuthorizationRequired;
 };
