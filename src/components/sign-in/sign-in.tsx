@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import {compose} from 'recompose';
 import PropTypes from 'prop-types';
 
+import paths from 'src/paths';
 import {getUser, getError} from 'src/reducers/user/selectors';
-import {Operation} from 'src/reducers/user/user';
+import {Operation, ActionCreator, Action} from 'src/reducers/user/user';
 import withLoginData from 'src/hocs/with-login-data/with-login-data';
 
 import PageWrapper from 'src/components/page-wrapper/page-wrapper';
@@ -23,6 +24,7 @@ interface StateProps {
 
 interface DispatchProps {
   logInUser: (email: string, password: string) => Promise<void>;
+  showError: (message: string) => Action;
 }
 
 interface OwnProps {
@@ -42,7 +44,8 @@ class SignIn extends PureComponent<Props> {
     password: PropTypes.string,
     error: PropTypes.string,
     setEmailValue: PropTypes.func.isRequired,
-    setPasswordValue: PropTypes.func.isRequired
+    setPasswordValue: PropTypes.func.isRequired,
+    showError: PropTypes.func.isRequired
   };
 
   public constructor(props: any) {
@@ -54,12 +57,16 @@ class SignIn extends PureComponent<Props> {
   }
 
   private _onSubmit(evt: FormEvent<HTMLFormElement>): void {
-    const {email, password, logInUser} = this.props;
+    const {email, password, logInUser, showError} = this.props;
 
     evt.preventDefault();
 
     if (email && password) {
-      logInUser(email, password);
+      logInUser(email, password).then(() => {
+        window.history.pushState(null, null, paths.main());
+      });
+    } else {
+      showError(`Please enter a valid email address and password`)
     }
   }
 
@@ -137,7 +144,8 @@ const mapStateToProps = (state: State): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch): DispatchProps => ({
-  logInUser: (email: string, password: string): Promise<void> => dispatch(Operation.logInUser(email, password))
+  logInUser: (email: string, password: string): Promise<void> => dispatch(Operation.logInUser(email, password)),
+  showError: (message: string): Action => dispatch(ActionCreator.logInUserError(message))
 });
 
 export {SignIn};

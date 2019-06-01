@@ -20,6 +20,7 @@ module.exports = {
     compress: false,
     port: 1337,
     open: true,
+    historyApiFallback: true
   },
   resolve: {
     modules: [path.resolve(`./`), `node_modules`, `src`],

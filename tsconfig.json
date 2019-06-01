@@ -11,7 +11,7 @@
     "jsx": "react",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "allowJs": true,
+    "allowJs": false,
     "noUnusedParameters": true,
     "strict": true,
     "noImplicitThis": false,
