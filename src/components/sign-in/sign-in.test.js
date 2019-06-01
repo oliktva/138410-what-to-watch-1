@@ -14,6 +14,7 @@ it(`renders correctly`, () => {
     logInUser={jest.fn()}
     setEmailValue={jest.fn()}
     setPasswordValue={jest.fn()}
+    showError={jest.fn()}
   />);
   expect(toJson(main)).toMatchSnapshot();
 });

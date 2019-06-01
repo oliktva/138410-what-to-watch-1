@@ -1,6 +1,7 @@
 import React, {PureComponent, ComponentClass, FormEvent, ChangeEvent} from 'react';
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
+import {withRouter, RouteComponentProps} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import paths from 'src/paths';
@@ -34,7 +35,7 @@ interface OwnProps {
   setPasswordValue: (value: Value) => void;
 }
 
-type Props = StateProps & DispatchProps & OwnProps;
+type Props = StateProps & DispatchProps & OwnProps & RouteComponentProps;
 
 class SignIn extends PureComponent<Props> {
   public static propTypes = {
@@ -57,16 +58,20 @@ class SignIn extends PureComponent<Props> {
   }
 
   private _onSubmit(evt: FormEvent<HTMLFormElement>): void {
-    const {email, password, logInUser, showError} = this.props;
+    const {email, password, logInUser, showError, history} = this.props;
 
     evt.preventDefault();
 
     if (email && password) {
-      logInUser(email, password).then(() => {
-        window.history.pushState(null, null, paths.main());
+      logInUser(email, password).then((): void => {
+        if (history.length > 1) {
+          history.goBack();
+        } else {
+          history.push(paths.main());
+        }
       });
     } else {
-      showError(`Please enter a valid email address and password`)
+      showError(`Please enter a valid email address and password`);
     }
   }
 
@@ -153,7 +158,8 @@ export {SignIn};
 const connectedComponent: any =
   compose(
     connect<StateProps, DispatchProps, OwnProps, State>(mapStateToProps, mapDispatchToProps),
-    withLoginData
+    withLoginData,
+    withRouter
   )(SignIn);
 
 export default connectedComponent as ComponentClass<{}>;

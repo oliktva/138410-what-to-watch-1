@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <header
-  className="page-header "
+  className="page-header test"
 >
   <div
     className="logo"
