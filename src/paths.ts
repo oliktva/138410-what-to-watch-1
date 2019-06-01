@@ -1,6 +1,7 @@
 const paths = {
   main: (): string => `/`,
-  login: (): string => `/login`
+  login: (): string => `/login`,
+  favorites: (): string => `/favorites`
 };
 
 export default paths;

@@ -8,10 +8,11 @@ import {UserProps, UserPropTypes} from 'src/types/user';
 
 interface Props {
   user: UserProps;
+  heading?: string;
   className?: string;
 }
 
-const Header = ({user, className}: Props): JSX.Element => (
+const Header = ({user, className, heading}: Props): JSX.Element => (
   <header className={`page-header ${className}`}>
     <div className="logo">
       <a className="logo__link">
@@ -20,6 +21,7 @@ const Header = ({user, className}: Props): JSX.Element => (
         <span className="logo__letter logo__letter--3">W</span>
       </a>
     </div>
+    {heading && <h1 className="page-title user-page__title">{heading}</h1>}
     <div className="user-block">
       {user.avatarUrl ? (
         <div className="user-block__avatar">
@@ -34,6 +36,7 @@ const Header = ({user, className}: Props): JSX.Element => (
 
 Header.propTypes = {
   user: UserPropTypes.isRequired,
+  heading: PropTypes.string,
   className: PropTypes.string
 };
 
