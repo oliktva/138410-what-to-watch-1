@@ -2,11 +2,13 @@ import React from 'react';
 import {render} from 'react-dom';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
 import thunk from 'redux-thunk';
 import {compose} from 'recompose';
 
 import configureAPI from 'src/api';
 import reducer, {initialState} from 'src/reducers/reducer';
+
 import App from 'src/components/app/app';
 
 const api = configureAPI();
@@ -22,7 +24,9 @@ const target = document.querySelector(`#root`);
 
 render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   target
 );

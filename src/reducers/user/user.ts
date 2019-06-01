@@ -18,15 +18,6 @@ export interface State {
   error?: string;
 }
 
-interface IsAuthorizationRequiredProps {
-  isAuthorizationRequired: boolean;
-}
-
-interface ToggleAuthorizationRequiredAction extends ReduxAction {
-  type: typeof TOGGLE_AUTHORIZATION_REQUIRED;
-  payload: IsAuthorizationRequiredProps;
-}
-
 interface LogInUserAction extends ReduxAction {
   type: typeof LOG_IN_USER;
   payload: UserProps;
@@ -37,7 +28,7 @@ interface LogInUserErrorAction extends ReduxAction {
   payload: string;
 }
 
-export type Action = ToggleAuthorizationRequiredAction | LogInUserAction | LogInUserErrorAction;
+export type Action = LogInUserAction | LogInUserErrorAction;
 
 export const initialState: State = {
   isAuthorizationRequired: false,
@@ -49,15 +40,6 @@ export const initialState: State = {
 };
 
 export const ActionCreator = {
-  toggleAuthorizationRequired: ({isAuthorizationRequired}: IsAuthorizationRequiredProps): ToggleAuthorizationRequiredAction => {
-    return {
-      type: TOGGLE_AUTHORIZATION_REQUIRED,
-      payload: {
-        isAuthorizationRequired
-      }
-    };
-  },
-
   logInUser: (user: UserProps): LogInUserAction => {
     return {
       type: LOG_IN_USER,
@@ -83,9 +65,6 @@ export const Operation = {
         const data = camelcaseKeys(response.data) as UserProps;
 
         dispatch(ActionCreator.logInUser(data));
-        dispatch(ActionCreator.toggleAuthorizationRequired({
-          isAuthorizationRequired: false
-        }));
       }).catch((error: AxiosError): void => {
         dispatch(ActionCreator.logInUserError(error.message));
       });
@@ -95,12 +74,6 @@ export const Operation = {
 
 const reducer = (state: State = initialState, action: Action): State => {
   switch (action.type) {
-    case TOGGLE_AUTHORIZATION_REQUIRED:
-      return {
-        ...state,
-        isAuthorizationRequired: action.payload.isAuthorizationRequired
-      };
-
     case LOG_IN_USER:
       return {
         ...state,

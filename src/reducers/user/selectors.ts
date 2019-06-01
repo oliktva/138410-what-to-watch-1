@@ -12,7 +12,3 @@ export const getUser = (state: State): UserProps => {
 export const getError = (state: State): (string | undefined) => {
   return state[namespaces.USER].error;
 };
-
-export const getIsAuthorizationRequired = (state: State): boolean => {
-  return state[namespaces.USER].isAuthorizationRequired;
-};

@@ -4,7 +4,6 @@ import configureAPI from 'src/api';
 import {
   Operation,
   ActionCreator,
-  TOGGLE_AUTHORIZATION_REQUIRED,
   LOG_IN_USER,
   LOG_IN_USER_ERROR
 } from './user';
@@ -12,13 +11,6 @@ import {
 import {user, email, password} from 'src/fixtures/user';
 
 describe(`ActionCreator`, () => {
-  it(`toggleAuthorizationRequired`, () => {
-    expect(ActionCreator.toggleAuthorizationRequired({isAuthorizationRequired: true})).toEqual({
-      type: TOGGLE_AUTHORIZATION_REQUIRED,
-      payload: {isAuthorizationRequired: true}
-    });
-  });
-
   it(`logInUser`, () => {
     const loginAction = ActionCreator.logInUser(user);
 

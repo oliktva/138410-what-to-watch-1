@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import {getGenres, getFilmsByGenre} from 'src/reducers/films/selectors';
 import {getUser} from 'src/reducers/user/selectors';
-import {ActionCreator} from 'src/reducers/user/user';
 import {Operation} from 'src/reducers/films/films';
 
 import PageWrapper from 'src/components/page-wrapper/page-wrapper';
@@ -26,7 +25,6 @@ interface StateProps {
 
 interface DispatchProps {
   loadFilms: () => void;
-  needAuthorizationHandler: () => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -46,7 +44,7 @@ class Main extends PureComponent<Props> {
   }
 
   public render(): JSX.Element {
-    const {genres, filmsByGenre, user, needAuthorizationHandler} = this.props;
+    const {genres, filmsByGenre, user} = this.props;
 
     return (
       <PageWrapper>
@@ -55,7 +53,7 @@ class Main extends PureComponent<Props> {
             <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
           </div>
           <h1 className="visually-hidden">WTW</h1>
-          <Header user={user} needAuthorizationHandler={needAuthorizationHandler} className="movie-card__head" />
+          <Header user={user} className="movie-card__head" />
           <div className="movie-card__wrap">
             <div className="movie-card__info">
               <div className="movie-card__poster">
@@ -108,10 +106,7 @@ const mapStateToProps = (state: State): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch): DispatchProps => ({
-  loadFilms: (): Promise<void> => dispatch(Operation.loadFilms()),
-  needAuthorizationHandler: () => dispatch(ActionCreator.toggleAuthorizationRequired({
-    isAuthorizationRequired: true
-  }))
+  loadFilms: (): Promise<void> => dispatch(Operation.loadFilms())
 });
 
 export {Main};

@@ -9,7 +9,7 @@ import {user} from 'src/fixtures/user';
 Enzyme.configure({adapter: new Adapter()});
 
 it(`renders correctly`, () => {
-  const header = shallow(<Header user={user} />);
+  const header = shallow(<Header user={user} className="test" />);
 
   expect(toJson(header)).toMatchSnapshot();
 });

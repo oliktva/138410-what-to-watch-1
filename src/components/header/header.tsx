@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+
+import paths from 'src/paths';
 
 import {UserProps, UserPropTypes} from 'src/types/user';
 
 interface Props {
   user: UserProps;
   className?: string;
-  needAuthorizationHandler?: () => void
 }
 
-const Header = ({user, needAuthorizationHandler, className}: Props): JSX.Element => (
+const Header = ({user, className}: Props): JSX.Element => (
   <header className={`page-header ${className}`}>
     <div className="logo">
       <a className="logo__link">
@@ -24,7 +26,7 @@ const Header = ({user, needAuthorizationHandler, className}: Props): JSX.Element
           <img src={user.avatarUrl} alt="User avatar" width="63" height="63" />
         </div>
       ) : (
-        <span className="user-block__link" onClick={needAuthorizationHandler}>Sign in</span>
+        <Link to={paths.login()} className="user-block__link">Sign in</Link>
       )}
     </div>
   </header>
@@ -32,13 +34,11 @@ const Header = ({user, needAuthorizationHandler, className}: Props): JSX.Element
 
 Header.propTypes = {
   user: UserPropTypes.isRequired,
-  className: PropTypes.string,
-  needAuthorizationHandler: PropTypes.func
+  className: PropTypes.string
 };
 
 Header.defaultProps = {
-  className: ``,
-  needAuthorizationHandler: () => {}
+  className: ``
 };
 
 export default Header;
