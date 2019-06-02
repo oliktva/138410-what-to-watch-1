@@ -1,5 +1,5 @@
 import React, {PureComponent, ComponentClass} from 'react';
-import {connect} from 'react-redux';
+import {connect, MapStateToProps} from 'react-redux';
 import {compose} from 'recompose';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
 
@@ -34,17 +34,17 @@ const needLogin = (Component: any): any => {
     }
   }
 
-  const mapStateToProps = (state: State): StateProps => ({
+  const mapStateToProps: MapStateToProps<StateProps, {}, State> = (state: State): StateProps => ({
     user: getUser(state)
   });
 
   const connectedComponent: any =
-    compose(
-      connect<StateProps, {}, RouteComponentProps, State>(mapStateToProps),
+    compose<Props, ComponentClass<Props>>(
+      connect<StateProps, {}, {}, State>(mapStateToProps),
       withRouter
     )(NeedLogin);
 
-  return connectedComponent as ComponentClass<RouteComponentProps>;
+  return connectedComponent as ComponentClass<{}>;
 };
 
 export default needLogin;

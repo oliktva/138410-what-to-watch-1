@@ -30,7 +30,7 @@ describe(`ActionCreator`, () => {
     const dispatch = jest.fn();
     const api = configureAPI(dispatch);
     const apiMock = new MockAdapter(api);
-    const userLoginer = Operation.logInUser();
+    const userLoginer = Operation.logInUser(email, password);
 
     apiMock
       .onPost(`/login`, {email, password})
@@ -50,18 +50,18 @@ describe(`ActionCreator`, () => {
     const dispatch = jest.fn();
     const api = configureAPI(dispatch);
     const apiMock = new MockAdapter(api);
-    const userLoginer = Operation.logInUser();
+    const userLoginer = Operation.logInUser(email, password);
 
     apiMock
       .onPost(`/login`)
-      .reply(400, [{fake: true}]);
+      .reply(400);
 
     return userLoginer(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: LOG_IN_USER_ERROR,
-          payload: [{fake: true}],
+          payload: `Request failed with status code 400`,
         });
       });
   });

@@ -1,5 +1,5 @@
 import React, {PureComponent, ComponentClass} from 'react';
-import {connect} from 'react-redux';
+import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {getGenres, getFilmsByGenre} from 'src/reducers/films/selectors';
@@ -68,19 +68,19 @@ class Main extends PureComponent<Props> {
   }
 }
 
-const mapStateToProps = (state: State): StateProps => ({
+const mapStateToProps: MapStateToProps<StateProps, {}, State> = (state: State): StateProps => ({
   genres: getGenres(state),
   filmsByGenre: getFilmsByGenre(state),
   user: getUser(state)
 });
 
-const mapDispatchToProps = (dispatch: ThunkDispatch): DispatchProps => ({
+const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: ThunkDispatch): DispatchProps => ({
   loadFilms: (): Promise<void> => dispatch(Operation.loadFilms())
 });
 
 export {Main};
 
-const connectedComponent: any =
+const ConnectedComponent: any =
  connect<StateProps, DispatchProps, {}, State>(mapStateToProps, mapDispatchToProps)(Main);
 
-export default connectedComponent as ComponentClass<{}>;
+export default ConnectedComponent as ComponentClass<{}>;

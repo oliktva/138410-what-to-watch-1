@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import {Dispatch} from 'redux';
-import {connect} from 'react-redux';
+import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {ActionCreator, Action} from 'src/reducers/films/films';
@@ -43,11 +43,11 @@ const GenresList = (props: Props): JSX.Element => {
   );
 };
 
-const mapStateToProps = (state: State): StateProps => ({
+const mapStateToProps: MapStateToProps<StateProps, OwnProps, State> = (state: State): StateProps => ({
   active: getGenre(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = (dispatch: Dispatch): DispatchProps => ({
   setFilterByGenre: (genre: GenreProps): Action => dispatch(ActionCreator.setFilterByGenre(genre))
 });
 

@@ -1,5 +1,5 @@
 import React, {PureComponent, ComponentClass, FormEvent, ChangeEvent} from 'react';
-import {connect} from 'react-redux';
+import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
 import {compose} from 'recompose';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -49,7 +49,7 @@ class SignIn extends PureComponent<Props> {
     showError: PropTypes.func.isRequired
   };
 
-  public constructor(props: any) {
+  public constructor(props: Props) {
     super(props);
 
     this._onSubmit = this._onSubmit.bind(this);
@@ -143,12 +143,12 @@ class SignIn extends PureComponent<Props> {
   }
 }
 
-const mapStateToProps = (state: State): StateProps => ({
+const mapStateToProps: MapStateToProps<StateProps, OwnProps, State> = (state: State): StateProps => ({
   user: getUser(state),
   error: getError(state)
 });
 
-const mapDispatchToProps = (dispatch: ThunkDispatch): DispatchProps => ({
+const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = (dispatch: ThunkDispatch): DispatchProps => ({
   logInUser: (email: string, password: string): Promise<void> => dispatch(Operation.logInUser(email, password)),
   showError: (message: string): Action => dispatch(ActionCreator.logInUserError(message))
 });
@@ -156,10 +156,10 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): DispatchProps => ({
 export {SignIn};
 
 const connectedComponent: any =
-  compose(
+  compose<Props, ComponentClass<OwnProps>>(
     connect<StateProps, DispatchProps, OwnProps, State>(mapStateToProps, mapDispatchToProps),
     withLoginData,
     withRouter
   )(SignIn);
 
-export default connectedComponent as ComponentClass<{}>;
+export default connectedComponent as ComponentClass<OwnProps>;
