@@ -34,17 +34,21 @@ const needLogin = (Component: any): any => {
     }
   }
 
-  const mapStateToProps: MapStateToProps<StateProps, {}, State> = (state: State): StateProps => ({
-    user: getUser(state)
-  });
-
-  const connectedComponent: any =
-    compose<Props, ComponentClass<Props>>(
-      connect<StateProps, {}, {}, State>(mapStateToProps),
-      withRouter
-    )(NeedLogin);
-
-  return connectedComponent as ComponentClass<{}>;
+  return NeedLogin;
 };
 
-export default needLogin;
+export {needLogin};
+
+const mapStateToProps: MapStateToProps<StateProps, RouteComponentProps, State> = (state: State): StateProps => ({
+  user: getUser(state)
+});
+
+export default (Component: any): any =>{
+  const connectedComponent: any =
+    compose<Props, StateProps>(
+      connect<StateProps, {}, RouteComponentProps, State>(mapStateToProps),
+      withRouter
+    )(needLogin(Component));
+
+  return connectedComponent as ComponentClass<RouteComponentProps>;
+};
