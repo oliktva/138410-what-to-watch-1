@@ -163,11 +163,11 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = (dispatc
 
 export {SignIn};
 
-const connectedComponent: any =
+const ConnectedComponent: any =
   compose<Props, ComponentClass<OwnProps>>(
     connect<StateProps, DispatchProps, OwnProps, State>(mapStateToProps, mapDispatchToProps),
     withLoginData,
     withRouter
   )(SignIn);
 
-export default connectedComponent as ComponentClass<OwnProps>;
+export default ConnectedComponent as ComponentClass<OwnProps>;

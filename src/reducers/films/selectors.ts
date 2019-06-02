@@ -1,6 +1,6 @@
 import {createSelector} from 'reselect';
 
-import namespaces from 'src/reducers/namespaces';
+import Namespaces from 'src/reducers/namespaces';
 
 import {State} from 'src/types/reducer';
 import {FilmProps} from 'src/types/films';
@@ -9,11 +9,11 @@ import {GenreProps} from 'src/types/genres';
 const ALL_GENRES = `All genres`;
 
 export const getFilms = (state: State): FilmProps[] => {
-  return state[namespaces.FILMS].items;
+  return state[Namespaces.FILMS].items;
 };
 
 export const getGenre = (state: State): GenreProps => {
-  return state[namespaces.FILMS].genre;
+  return state[Namespaces.FILMS].genre;
 };
 
 export const getFilmsByGenre = createSelector(

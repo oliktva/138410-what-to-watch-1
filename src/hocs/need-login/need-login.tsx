@@ -44,11 +44,11 @@ const mapStateToProps: MapStateToProps<StateProps, RouteComponentProps, State> =
 });
 
 export default (Component: any): any =>{
-  const connectedComponent: any =
+  const ConnectedComponent: any =
     compose<Props, StateProps>(
       connect<StateProps, {}, RouteComponentProps, State>(mapStateToProps),
       withRouter
     )(needLogin(Component));
 
-  return connectedComponent as ComponentClass<RouteComponentProps>;
+  return ConnectedComponent as ComponentClass<RouteComponentProps>;
 };
