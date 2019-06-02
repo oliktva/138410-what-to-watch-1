@@ -5,8 +5,8 @@ import Adapter from 'enzyme-adapter-react-16';
 import {needLogin} from './need-login';
 import paths from 'src/paths';
 import {user as testUser} from 'src/fixtures/user';
+import {history as mockHistory} from 'src/fixtures/history';
 
-const mockHistory = {push: jest.fn()};
 Enzyme.configure({adapter: new Adapter()});
 
 it(`checks user and renders component`, () => {

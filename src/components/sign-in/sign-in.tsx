@@ -57,6 +57,14 @@ class SignIn extends PureComponent<Props> {
     this._onPasswordChange = this._onPasswordChange.bind(this);
   }
 
+  public componentDidMount(): void {
+    const {user, history} = this.props;
+
+    if (user.id) {
+      history.push(paths.main());
+    }
+  }
+
   private _onSubmit(evt: FormEvent<HTMLFormElement>): void {
     const {email, password, logInUser, showError, history} = this.props;
 
