@@ -23,12 +23,14 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
+const GENRES_NUMBER = 10; // 9 + 1 (All genres)
+
 const GenresList = (props: Props): JSX.Element => {
   const {genres, active, setFilterByGenre} = props;
 
   return (
     <ul className="catalog__genres-list">
-      {genres.map((genre: GenreProps): JSX.Element => {
+      {genres.slice(0, GENRES_NUMBER).map((genre: GenreProps): JSX.Element => {
         const className = genre === active ?
           `catalog__genres-item catalog__genres-item--active` :
           `catalog__genres-item`;
