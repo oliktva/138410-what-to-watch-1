@@ -1,4 +1,10 @@
-import React, {PureComponent, ComponentClass, FormEvent, ChangeEvent} from 'react';
+import React, {
+  PureComponent,
+  ComponentClass,
+  FormEvent,
+  ChangeEvent,
+  ReactElement
+} from 'react';
 import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
 import {compose} from 'recompose';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
@@ -101,7 +107,7 @@ class SignIn extends PureComponent<Props> {
     }
   }
 
-  public render(): JSX.Element {
+  public render(): ReactElement {
     const {user, error} = this.props;
 
     return (

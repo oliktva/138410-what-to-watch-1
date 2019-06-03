@@ -1,4 +1,4 @@
-import React, {PureComponent, ComponentClass} from 'react';
+import React, {PureComponent, ComponentClass, ReactElement} from 'react';
 import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -44,7 +44,7 @@ class Main extends PureComponent<Props> {
     loadFilms();
   }
 
-  public render(): JSX.Element {
+  public render(): ReactElement {
     const {genres, filmsByGenre, user} = this.props;
 
     return (

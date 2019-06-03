@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {FunctionComponent, ReactElement} from 'react';
 import {Link} from 'react-router-dom';
 
 import paths from 'src/paths';
 
-const Logo = (): JSX.Element => (
+const Logo: FunctionComponent = (): ReactElement => (
   <div className="logo">
     <Link to={paths.main()} className="logo__link logo__link--light">
       <span className="logo__letter logo__letter--1">W</span>

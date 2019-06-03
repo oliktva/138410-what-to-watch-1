@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent, ReactElement} from 'react';
 
 import withActiveCard from 'src/hocs/with-active-card/with-active-card';
 import SmallMovieCard from 'src/components/small-movie-card/small-movie-card';
@@ -48,7 +48,7 @@ class SmallMovieCardsList extends PureComponent<Props> {
     }
   }
 
-  public render(): JSX.Element {
+  public render(): ReactElement {
     const {films, activeCard} = this.props;
 
     return (

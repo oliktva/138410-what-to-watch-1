@@ -1,4 +1,4 @@
-import React, {PureComponent, RefObject} from 'react';
+import React, {PureComponent, RefObject, ReactElement} from 'react';
 import PropTypes from 'prop-types';
 
 type VideoProps = HTMLVideoElement | null;
@@ -75,7 +75,7 @@ class Videoplayer extends PureComponent<Props> {
     }
   }
 
-  public render(): JSX.Element {
+  public render(): ReactElement {
     return (
       <video className="player__video" ref={this._videoRef} />
     );

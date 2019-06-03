@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {FunctionComponent, ReactElement} from 'react';
 
 interface Props {
   header: JSX.Element;
 }
 
-const MovieCard = ({header}: Props): JSX.Element => {
+const MovieCard: FunctionComponent<Props> = ({header}): ReactElement => {
   return (
     <section className="movie-card">
       <div className="movie-card__bg">

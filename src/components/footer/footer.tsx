@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {FunctionComponent, ReactElement} from 'react';
 
 import Logo from 'src/components/logo/logo';
 
-const Footer = (): JSX.Element => (
+const Footer: FunctionComponent = (): ReactElement => (
   <footer className="page-footer">
     <Logo />
     <div className="copyright">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FunctionComponent, ReactElement} from 'react';
 
 import needLogin from 'src/hocs/need-login/need-login';
 
@@ -12,7 +12,7 @@ interface Props {
   user: UserProps;
 }
 
-const Favorites = ({user}: Props): JSX.Element => (
+const Favorites: FunctionComponent<Props> = ({user}): ReactElement => (
   <PageWrapper>
     <div className="user-page">
       <Header user={user} className="user-page__head" heading="My list" />

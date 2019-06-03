@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, ReactElement} from 'react';
 import {Dispatch} from 'redux';
 import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -25,7 +25,7 @@ type Props = StateProps & DispatchProps & OwnProps;
 
 const GENRES_NUMBER = 10; // 9 + 1 (All genres)
 
-const GenresList = (props: Props): JSX.Element => {
+const GenresList: FunctionComponent<Props> = (props): ReactElement => {
   const {genres, active, setFilterByGenre} = props;
 
   return (

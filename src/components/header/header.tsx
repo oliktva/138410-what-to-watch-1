@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FunctionComponent, ReactElement} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
@@ -13,7 +13,7 @@ interface Props {
   className?: string;
 }
 
-const Header = ({user, className, heading}: Props): JSX.Element => (
+const Header: FunctionComponent<Props> = ({user, className, heading}): ReactElement => (
   <header className={`page-header ${className}`}>
     <Logo />
     {heading && <h1 className="page-title user-page__title">{heading}</h1>}

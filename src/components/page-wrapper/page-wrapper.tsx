@@ -1,11 +1,11 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, FunctionComponent, ReactElement} from 'react';
 import PropTypes from 'prop-types';
 
 interface Props {
-  children: JSX.Element | JSX.Element[];
+  children: ReactElement | ReactElement[];
 }
 
-const PageWrapper = ({children}: Props): JSX.Element => (
+const PageWrapper: FunctionComponent<Props> = ({children}): ReactElement => (
   <Fragment>
     <div className="visually-hidden">
       <svg xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +38,7 @@ const PageWrapper = ({children}: Props): JSX.Element => (
   </Fragment>
 );
 
-PageWrapper.propsTypes = {
+PageWrapper.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element.isRequired)]).isRequired
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FunctionComponent, ReactElement} from 'react';
 import PropTypes from 'prop-types';
 
 import Videoplayer from 'src/components/videoplayer/videoplayer';
@@ -12,7 +12,7 @@ interface Props {
   onMouseLeave?(): void;
 }
 
-const SmallMovieCard = (props: Props): JSX.Element => {
+const SmallMovieCard: FunctionComponent<Props> = (props): ReactElement => {
   const {film, isPlaying, onMouseEnter, onMouseLeave} = props;
 
   return (
