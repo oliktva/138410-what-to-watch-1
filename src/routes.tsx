@@ -11,7 +11,7 @@ const Routes = (): JSX.Element => (
   <Switch>
     <Route path={paths.main()} exact component={Main} />
     <Route path={paths.login()} component={SignIn} />
-    <Route path={paths.favorites()} component={Favorites} />
+    <Route path={paths.mylist()} component={Favorites} />
   </Switch>
 );
 
