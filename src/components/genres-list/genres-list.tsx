@@ -64,4 +64,4 @@ export {GenresList};
 const ConnectedComponent: any =
  connect<StateProps, DispatchProps, OwnProps, State>(mapStateToProps, mapDispatchToProps)(GenresList);
 
-export default ConnectedComponent as FunctionComponent<OwnProps>;
+export default ConnectedComponent;

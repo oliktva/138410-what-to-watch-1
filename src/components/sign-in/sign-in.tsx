@@ -176,4 +176,4 @@ const ConnectedComponent: any =
     withRouter
   )(SignIn);
 
-export default ConnectedComponent as ComponentClass<OwnProps>;
+export default ConnectedComponent;

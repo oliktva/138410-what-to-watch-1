@@ -83,4 +83,4 @@ export {Main};
 const ConnectedComponent: any =
  connect<StateProps, DispatchProps, {}, State>(mapStateToProps, mapDispatchToProps)(Main);
 
-export default ConnectedComponent as ComponentClass<{}>;
+export default ConnectedComponent;
