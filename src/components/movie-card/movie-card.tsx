@@ -1,7 +1,8 @@
 import React, {FunctionComponent, ReactElement} from 'react';
+import PropTypes from 'prop-types';
 
 interface Props {
-  header: JSX.Element;
+  header: ReactElement;
 }
 
 const MovieCard: FunctionComponent<Props> = ({header}): ReactElement => {
@@ -42,6 +43,10 @@ const MovieCard: FunctionComponent<Props> = ({header}): ReactElement => {
       </div>
     </section>
   );
+};
+
+MovieCard.propTypes = {
+  header: PropTypes.element.isRequired
 };
 
 export default MovieCard;

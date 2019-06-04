@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent, ComponentClass} from 'react';
 
 type Value = string | undefined;
 
@@ -7,9 +7,11 @@ interface State {
   password: Value;
 }
 
-const withLoginData = (Component: any): any => {
-  class WithLoginData extends PureComponent<any, State> {
-    public constructor(props: any) {
+const withLoginData = (Component: any): ComponentClass<any> => {
+  type P = ReturnType<typeof Component>;
+
+  class WithLoginData extends PureComponent<P, State> {
+    public constructor(props: P) {
       super(props);
 
       this.state = {

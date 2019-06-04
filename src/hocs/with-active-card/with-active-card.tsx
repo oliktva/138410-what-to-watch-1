@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent, ComponentClass, ReactElement} from 'react';
 
 import {FilmProps} from 'src/types/films';
 
@@ -6,9 +6,11 @@ interface State {
   activeCard: FilmProps | null;
 }
 
-const withActiveCard = (Component: any): any => {
-  class WithActiveCard extends PureComponent<any, State> {
-    public constructor(props: any) {
+const withActiveCard = (Component: any): ComponentClass<any> => {
+  type P = ReturnType<typeof Component>;
+
+  class WithActiveCard extends PureComponent<P, State> {
+    public constructor(props: P) {
       super(props);
 
       this.state = {
@@ -27,7 +29,7 @@ const withActiveCard = (Component: any): any => {
       this.setState({activeCard: film});
     }
 
-    public render(): JSX.Element {
+    public render(): ReactElement {
       const {activeCard} = this.state;
 
       return (

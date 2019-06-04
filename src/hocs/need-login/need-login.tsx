@@ -1,4 +1,4 @@
-import React, {PureComponent, ComponentClass} from 'react';
+import React, {PureComponent, ComponentClass, ReactElement} from 'react';
 import {connect, MapStateToProps} from 'react-redux';
 import {compose} from 'recompose';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
@@ -15,8 +15,11 @@ interface StateProps {
 
 type Props = StateProps & RouteComponentProps;
 
-const needLogin = (Component: any): any => {
-  class NeedLogin extends PureComponent<Props> {
+const needLogin = (Component: any): ComponentClass<any> => {
+  type P = ReturnType<typeof Component>;
+  type T = Exclude<P, Props>;
+
+  class NeedLogin extends PureComponent<T> {
     public static propTypes = {
       user: UserPropTypes.isRequired
     }
@@ -29,7 +32,7 @@ const needLogin = (Component: any): any => {
       }
     }
 
-    public render(): JSX.Element {
+    public render(): ReactElement {
       return <Component {...this.props} />;
     }
   }
@@ -43,12 +46,15 @@ const mapStateToProps: MapStateToProps<StateProps, RouteComponentProps, State> =
   user: getUser(state)
 });
 
-export default (Component: any): any =>{
-  const ConnectedComponent: any =
-    compose<Props, StateProps>(
+export default (Component: any): ComponentClass<any> => {
+  type P = ReturnType<typeof Component>;
+  type T = P & Props;
+
+  const ConnectedComponent =
+    compose<T, StateProps>(
       connect<StateProps, {}, RouteComponentProps, State>(mapStateToProps),
       withRouter
     )(needLogin(Component));
 
-  return ConnectedComponent as ComponentClass<RouteComponentProps>;
+  return ConnectedComponent;
 };

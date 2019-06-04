@@ -16,7 +16,7 @@ it(`checks user and renders component`, () => {
   const component = shallow(<MockComponentWrapped user={testUser} history={mockHistory} />);
   let {user} = component.props();
 
-  expect(user).toEqual(user);
+  expect(user).toEqual(testUser);
 });
 
 it(`checks user and redirects to sign in`, () => {
