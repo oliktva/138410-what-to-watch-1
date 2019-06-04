@@ -8,16 +8,20 @@ exports[`renders correctly 1`] = `
   <div
     className="user-block"
   >
-    <div
-      className="user-block__avatar"
+    <Link
+      to="/mylist"
     >
-      <img
-        alt="User avatar"
-        height="63"
-        src="img/1.png"
-        width="63"
-      />
-    </div>
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src="https://es31-server.appspot.comimg/1.png"
+          width="63"
+        />
+      </div>
+    </Link>
   </div>
 </header>
 `;

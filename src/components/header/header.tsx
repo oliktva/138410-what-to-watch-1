@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import paths from 'src/paths';
+import {SERVER_URL} from 'src/api';
 import Logo from 'src/components/logo/logo';
 
 import {UserProps, UserPropTypes} from 'src/types/user';
@@ -19,9 +20,11 @@ const Header: FunctionComponent<Props> = ({user, className, heading}): ReactElem
     {heading && <h1 className="page-title user-page__title">{heading}</h1>}
     <div className="user-block">
       {user.avatarUrl ? (
-        <div className="user-block__avatar">
-          <img src={user.avatarUrl} alt="User avatar" width="63" height="63" />
-        </div>
+        <Link to={paths.mylist()}>
+          <div className="user-block__avatar">
+            <img src={`${SERVER_URL}${user.avatarUrl}`} alt="User avatar" width="63" height="63" />
+          </div>
+        </Link>
       ) : (
         <Link to={paths.login()} className="user-block__link">Sign in</Link>
       )}
