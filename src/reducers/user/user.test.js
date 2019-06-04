@@ -25,6 +25,28 @@ describe(`ActionCreator`, () => {
     expect(loginAction.type).toEqual(LOG_IN_USER_ERROR);
     expect(loginAction.payload).toEqual(errorMessage);
   });
+});
+
+describe(`Operator`, () => {
+  it(`load user`, () => {
+    const dispatch = jest.fn();
+    const api = configureAPI(dispatch);
+    const apiMock = new MockAdapter(api);
+    const userLoader = Operation.loadUser();
+
+    apiMock
+      .onGet(`/login`)
+      .reply(200, [{fake: true}]);
+
+    return userLoader(dispatch, jest.fn(), api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: LOG_IN_USER,
+          payload: [{fake: true}],
+        });
+      });
+  });
 
   it(`log in user to app`, () => {
     const dispatch = jest.fn();

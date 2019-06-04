@@ -56,6 +56,18 @@ export const ActionCreator = {
 };
 
 export const Operation = {
+  loadUser: (): ThunkAction => {
+    return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
+      return api.get(`/login`)
+        .then((response: AxiosResponse): void => {
+          const data = camelcaseKeys(response.data) as UserProps;
+
+          dispatch(ActionCreator.logInUser(data));
+        }).catch((): void => {
+          // don't care
+        });
+    };
+  },
   logInUser: (email: string, password: string): ThunkAction => {
     return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
       return api.post(`/login`, {
