@@ -16,7 +16,7 @@ describe(`renders correctly`, () => {
       <MovieCard
         header={header}
         film={film}
-        needRenderPlayer={false}
+        withPlayer={false}
         toggleRenderPlayer={jest.fn()}
       />
     );
@@ -30,7 +30,7 @@ describe(`renders correctly`, () => {
       <MovieCard
         header={header}
         film={film}
-        needRenderPlayer={true}
+        withPlayer={true}
         toggleRenderPlayer={jest.fn()}
       />
     );

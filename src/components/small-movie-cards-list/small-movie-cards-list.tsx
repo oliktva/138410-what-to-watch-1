@@ -1,5 +1,5 @@
-import React, {Fragment, PureComponent, ReactElement, ComponentClass} from 'react';
-import {compose} from 'recompose';
+import React, {Fragment, PureComponent, ReactElement} from 'react';
+import {compose} from 'redux';
 import PropTypes from 'prop-types';
 
 import withActiveCard from 'src/hocs/with-active-card/with-active-card';
@@ -109,7 +109,7 @@ class SmallMovieCardsList extends PureComponent<Props> {
 
 export {SmallMovieCardsList};
 
-const wrappedComponent: any = compose<Props, ComponentClass<OwnProps>>(
+const wrappedComponent: any = compose(
   withActiveCard,
   withPagination
 )(SmallMovieCardsList);

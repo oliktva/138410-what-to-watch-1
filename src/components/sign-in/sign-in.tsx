@@ -1,12 +1,11 @@
 import React, {
   PureComponent,
-  ComponentClass,
   FormEvent,
   ChangeEvent,
   ReactElement
 } from 'react';
 import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
-import {compose} from 'recompose';
+import {compose} from 'redux';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -170,7 +169,7 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = (dispatc
 });
 
 const ConnectedComponent: any =
-  compose<Props, ComponentClass<OwnProps>>(
+  compose(
     connect<StateProps, DispatchProps, OwnProps, State>(mapStateToProps, mapDispatchToProps),
     withLoginData,
     withRouter

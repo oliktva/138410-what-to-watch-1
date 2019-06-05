@@ -1,6 +1,6 @@
-import React, {ComponentClass, ReactElement, PureComponent} from 'react';
+import React, {ReactElement, PureComponent} from 'react';
 import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
-import {compose} from 'recompose';
+import {compose} from 'redux';
 
 import needLogin from 'src/hocs/need-login/need-login';
 import {getFavorite} from 'src/reducers/films/selectors';
@@ -77,7 +77,7 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = (dispatc
 });
 
 const ConnectedComponent: any =
-  compose<Props, ComponentClass<OwnProps>>(
+  compose(
     connect<StateProps, DispatchProps, OwnProps, State>(mapStateToProps, mapDispatchToProps),
     needLogin
   )(Favorite);

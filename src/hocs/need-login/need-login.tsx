@@ -1,6 +1,6 @@
 import React, {PureComponent, ComponentClass, ReactElement} from 'react';
 import {connect, MapStateToProps} from 'react-redux';
-import {compose} from 'recompose';
+import {compose} from 'redux';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
 
 import paths from 'src/paths';
@@ -51,10 +51,10 @@ export default (Component: any): ComponentClass<any> => {
   type T = P & Props;
 
   const ConnectedComponent =
-    compose<T, StateProps>(
+    compose(
       connect<StateProps, {}, RouteComponentProps, State>(mapStateToProps),
       withRouter
     )(needLogin(Component));
 
-  return ConnectedComponent;
+  return ConnectedComponent as ComponentClass<T>;
 };

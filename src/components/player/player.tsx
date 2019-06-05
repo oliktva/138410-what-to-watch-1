@@ -17,7 +17,7 @@ interface WithPlayerProps {
   currentTime: number;
   play: () => void;
   stop: () => void;
-  openFullscren: () => void;
+  openFullscreen: () => void;
   closeFullscreen: () => void;
   setCurrentTime: (time: number) => void;
   setFulltime: (time: number) => void;
@@ -34,7 +34,7 @@ const propTypes = {
   currentTime: PropTypes.number.isRequired,
   play: PropTypes.func.isRequired,
   stop: PropTypes.func.isRequired,
-  openFullscren: PropTypes.func.isRequired,
+  openFullscreen: PropTypes.func.isRequired,
   closeFullscreen: PropTypes.func.isRequired,
   setCurrentTime: PropTypes.func.isRequired,
   setFulltime: PropTypes.func.isRequired,
@@ -75,7 +75,7 @@ class Player extends PureComponent<Props> {
       currentTime,
       fulltime,
       setCurrentTime,
-      openFullscren,
+      openFullscreen,
       closeFullscreen,
       setFulltime,
       closePlayer
@@ -111,7 +111,7 @@ class Player extends PureComponent<Props> {
             </button>
             <div className="player__name">{film.name}</div>
 
-            <button type="button" className="player__full-screen" onClick={openFullscren}>
+            <button type="button" className="player__full-screen" onClick={openFullscreen}>
               <svg viewBox="0 0 27 27" width="27" height="27">
                 <use href="#full-screen" />
               </svg>
