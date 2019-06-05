@@ -65,7 +65,7 @@ class Video extends PureComponent<Props> {
       video.poster = preview;
       video.muted = true;
 
-      video.oncanplay = (): void => setFulltime(video.duration);
+      video.oncanplaythrough = (): void => setFulltime(video.duration);
 
       video.onplay = (): void => {
         togglePlaying({isPlaying: true});
@@ -104,7 +104,6 @@ class Video extends PureComponent<Props> {
       if (isFullscreen) {
         this._openFullscreen();
       }
-
     }
   }
 
@@ -115,6 +114,7 @@ class Video extends PureComponent<Props> {
       video.oncanplaythrough = null;
       video.onplay = null;
       video.onpause = null;
+      video.ontimeupdate = null;
       video.src = ``;
     }
   }
