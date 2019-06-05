@@ -44,19 +44,25 @@ class Main extends PureComponent<Props> {
     loadFilms();
   }
 
-  public render(): ReactElement {
+  public render(): ReactElement | null {
     const {genres, filmsByGenre, user} = this.props;
+
+    if (filmsByGenre.length === 0) return null;
+
+    const firstFilm = filmsByGenre[0];
+    const films = filmsByGenre.slice(1);
 
     return (
       <PageWrapper>
         <MovieCard
           header={<Header user={user} className="movie-card__head" />}
+          film={firstFilm}
         />
         <div className="page-content">
           <section className="catalog">
             <h2 className="catalog__title visually-hidden">Catalog</h2>
             <GenresList genres={genres} />
-            <SmallMovieCardsList films={filmsByGenre} />
+            <SmallMovieCardsList films={films} />
             <div className="catalog__more">
               <button className="catalog__button" type="button">Show more</button>
             </div>
