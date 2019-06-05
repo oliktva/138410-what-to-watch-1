@@ -16,6 +16,10 @@ export const getGenre = (state: State): GenreProps => {
   return state[Namespaces.FILMS].genre;
 };
 
+export const getFavorite = (state: State): FilmProps[] => {
+  return state[Namespaces.FILMS].favorite;
+};
+
 export const getFilmsByGenre = createSelector(
   getFilms,
   getGenre,

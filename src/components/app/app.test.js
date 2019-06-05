@@ -8,7 +8,7 @@ import {App} from './app';
 Enzyme.configure({adapter: new Adapter()});
 
 it(`renders correctly`, () => {
-  const app = shallow(<App loadUser={jest.fn()} />);
+  const app = shallow(<App />);
 
   expect(toJson(app)).toMatchSnapshot();
 });

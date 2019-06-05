@@ -157,6 +157,8 @@ class SignIn extends PureComponent<Props> {
   }
 }
 
+export {SignIn};
+
 const mapStateToProps: MapStateToProps<StateProps, OwnProps, State> = (state: State): StateProps => ({
   user: getUser(state),
   error: getError(state)
@@ -166,8 +168,6 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = (dispatc
   logInUser: (email: string, password: string): Promise<void> => dispatch(Operation.logInUser(email, password)),
   showError: (message: string): Action => dispatch(ActionCreator.logInUserError(message))
 });
-
-export {SignIn};
 
 const ConnectedComponent: any =
   compose<Props, ComponentClass<OwnProps>>(

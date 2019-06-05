@@ -5,20 +5,20 @@ exports[`renders correctly 1`] = `
   className="small-movie-card catalog__movies-card"
   onMouseEnter={[Function]}
 >
-  <Videoplayer
-    isPlaying={false}
-    preview="https://es31-server.appspot.com/wtw/static/film/preview/pulp-fiction.jpg"
-    src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
-  />
-  <h3
-    className="small-movie-card__title"
+  <Link
+    className="small-movie-card__link"
+    to="/film/1"
   >
-    <a
-      className="small-movie-card__link"
-      href="movie-page.html"
+    <Videoplayer
+      isPlaying={false}
+      preview="https://es31-server.appspot.com/wtw/static/film/preview/pulp-fiction.jpg"
+      src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+    />
+    <h3
+      className="small-movie-card__title"
     >
       Pulp Fiction
-    </a>
-  </h3>
+    </h3>
+  </Link>
 </article>
 `;

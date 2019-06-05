@@ -3,14 +3,15 @@ import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
-import {Favorites} from './favorites';
+import {Favorite} from './favorite';
 
+import {films} from 'src/fixtures/films';
 import {user} from 'src/fixtures/user';
 
 Enzyme.configure({adapter: new Adapter()});
 
 it(`renders correctly`, () => {
-  const favorites = shallow(<Favorites user={user} />);
+  const favorites = shallow(<Favorite user={user} favorite={films} />);
 
   expect(toJson(favorites)).toMatchSnapshot();
 });

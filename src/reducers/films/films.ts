@@ -9,12 +9,14 @@ import {ThunkDispatch, ThunkAction, State as AppState} from 'src/types/reducer';
 
 export const SET_GENRE = `SET_GENRE`;
 export const LOAD_FILMS_SUCCESS = `LOAD_FILMS_SUCCESS`;
+export const LOAD_FAVORITE_SUCCESS = `LOAD_FAVORITE_SUCCESS`;
 
 const ALL_GENRES = `All genres`;
 
 export interface State {
   genre: GenreProps;
   items: FilmProps[];
+  favorite: FilmProps[];
 }
 
 interface SetFilterAction extends ReduxAction {
@@ -27,14 +29,20 @@ interface LoadFilmsAction extends ReduxAction {
   payload: FilmProps[];
 }
 
-export type Action = SetFilterAction | LoadFilmsAction;
+interface LoadFavoritesAction extends ReduxAction {
+  type: typeof LOAD_FAVORITE_SUCCESS;
+  payload: FilmProps[];
+}
+
+export type Action = SetFilterAction | LoadFilmsAction | LoadFavoritesAction;
 
 export type ThunkDispatch = ReduxThunkDispatch<State, AxiosInstance, Action>;
 export type ThunkAction = ReduxThunkAction<Promise<void>, State, AxiosInstance, Action>;
 
 export const initialState: State = {
   genre: ALL_GENRES,
-  items: []
+  items: [],
+  favorite: []
 };
 
 export const ActionCreator = {
@@ -50,6 +58,13 @@ export const ActionCreator = {
       type: LOAD_FILMS_SUCCESS,
       payload: films
     };
+  },
+
+  loadFavorite: (films: FilmProps[]): LoadFavoritesAction => {
+    return {
+      type: LOAD_FAVORITE_SUCCESS,
+      payload: films
+    };
   }
 };
 
@@ -61,6 +76,16 @@ export const Operation = {
           const data = camelcaseKeys(response.data) as FilmProps[];
 
           dispatch(ActionCreator.loadFilms(data));
+        });
+    };
+  },
+  loadFavorite: (): ThunkAction => {
+    return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
+      return api.get(`/favorite`)
+        .then((response: AxiosResponse): void => {
+          const data = camelcaseKeys(response.data) as FilmProps[];
+
+          dispatch(ActionCreator.loadFavorite(data));
         });
     };
   }
@@ -78,6 +103,12 @@ const reducer = (state: State = initialState, action: Action): State => {
       return {
         ...state,
         genre: action.payload
+      };
+
+    case LOAD_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        favorite: action.payload
       };
 
     default:

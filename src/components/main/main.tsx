@@ -1,4 +1,4 @@
-import React, {PureComponent, ComponentClass, ReactElement} from 'react';
+import React, {PureComponent, ReactElement} from 'react';
 import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
 import PropTypes from 'prop-types';
 
