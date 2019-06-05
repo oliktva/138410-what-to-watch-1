@@ -18,6 +18,8 @@ describe(`renders correctly`, () => {
         film={film}
         withPlayer={false}
         toggleRenderPlayer={jest.fn()}
+        addToFavorites={jest.fn()}
+        removeFromFavorites={jest.fn()}
       />
     );
 
@@ -32,6 +34,8 @@ describe(`renders correctly`, () => {
         film={film}
         withPlayer={true}
         toggleRenderPlayer={jest.fn()}
+        addToFavorites={jest.fn()}
+        removeFromFavorites={jest.fn()}
       />
     );
 

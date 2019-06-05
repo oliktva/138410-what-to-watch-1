@@ -10,6 +10,7 @@ import {ThunkDispatch, ThunkAction, State as AppState} from 'src/types/reducer';
 export const SET_GENRE = `SET_GENRE`;
 export const LOAD_FILMS_SUCCESS = `LOAD_FILMS_SUCCESS`;
 export const LOAD_FAVORITE_SUCCESS = `LOAD_FAVORITE_SUCCESS`;
+export const UPDATE_FILM = `UPDATE_FILM`;
 
 const ALL_GENRES = `All genres`;
 
@@ -34,7 +35,12 @@ interface LoadFavoritesAction extends ReduxAction {
   payload: FilmProps[];
 }
 
-export type Action = SetFilterAction | LoadFilmsAction | LoadFavoritesAction;
+interface UpdateFilmAction extends ReduxAction {
+  type: typeof UPDATE_FILM;
+  payload: FilmProps;
+}
+
+export type Action = SetFilterAction | LoadFilmsAction | LoadFavoritesAction | UpdateFilmAction;
 
 export type ThunkDispatch = ReduxThunkDispatch<State, AxiosInstance, Action>;
 export type ThunkAction = ReduxThunkAction<Promise<void>, State, AxiosInstance, Action>;
@@ -44,6 +50,9 @@ export const initialState: State = {
   items: [],
   favorite: []
 };
+
+const updateFilm = (film: FilmProps, filmsList: FilmProps[]): FilmProps[] =>
+  filmsList.map((f: FilmProps): FilmProps => (f.id === film.id ? film : f));
 
 export const ActionCreator = {
   setFilterByGenre: (genre: GenreProps): SetFilterAction => {
@@ -65,6 +74,13 @@ export const ActionCreator = {
       type: LOAD_FAVORITE_SUCCESS,
       payload: films
     };
+  },
+
+  updateFilm: (film: FilmProps): UpdateFilmAction => {
+    return {
+      type: UPDATE_FILM,
+      payload: film
+    };
   }
 };
 
@@ -72,23 +88,46 @@ export const Operation = {
   loadFilms: (): ThunkAction => {
     return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
       return api.get(`/films`)
-        .then((response: AxiosResponse): void => {
+        .then((response: AxiosResponse<FilmProps[]>): void => {
           const data = camelcaseKeys(response.data) as FilmProps[];
 
           dispatch(ActionCreator.loadFilms(data));
         });
     };
   },
+
   loadFavorite: (): ThunkAction => {
     return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
       return api.get(`/favorite`)
-        .then((response: AxiosResponse): void => {
+        .then((response: AxiosResponse<FilmProps[]>): void => {
           const data = camelcaseKeys(response.data) as FilmProps[];
 
           dispatch(ActionCreator.loadFavorite(data));
         });
     };
-  }
+  },
+
+  addToFavorites: (filmId: number): ThunkAction => {
+    return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
+      return api.post(`/favorite/${filmId}/1`)
+        .then((response: AxiosResponse<FilmProps>): void => {
+          const data = camelcaseKeys(response.data) as FilmProps;
+
+          dispatch(ActionCreator.updateFilm(data));
+        });
+    };
+  },
+
+  removeFromFavorites: (filmId: number): ThunkAction => {
+    return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
+      return api.post(`/favorite/${filmId}/0`)
+        .then((response: AxiosResponse<FilmProps>): void => {
+          const data = camelcaseKeys(response.data) as FilmProps;
+
+          dispatch(ActionCreator.updateFilm(data));
+        });
+    };
+  },
 };
 
 const reducer = (state: State = initialState, action: Action): State => {
@@ -109,6 +148,13 @@ const reducer = (state: State = initialState, action: Action): State => {
       return {
         ...state,
         favorite: action.payload
+      };
+
+    case UPDATE_FILM:
+      return {
+        ...state,
+        items: updateFilm(action.payload, state.items),
+        favorite: updateFilm(action.payload, state.favorite)
       };
 
     default:

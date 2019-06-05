@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <PageWrapper>
-  <NeedRenderPlayer
+  <ConnectFunction
     film={
       Object {
         "backgroundColor": "#795433",

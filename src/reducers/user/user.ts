@@ -59,7 +59,7 @@ export const Operation = {
   loadUser: (): ThunkAction => {
     return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
       return api.get(`/login`)
-        .then((response: AxiosResponse): void => {
+        .then((response: AxiosResponse<UserProps>): void => {
           const data = camelcaseKeys(response.data) as UserProps;
 
           dispatch(ActionCreator.logInUser(data));
@@ -68,12 +68,13 @@ export const Operation = {
         });
     };
   },
+
   logInUser: (email: string, password: string): ThunkAction => {
     return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
       return api.post(`/login`, {
         email,
         password
-      }).then((response: AxiosResponse): void => {
+      }).then((response: AxiosResponse<UserProps>): void => {
         const data = camelcaseKeys(response.data) as UserProps;
 
         dispatch(ActionCreator.logInUser(data));
