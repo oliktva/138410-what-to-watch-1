@@ -42,17 +42,19 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps & RouteComponentProps;
 
+const propTypes = {
+  user: UserPropTypes.isRequired,
+  logInUser: PropTypes.func.isRequired,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  error: PropTypes.string,
+  setEmailValue: PropTypes.func.isRequired,
+  setPasswordValue: PropTypes.func.isRequired,
+  showError: PropTypes.func.isRequired
+};
+
 class SignIn extends PureComponent<Props> {
-  public static propTypes = {
-    user: UserPropTypes.isRequired,
-    logInUser: PropTypes.func.isRequired,
-    email: PropTypes.string,
-    password: PropTypes.string,
-    error: PropTypes.string,
-    setEmailValue: PropTypes.func.isRequired,
-    setPasswordValue: PropTypes.func.isRequired,
-    showError: PropTypes.func.isRequired
-  };
+  public static propTypes = propTypes;
 
   public constructor(props: Props) {
     super(props);
@@ -67,42 +69,6 @@ class SignIn extends PureComponent<Props> {
 
     if (user.id) {
       history.push(paths.main());
-    }
-  }
-
-  private _onSubmit(evt: FormEvent<HTMLFormElement>): void {
-    const {email, password, logInUser, showError, history} = this.props;
-
-    evt.preventDefault();
-
-    if (email && password) {
-      logInUser(email, password).then((): void => {
-        if (history.length > 1) {
-          history.goBack();
-        } else {
-          history.push(paths.main());
-        }
-      });
-    } else {
-      showError(`Please enter a valid email address and password`);
-    }
-  }
-
-  private _onEmailChange(evt: ChangeEvent<HTMLInputElement>): void {
-    const {setEmailValue} = this.props;
-    const {target} = evt;
-
-    if (target) {
-      setEmailValue(target.value);
-    }
-  }
-
-  private _onPasswordChange(evt: ChangeEvent<HTMLInputElement>): void {
-    const {setPasswordValue} = this.props;
-    const {target} = evt;
-
-    if (target) {
-      setPasswordValue(target.value);
     }
   }
 
@@ -153,6 +119,43 @@ class SignIn extends PureComponent<Props> {
         </div>
       </PageWrapper>
     );
+  }
+
+
+  private _onSubmit(evt: FormEvent<HTMLFormElement>): void {
+    const {email, password, logInUser, showError, history} = this.props;
+
+    evt.preventDefault();
+
+    if (email && password) {
+      logInUser(email, password).then((): void => {
+        if (history.length > 1) {
+          history.goBack();
+        } else {
+          history.push(paths.main());
+        }
+      });
+    } else {
+      showError(`Please enter a valid email address and password`);
+    }
+  }
+
+  private _onEmailChange(evt: ChangeEvent<HTMLInputElement>): void {
+    const {setEmailValue} = this.props;
+    const {target} = evt;
+
+    if (target) {
+      setEmailValue(target.value);
+    }
+  }
+
+  private _onPasswordChange(evt: ChangeEvent<HTMLInputElement>): void {
+    const {setPasswordValue} = this.props;
+    const {target} = evt;
+
+    if (target) {
+      setPasswordValue(target.value);
+    }
   }
 }
 

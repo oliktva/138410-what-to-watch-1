@@ -30,13 +30,15 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps;
 
+const propTypes = {
+  filmsByGenre: filmsPropTypes.isRequired,
+  genres: genresPropTypes.isRequired,
+  loadFilms: PropTypes.func.isRequired,
+  user: UserPropTypes.isRequired
+};
+
 class Main extends PureComponent<Props> {
-  public static propTypes = {
-    filmsByGenre: filmsPropTypes.isRequired,
-    genres: genresPropTypes.isRequired,
-    loadFilms: PropTypes.func.isRequired,
-    user: UserPropTypes.isRequired
-  };
+  public static propTypes = propTypes;
 
   public componentDidMount(): void {
     const {loadFilms} = this.props;

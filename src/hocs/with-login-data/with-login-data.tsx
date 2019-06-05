@@ -23,14 +23,6 @@ const withLoginData = (Component: any): ComponentClass<any> => {
       this._setPasswordValue = this._setPasswordValue.bind(this);
     }
 
-    private _setEmailValue(value: Value): void {
-      this.setState({email: value});
-    }
-
-    private _setPasswordValue(value: Value): void {
-      this.setState({password: value});
-    }
-
     public render(): JSX.Element {
       const {email, password} = this.state;
 
@@ -43,6 +35,14 @@ const withLoginData = (Component: any): ComponentClass<any> => {
           setPasswordValue={this._setPasswordValue}
         />
       );
+    }
+
+    private _setEmailValue(value: Value): void {
+      this.setState({email: value});
+    }
+
+    private _setPasswordValue(value: Value): void {
+      this.setState({password: value});
     }
   }
 

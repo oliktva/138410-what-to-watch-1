@@ -29,20 +29,12 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-class Favorite extends PureComponent<Props> {
-  public static propTypes = {
-    user: UserPropTypes.isRequired
-  }
+const propTypes = {
+  user: UserPropTypes.isRequired
+};
 
-  private _renderFilm(film: FilmProps): ReactElement {
-    return (
-      <SmallMovieCard
-        key={film.id}
-        film={film}
-        isPlaying={false}
-      />
-    );
-  }
+class Favorite extends PureComponent<Props> {
+  public static propTypes = propTypes;
 
   public render(): ReactElement {
     const {user, favorite} = this.props;
@@ -62,6 +54,16 @@ class Favorite extends PureComponent<Props> {
           <Footer />
         </div>
       </PageWrapper>
+    );
+  }
+
+  private _renderFilm(film: FilmProps): ReactElement {
+    return (
+      <SmallMovieCard
+        key={film.id}
+        film={film}
+        isPlaying={false}
+      />
     );
   }
 }

@@ -15,14 +15,16 @@ interface StateProps {
 
 type Props = StateProps & RouteComponentProps;
 
+const propTypes = {
+  user: UserPropTypes.isRequired
+};
+
 const needLogin = (Component: any): ComponentClass<any> => {
   type P = ReturnType<typeof Component>;
   type T = Exclude<P, Props>;
 
   class NeedLogin extends PureComponent<T> {
-    public static propTypes = {
-      user: UserPropTypes.isRequired
-    }
+    public static propTypes = propTypes;
 
     public componentDidMount(): void {
       const {user, history} = this.props;

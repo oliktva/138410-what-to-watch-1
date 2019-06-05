@@ -38,7 +38,7 @@ const propTypes = {
 };
 
 class MovieCard extends PureComponent<Props> {
-  public static propTypes = propTypes
+  public static propTypes = propTypes;
 
   public constructor(props: Props) {
     super(props);

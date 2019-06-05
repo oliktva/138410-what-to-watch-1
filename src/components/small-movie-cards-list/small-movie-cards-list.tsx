@@ -26,16 +26,18 @@ interface WithPaginationProps {
 
 type Props = OwnProps & WithActiveProps & WithPaginationProps;
 
+const propTypes = {
+  films: filmsPropTypes.isRequired,
+  activeCard: filmPropTypes,
+  setActiveCard: PropTypes.func.isRequired,
+  resetActiveCard: PropTypes.func.isRequired,
+  maxItemsPerPage: PropTypes.number.isRequired,
+  goToNextPage: PropTypes.func.isRequired,
+  resetPage: PropTypes.func.isRequired
+};
+
 class SmallMovieCardsList extends PureComponent<Props> {
-  public static propTypes = {
-    films: filmsPropTypes.isRequired,
-    activeCard: filmPropTypes,
-    setActiveCard: PropTypes.func.isRequired,
-    resetActiveCard: PropTypes.func.isRequired,
-    maxItemsPerPage: PropTypes.number.isRequired,
-    goToNextPage: PropTypes.func.isRequired,
-    resetPage: PropTypes.func.isRequired
-  }
+  public static propTypes = propTypes;
 
   private _timeoutId: number | null = null;
 

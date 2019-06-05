@@ -21,14 +21,6 @@ const withActiveCard = (Component: any): ComponentClass<any> => {
       this._resetActiveCard = this._resetActiveCard.bind(this);
     }
 
-    private _resetActiveCard(): void {
-      this.setState({activeCard: null});
-    }
-
-    private _setActiveCard(film: FilmProps): void {
-      this.setState({activeCard: film});
-    }
-
     public render(): ReactElement {
       const {activeCard} = this.state;
 
@@ -40,6 +32,14 @@ const withActiveCard = (Component: any): ComponentClass<any> => {
           resetActiveCard={this._resetActiveCard}
         />
       );
+    }
+
+    private _resetActiveCard(): void {
+      this.setState({activeCard: null});
+    }
+
+    private _setActiveCard(film: FilmProps): void {
+      this.setState({activeCard: film});
     }
   }
 

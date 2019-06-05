@@ -18,10 +18,6 @@ const needRenderPlayer = (Component: any): ComponentClass<any> => {
       this._toggleRenderPlayer = this._toggleRenderPlayer.bind(this);
     }
 
-    private _toggleRenderPlayer(): void {
-      this.setState({withPlayer: !this.state.withPlayer});
-    }
-
     public render(): ReactElement {
       return (
         <Component
@@ -30,6 +26,10 @@ const needRenderPlayer = (Component: any): ComponentClass<any> => {
           toggleRenderPlayer={this._toggleRenderPlayer}
         />
       );
+    }
+
+    private _toggleRenderPlayer(): void {
+      this.setState({withPlayer: !this.state.withPlayer});
     }
   }
 

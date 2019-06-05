@@ -48,9 +48,8 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: Thu
 
 export default (Component: any): ComponentClass<any> => {
   type P = ReturnType<typeof Component>;
-  type T = P & DispatchProps;
 
-  const ConnectedComponent = connect<{}, DispatchProps, {}, GlobalState>(null, mapDispatchToProps)(withUserPreload(Component));
+  const ConnectedComponent = connect<{}, DispatchProps, P, GlobalState>(null, mapDispatchToProps)(withUserPreload(Component));
 
   return ConnectedComponent;
 };
