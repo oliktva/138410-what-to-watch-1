@@ -4,7 +4,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import thunk from 'redux-thunk';
-import {compose} from 'recompose';
+import {composeWithDevTools} from 'redux-devtools-extension/developmentOnly';
 
 import configureAPI from 'src/api';
 import reducer, {initialState} from 'src/reducers/reducer';
@@ -15,10 +15,7 @@ const api = configureAPI();
 const store = createStore(
   reducer,
   initialState,
-  compose(
-    applyMiddleware(thunk.withExtraArgument(api)),
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-  ) as any
+  composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)))
 );
 const target = document.querySelector(`#root`);
 

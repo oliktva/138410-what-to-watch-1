@@ -6,7 +6,7 @@ import withPagination, {ITEMS_PER_PAGE} from './with-pagination';
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`sets active card correctly`, () => {
+it(`paginates correctly`, () => {
   const MockComponent = () => <div />;
   const MockComponentWrapped = withPagination(MockComponent);
 

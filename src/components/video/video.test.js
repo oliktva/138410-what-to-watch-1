@@ -3,14 +3,14 @@ import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
-import Videoplayer from './videoplayer';
+import Video from './video';
 import {film} from 'src/fixtures/films';
 
 Enzyme.configure({adapter: new Adapter()});
 
 it(`renders correctly`, () => {
   const tree = shallow(
-    <Videoplayer
+    <Video
       src={film.previewVideoLink}
       preview={film.previewImage}
       isPlaying={false}

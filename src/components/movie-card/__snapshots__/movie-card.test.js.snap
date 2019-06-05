@@ -1,101 +1,209 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
-<section
-  className="movie-card"
->
-  <div
-    className="movie-card__bg"
-  >
-    <img
-      alt="Pulp Fiction"
-      src="https://es31-server.appspot.com/wtw/static/film/background/Pulp_Fiction.jpg"
-    />
-  </div>
-  <h1
-    className="visually-hidden"
-  >
-    WTW
-  </h1>
-  <div />
-  <div
-    className="movie-card__wrap"
+exports[`renders correctly renders with player 1`] = `
+<Fragment>
+  <section
+    className="movie-card"
   >
     <div
-      className="movie-card__info"
+      className="movie-card__bg"
+    >
+      <img
+        alt="Pulp Fiction"
+        src="https://es31-server.appspot.com/wtw/static/film/background/Pulp_Fiction.jpg"
+      />
+    </div>
+    <h1
+      className="visually-hidden"
+    >
+      WTW
+    </h1>
+    <div />
+    <div
+      className="movie-card__wrap"
     >
       <div
-        className="movie-card__poster"
+        className="movie-card__info"
       >
-        <img
-          alt="Pulp Fiction poster"
-          height="327"
-          src="https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg"
-          width="218"
-        />
-      </div>
-      <div
-        className="movie-card__desc"
-      >
-        <h2
-          className="movie-card__title"
-        >
-          Pulp Fiction
-        </h2>
-        <p
-          className="movie-card__meta"
-        >
-          <span
-            className="movie-card__genre"
-          >
-            Crime
-          </span>
-          <span
-            className="movie-card__year"
-          >
-            1994
-          </span>
-        </p>
         <div
-          className="movie-card__buttons"
+          className="movie-card__poster"
         >
-          <button
-            className="btn btn--play movie-card__button"
-            type="button"
+          <img
+            alt="Pulp Fiction poster"
+            height="327"
+            src="https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg"
+            width="218"
+          />
+        </div>
+        <div
+          className="movie-card__desc"
+        >
+          <h2
+            className="movie-card__title"
           >
-            <svg
-              height="19"
-              viewBox="0 0 19 19"
-              width="19"
-            >
-              <use
-                href="#play-s"
-              />
-            </svg>
-            <span>
-              Play
-            </span>
-          </button>
-          <button
-            className="btn btn--list movie-card__button"
-            type="button"
+            Pulp Fiction
+          </h2>
+          <p
+            className="movie-card__meta"
           >
-            <svg
-              height="20"
-              viewBox="0 0 19 20"
-              width="19"
+            <span
+              className="movie-card__genre"
             >
-              <use
-                href="#add"
-              />
-            </svg>
-            <span>
-              My list
+              Crime
             </span>
-          </button>
+            <span
+              className="movie-card__year"
+            >
+              1994
+            </span>
+          </p>
+          <div
+            className="movie-card__buttons"
+          >
+            <button
+              className="btn btn--play movie-card__button"
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                height="19"
+                viewBox="0 0 19 19"
+                width="19"
+              >
+                <use
+                  href="#play-s"
+                />
+              </svg>
+              <span>
+                Play
+              </span>
+            </button>
+            <button
+              className="btn btn--list movie-card__button"
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                height="20"
+                viewBox="0 0 19 20"
+                width="19"
+              >
+                <use
+                  href="#add"
+                />
+              </svg>
+              <span>
+                My list
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</Fragment>
+`;
+
+exports[`renders correctly renders without player 1`] = `
+<Fragment>
+  <section
+    className="movie-card"
+  >
+    <div
+      className="movie-card__bg"
+    >
+      <img
+        alt="Pulp Fiction"
+        src="https://es31-server.appspot.com/wtw/static/film/background/Pulp_Fiction.jpg"
+      />
+    </div>
+    <h1
+      className="visually-hidden"
+    >
+      WTW
+    </h1>
+    <div />
+    <div
+      className="movie-card__wrap"
+    >
+      <div
+        className="movie-card__info"
+      >
+        <div
+          className="movie-card__poster"
+        >
+          <img
+            alt="Pulp Fiction poster"
+            height="327"
+            src="https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg"
+            width="218"
+          />
+        </div>
+        <div
+          className="movie-card__desc"
+        >
+          <h2
+            className="movie-card__title"
+          >
+            Pulp Fiction
+          </h2>
+          <p
+            className="movie-card__meta"
+          >
+            <span
+              className="movie-card__genre"
+            >
+              Crime
+            </span>
+            <span
+              className="movie-card__year"
+            >
+              1994
+            </span>
+          </p>
+          <div
+            className="movie-card__buttons"
+          >
+            <button
+              className="btn btn--play movie-card__button"
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                height="19"
+                viewBox="0 0 19 19"
+                width="19"
+              >
+                <use
+                  href="#play-s"
+                />
+              </svg>
+              <span>
+                Play
+              </span>
+            </button>
+            <button
+              className="btn btn--list movie-card__button"
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                height="20"
+                viewBox="0 0 19 20"
+                width="19"
+              >
+                <use
+                  href="#add"
+                />
+              </svg>
+              <span>
+                My list
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Fragment>
 `;

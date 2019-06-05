@@ -9,10 +9,16 @@ exports[`renders correctly 1`] = `
     className="small-movie-card__link"
     to="/film/1"
   >
-    <Videoplayer
+    <Video
+      closeFullscreen={[Function]}
+      isFullscreen={false}
       isPlaying={false}
+      needReset={true}
       preview="https://es31-server.appspot.com/wtw/static/film/preview/pulp-fiction.jpg"
+      setCurrentTime={[Function]}
+      setFulltime={[Function]}
       src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+      togglePlaying={[Function]}
     />
     <h3
       className="small-movie-card__title"

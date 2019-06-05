@@ -928,7 +928,7 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 5;
   /* &::after {
     content: '';
     position: absolute;
@@ -950,7 +950,7 @@ main {
 .player__exit {
   display: block;
   position: absolute;
-  z-index: 2;
+  z-index: 6;
   background: rgba(255, 249, 217, 0.12);
   border-radius: 8px;
   top: 37px;
@@ -967,7 +967,7 @@ main {
 
 .player__controls {
   position: absolute;
-  z-index: 2;
+  z-index: 6;
   left: 0;
   right: 0;
   bottom: 0;

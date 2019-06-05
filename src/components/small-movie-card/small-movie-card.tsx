@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import paths from 'src/paths';
-import Videoplayer from 'src/components/videoplayer/videoplayer';
+import Video from 'src/components/video/video';
 
 import {FilmProps, filmPropTypes} from 'src/types/films';
 
@@ -28,7 +28,7 @@ const SmallMovieCard: FunctionComponent<Props> = (props): ReactElement => {
       onMouseLeave={onMouseLeave}
     >
       <Link to={paths.film(film.id)} className="small-movie-card__link">
-        <Videoplayer
+        <Video
           src={film.previewVideoLink}
           preview={film.previewImage}
           isPlaying={isPlaying}

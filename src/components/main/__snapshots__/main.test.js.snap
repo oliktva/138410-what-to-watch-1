@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <PageWrapper>
-  <MovieCard
+  <NeedRenderPlayer
     film={
       Object {
         "backgroundColor": "#795433",
