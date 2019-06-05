@@ -47,7 +47,9 @@ class Main extends PureComponent<Props> {
   public render(): ReactElement | null {
     const {genres, filmsByGenre, user} = this.props;
 
-    if (filmsByGenre.length === 0) return null;
+    if (filmsByGenre.length === 0) {
+      return null;
+    }
 
     const firstFilm = filmsByGenre[0];
     const films = filmsByGenre.slice(1);
@@ -63,9 +65,6 @@ class Main extends PureComponent<Props> {
             <h2 className="catalog__title visually-hidden">Catalog</h2>
             <GenresList genres={genres} />
             <SmallMovieCardsList films={films} />
-            <div className="catalog__more">
-              <button className="catalog__button" type="button">Show more</button>
-            </div>
           </section>
           <Footer />
         </div>

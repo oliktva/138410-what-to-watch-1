@@ -14,6 +14,9 @@ it(`renders correctly`, () => {
     activeCard={null}
     setActiveCard={jest.fn()}
     resetActiveCard={jest.fn()}
+    maxItemsPerPage={1}
+    goToNextPage={jest.fn()}
+    resetPage={jest.fn()}
   />);
   expect(toJson(tree)).toMatchSnapshot();
 });

@@ -1,23 +1,49 @@
-import React, {PureComponent, ReactElement} from 'react';
+import React, {Fragment, PureComponent, ReactElement, ComponentClass} from 'react';
+import {compose} from 'recompose';
+import PropTypes from 'prop-types';
 
 import withActiveCard from 'src/hocs/with-active-card/with-active-card';
+import withPagination from 'src/hocs/with-pagination/with-pagination';
 import SmallMovieCard from 'src/components/small-movie-card/small-movie-card';
 
-import {FilmProps, filmsPropTypes} from 'src/types/films';
+import {FilmProps, filmPropTypes, filmsPropTypes} from 'src/types/films';
 
-interface Props {
+interface OwnProps {
   films: FilmProps[];
+}
+
+interface WithActiveProps {
   activeCard: FilmProps | null;
   setActiveCard: (film: FilmProps) => void;
   resetActiveCard: () => void;
 }
 
+interface WithPaginationProps {
+  maxItemsPerPage: number;
+  goToNextPage: () => void;
+  resetPage: () => void;
+}
+
+type Props = OwnProps & WithActiveProps & WithPaginationProps;
+
 class SmallMovieCardsList extends PureComponent<Props> {
   public static propTypes = {
-    films: filmsPropTypes.isRequired
+    films: filmsPropTypes.isRequired,
+    activeCard: filmPropTypes,
+    setActiveCard: PropTypes.func.isRequired,
+    resetActiveCard: PropTypes.func.isRequired,
+    maxItemsPerPage: PropTypes.number.isRequired,
+    goToNextPage: PropTypes.func.isRequired,
+    resetPage: PropTypes.func.isRequired
   }
 
   private _timeoutId: number | null = null;
+
+  public componentDidUpdate(prevProps: Props): void {
+    if (prevProps.films !== this.props.films) {
+      this.props.resetPage();
+    }
+  }
 
   public componentWillUnmount(): void {
     this._clearTimeout();
@@ -49,24 +75,43 @@ class SmallMovieCardsList extends PureComponent<Props> {
   }
 
   public render(): ReactElement {
-    const {films, activeCard} = this.props;
+    const {films, activeCard, maxItemsPerPage, goToNextPage} = this.props;
+    const filmsOnPage = films.slice(0, maxItemsPerPage);
+    const needNextPageButton = filmsOnPage.length < films.length;
 
     return (
-      <div className="catalog__movies-list">
-        {films.map((film): JSX.Element => (
-          <SmallMovieCard
-            key={film.id}
-            film={film}
-            isPlaying={activeCard ? film.id === activeCard.id : false}
-            onMouseEnter={(f: FilmProps): void => this._handleHover(f)}
-            onMouseLeave={(): void => this._handleClear()}
-          />
-        ))}
-      </div>
+      <Fragment>
+        <div className="catalog__movies-list">
+          {filmsOnPage.map((film): JSX.Element => (
+            <SmallMovieCard
+              key={film.id}
+              film={film}
+              isPlaying={activeCard ? film.id === activeCard.id : false}
+              onMouseEnter={(f: FilmProps): void => this._handleHover(f)}
+              onMouseLeave={(): void => this._handleClear()}
+            />
+          ))}
+        </div>
+        {needNextPageButton && (
+          <div className="catalog__more">
+            <button
+              className="catalog__button" type="button"
+              onClick={goToNextPage}
+            >
+                Show more
+            </button>
+          </div>
+        )}
+      </Fragment>
     );
   }
 }
 
 export {SmallMovieCardsList};
 
-export default withActiveCard(SmallMovieCardsList);
+const wrappedComponent: any = compose<Props, ComponentClass<OwnProps>>(
+  withActiveCard,
+  withPagination
+)(SmallMovieCardsList);
+
+export default wrappedComponent;
