@@ -62,9 +62,10 @@ class Player extends PureComponent<Props> {
   public constructor(props: Props) {
     super(props);
 
-    this._togglePlayingHandler = this._togglePlayingHandler.bind(this);
-    this._playHandler = this._playHandler.bind(this);
-    this._pauseHandler = this._pauseHandler.bind(this);
+    this._synchronizePlaying = this._synchronizePlaying.bind(this);
+    this._handlePlayingToggle = this._handlePlayingToggle.bind(this);
+    this._handlePlayerClose = this._handlePlayerClose.bind(this);
+    this._handleFullscreenOpen = this._handleFullscreenOpen.bind(this);
   }
 
   public render(): ReactElement {
@@ -72,16 +73,10 @@ class Player extends PureComponent<Props> {
       film,
       isPlaying,
       isFullscreen,
-      currentTime,
-      fulltime,
       setCurrentTime,
-      openFullscreen,
       closeFullscreen,
-      setFulltime,
-      closePlayer
+      setFulltime
     } = this.props;
-
-    const progress = fulltime ? (currentTime / fulltime) * 100 : 0;
 
     return (
       <div className="player">
@@ -94,44 +89,23 @@ class Player extends PureComponent<Props> {
           setCurrentTime={setCurrentTime}
           setFulltime={setFulltime}
           closeFullscreen={closeFullscreen}
-          togglePlaying={this._togglePlayingHandler}
+          synchronizePlaying={this._synchronizePlaying}
         />
-        <button type="button" className="player__exit" onClick={closePlayer}>Exit</button>
-        <div className="player__controls">
-          <div className="player__controls-row">
-            <div className="player__time">
-              <progress className="player__progress" value={progress} max="100"></progress>
-              <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
-            </div>
-            <div className="player__time-value">{formatTime(currentTime)}</div>
-          </div>
-          <div className="player__controls-row">
-            <button type="button" className="player__play" onClick={isPlaying ? this._pauseHandler : this._playHandler}>
-              {isPlaying ? this._renderPauseButton() : this._renderPlayButton()}
-            </button>
-            <div className="player__name">{film.name}</div>
-
-            <button type="button" className="player__full-screen" onClick={openFullscreen}>
-              <svg viewBox="0 0 27 27" width="27" height="27">
-                <use href="#full-screen" />
-              </svg>
-              <span>Full screen</span>
-            </button>
-          </div>
-        </div>
+        <button type="button" className="player__exit" onClick={this._handlePlayerClose}>Exit</button>
+        {this._renderControls()}
       </div>
     );
   }
 
-  private _playHandler(): void {
-    this.props.play();
+  private _handlePlayerClose(): void {
+    this.props.closePlayer();
   }
 
-  private _pauseHandler(): void {
-    this.props.stop();
+  private _handleFullscreenOpen(): void {
+    this.props.openFullscreen();
   }
 
-  private _togglePlayingHandler({isPlaying}: {isPlaying: boolean}): void {
+  private _synchronizePlaying({isPlaying}: {isPlaying: boolean}): void {
     const {play, stop} = this.props;
 
     if (!this.props.isPlaying && isPlaying) {
@@ -139,6 +113,52 @@ class Player extends PureComponent<Props> {
     } else if (this.props.isPlaying && !isPlaying) {
       stop();
     }
+  }
+
+  private _handlePlayingToggle(): void {
+    const {isPlaying, play, stop} = this.props;
+
+    if (isPlaying) {
+      stop();
+    } else {
+      play();
+    }
+  }
+
+  private _renderControls(): ReactElement {
+    const {
+      film,
+      isPlaying,
+      currentTime,
+      fulltime
+    } = this.props;
+
+    const progress = fulltime ? (currentTime / fulltime) * 100 : 0;
+
+    return (
+      <div className="player__controls">
+        <div className="player__controls-row">
+          <div className="player__time">
+            <progress className="player__progress" value={progress} max="100"></progress>
+            <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
+          </div>
+          <div className="player__time-value">{formatTime(currentTime)}</div>
+        </div>
+        <div className="player__controls-row">
+          <button type="button" className="player__play" onClick={this._handlePlayingToggle}>
+            {isPlaying ? this._renderPauseButton() : this._renderPlayButton()}
+          </button>
+          <div className="player__name">{film.name}</div>
+
+          <button type="button" className="player__full-screen" onClick={this._handleFullscreenOpen}>
+            <svg viewBox="0 0 27 27" width="27" height="27">
+              <use href="#full-screen" />
+            </svg>
+            <span>Full screen</span>
+          </button>
+        </div>
+      </div>
+    );
   }
 
   private _renderPlayButton(): ReactElement {

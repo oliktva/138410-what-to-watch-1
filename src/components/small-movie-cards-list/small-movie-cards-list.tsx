@@ -52,30 +52,6 @@ class SmallMovieCardsList extends PureComponent<Props> {
     this._setTimeout(null);
   }
 
-  private _handleHover(film: FilmProps): void {
-    const timeoutId = window.setTimeout((): void => {
-      this._setTimeout(null);
-      this.props.setActiveCard(film);
-    }, 1000);
-
-    this._setTimeout(timeoutId);
-  }
-
-  private _handleClear(): void {
-    this._clearTimeout();
-    this.props.resetActiveCard();
-  }
-
-  private _setTimeout(timeoutId: number | null): void {
-    this._timeoutId = timeoutId;
-  }
-
-  private _clearTimeout(): void {
-    if (this._timeoutId) {
-      window.clearTimeout(this._timeoutId);
-    }
-  }
-
   public render(): ReactElement {
     const {films, activeCard, maxItemsPerPage, goToNextPage} = this.props;
     const filmsOnPage = films.slice(0, maxItemsPerPage);
@@ -106,6 +82,30 @@ class SmallMovieCardsList extends PureComponent<Props> {
         )}
       </Fragment>
     );
+  }
+
+  private _handleHover(film: FilmProps): void {
+    const timeoutId = window.setTimeout((): void => {
+      this._setTimeout(null);
+      this.props.setActiveCard(film);
+    }, 1000);
+
+    this._setTimeout(timeoutId);
+  }
+
+  private _handleClear(): void {
+    this._clearTimeout();
+    this.props.resetActiveCard();
+  }
+
+  private _setTimeout(timeoutId: number | null): void {
+    this._timeoutId = timeoutId;
+  }
+
+  private _clearTimeout(): void {
+    if (this._timeoutId) {
+      window.clearTimeout(this._timeoutId);
+    }
   }
 }
 

@@ -9,7 +9,7 @@ interface Props {
   isPlaying: boolean;
   isFullscreen: boolean;
   needReset: boolean;
-  togglePlaying: ({isPlaying}: {isPlaying: boolean}) => void;
+  synchronizePlaying: ({isPlaying}: {isPlaying: boolean}) => void;
   setCurrentTime: (time: number) => void;
   setFulltime: (time: number) => void;
   closeFullscreen: () => void;
@@ -21,7 +21,7 @@ const propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   isFullscreen: PropTypes.bool,
   needReset: PropTypes.bool,
-  togglePlaying: PropTypes.func,
+  synchronizePlaying: PropTypes.func,
   setCurrentTime: PropTypes.func,
   closeFullscreen: PropTypes.func,
   setFulltime: PropTypes.func
@@ -55,7 +55,7 @@ class Video extends PureComponent<Props> {
       needReset,
       setCurrentTime,
       setFulltime,
-      togglePlaying
+      synchronizePlaying
     } = this.props;
 
     const video: VideoProps = this._videoRef.current;
@@ -68,11 +68,11 @@ class Video extends PureComponent<Props> {
       video.oncanplaythrough = (): void => setFulltime(video.duration);
 
       video.onplay = (): void => {
-        togglePlaying({isPlaying: true});
+        synchronizePlaying({isPlaying: true});
       };
 
       video.onpause = (): void => {
-        togglePlaying({isPlaying: false});
+        synchronizePlaying({isPlaying: false});
 
         if (needReset) {
           this._resetPlayer(video);

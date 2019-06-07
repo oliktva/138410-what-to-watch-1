@@ -59,9 +59,9 @@ class SignIn extends PureComponent<Props> {
   public constructor(props: Props) {
     super(props);
 
-    this._onSubmit = this._onSubmit.bind(this);
-    this._onEmailChange = this._onEmailChange.bind(this);
-    this._onPasswordChange = this._onPasswordChange.bind(this);
+    this._handleFormSubmit = this._handleFormSubmit.bind(this);
+    this._handleEmailChange = this._handleEmailChange.bind(this);
+    this._handlePasswordChange = this._handlePasswordChange.bind(this);
   }
 
   public componentDidMount(): void {
@@ -80,35 +80,15 @@ class SignIn extends PureComponent<Props> {
         <div className="user-page">
           <Header user={user} className="user-page__head" />
           <div className="sign-in user-page__content">
-            <form className="sign-in__form" onSubmit={this._onSubmit}>
+            <form className="sign-in__form" onSubmit={this._handleFormSubmit}>
               {error && (
                 <div className="sign-in__message">
                   <p>{error}</p>
                 </div>
               )}
               <div className="sign-in__fields">
-                <div className="sign-in__field">
-                  <input
-                    className="sign-in__input"
-                    type="email"
-                    placeholder="Email address"
-                    name="user-email"
-                    id="user-email"
-                    onChange={this._onEmailChange}
-                  />
-                  <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
-                </div>
-                <div className="sign-in__field">
-                  <input
-                    className="sign-in__input"
-                    type="password"
-                    placeholder="Password"
-                    name="user-password"
-                    id="user-password"
-                    onChange={this._onPasswordChange}
-                  />
-                  <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
-                </div>
+                {this._renderEmailField()}
+                {this._renderPasswordField()}
               </div>
               <div className="sign-in__submit">
                 <button className="sign-in__btn" type="submit">Sign in</button>
@@ -122,7 +102,7 @@ class SignIn extends PureComponent<Props> {
   }
 
 
-  private _onSubmit(evt: FormEvent<HTMLFormElement>): void {
+  private _handleFormSubmit(evt: FormEvent<HTMLFormElement>): void {
     const {email, password, logInUser, showError, history} = this.props;
 
     evt.preventDefault();
@@ -140,7 +120,7 @@ class SignIn extends PureComponent<Props> {
     }
   }
 
-  private _onEmailChange(evt: ChangeEvent<HTMLInputElement>): void {
+  private _handleEmailChange(evt: ChangeEvent<HTMLInputElement>): void {
     const {setEmailValue} = this.props;
     const {target} = evt;
 
@@ -149,13 +129,45 @@ class SignIn extends PureComponent<Props> {
     }
   }
 
-  private _onPasswordChange(evt: ChangeEvent<HTMLInputElement>): void {
+  private _handlePasswordChange(evt: ChangeEvent<HTMLInputElement>): void {
     const {setPasswordValue} = this.props;
     const {target} = evt;
 
     if (target) {
       setPasswordValue(target.value);
     }
+  }
+
+  private _renderEmailField() {
+    return (
+      <div className="sign-in__field">
+        <input
+          className="sign-in__input"
+          type="email"
+          placeholder="Email address"
+          name="user-email"
+          id="user-email"
+          onChange={this._handleEmailChange}
+        />
+        <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
+      </div>
+    );
+  }
+
+  private _renderPasswordField() {
+    return (
+      <div className="sign-in__field">
+        <input
+          className="sign-in__input"
+          type="password"
+          placeholder="Password"
+          name="user-password"
+          id="user-password"
+          onChange={this._handlePasswordChange}
+        />
+        <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
+      </div>
+    )
   }
 }
 
