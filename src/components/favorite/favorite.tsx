@@ -36,6 +36,12 @@ const propTypes = {
 class Favorite extends PureComponent<Props> {
   public static propTypes = propTypes;
 
+  public componentDidMount() {
+    const { loadFavorite } = this.props;
+
+    loadFavorite();
+  }
+
   public render(): ReactElement {
     const {user, favorite} = this.props;
 
