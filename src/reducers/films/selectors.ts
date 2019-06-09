@@ -20,6 +20,10 @@ export const getFavorite = (state: State): FilmProps[] => {
   return state[Namespaces.FILMS].favorite;
 };
 
+export const getPromoFilm = (state: State): FilmProps | null => {
+  return state[Namespaces.FILMS].promo;
+};
+
 export const getFilmsByGenre = createSelector(
   getFilms,
   getGenre,

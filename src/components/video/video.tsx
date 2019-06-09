@@ -30,6 +30,7 @@ const propTypes = {
 const defaultProps = {
   needReset: true,
   isFullscreen: false,
+  synchronizePlaying: (): void => {},
   togglePlaying: (): void => {},
   setCurrentTime: (): void => {},
   closeFullscreen: (): void => {},

@@ -11,7 +11,13 @@ import {user} from 'src/fixtures/user';
 Enzyme.configure({adapter: new Adapter()});
 
 it(`renders correctly`, () => {
-  const favorites = shallow(<Favorite user={user} favorite={films} />);
+  const favorites = shallow(
+    <Favorite
+      user={user}
+      favorite={films}
+      loadFavorite={jest.fn()}
+    />
+  );
 
   expect(toJson(favorites)).toMatchSnapshot();
 });

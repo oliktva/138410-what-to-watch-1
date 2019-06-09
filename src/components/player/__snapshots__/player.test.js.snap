@@ -13,11 +13,12 @@ exports[`renders correctly 1`] = `
     setCurrentTime={[MockFunction]}
     setFulltime={[MockFunction]}
     src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
+    synchronizePlaying={[Function]}
     togglePlaying={[Function]}
   />
   <button
     className="player__exit"
-    onClick={[MockFunction]}
+    onClick={[Function]}
     type="button"
   >
     Exit
@@ -81,7 +82,7 @@ exports[`renders correctly 1`] = `
       </div>
       <button
         className="player__full-screen"
-        onClick={[MockFunction]}
+        onClick={[Function]}
         type="button"
       >
         <svg

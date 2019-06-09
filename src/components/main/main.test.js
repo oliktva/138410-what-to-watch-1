@@ -16,6 +16,7 @@ it(`renders correctly`, () => {
     genres={genres}
     user={user}
     loadFilms={jest.fn()}
+    loadPromo={jest.fn()}
   />);
   expect(toJson(main)).toMatchSnapshot();
 });

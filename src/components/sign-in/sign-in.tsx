@@ -138,7 +138,7 @@ class SignIn extends PureComponent<Props> {
     }
   }
 
-  private _renderEmailField() {
+  private _renderEmailField(): ReactElement {
     return (
       <div className="sign-in__field">
         <input
@@ -154,7 +154,7 @@ class SignIn extends PureComponent<Props> {
     );
   }
 
-  private _renderPasswordField() {
+  private _renderPasswordField(): ReactElement {
     return (
       <div className="sign-in__field">
         <input
@@ -167,7 +167,7 @@ class SignIn extends PureComponent<Props> {
         />
         <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
       </div>
-    )
+    );
   }
 }
 

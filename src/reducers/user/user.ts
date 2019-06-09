@@ -1,6 +1,6 @@
 import {Action as ReduxAction} from 'redux';
 import {AxiosResponse, AxiosError, AxiosInstance} from 'axios';
-import camelcaseKeys from 'camelcase-keys';
+import {toCamel} from 'convert-keys';
 
 import {UserProps} from 'src/types/user';
 import {ThunkDispatch, ThunkAction, State as AppState} from 'src/types/reducer';
@@ -59,8 +59,8 @@ export const Operation = {
   loadUser: (): ThunkAction => {
     return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
       return api.get(`/login`)
-        .then((response: AxiosResponse<UserProps>): void => {
-          const data = camelcaseKeys(response.data) as UserProps;
+        .then((response: AxiosResponse<Record<string, any>>): void => {
+          const data = toCamel<UserProps>(response.data);
 
           dispatch(ActionCreator.logInUser(data));
         }).catch((): void => {
@@ -74,8 +74,8 @@ export const Operation = {
       return api.post(`/login`, {
         email,
         password
-      }).then((response: AxiosResponse<UserProps>): void => {
-        const data = camelcaseKeys(response.data) as UserProps;
+      }).then((response: AxiosResponse<Record<string, any>>): void => {
+        const data = toCamel<UserProps>(response.data);
 
         dispatch(ActionCreator.logInUser(data));
       }).catch((error: AxiosError): void => {

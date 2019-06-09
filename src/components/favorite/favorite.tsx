@@ -36,8 +36,8 @@ const propTypes = {
 class Favorite extends PureComponent<Props> {
   public static propTypes = propTypes;
 
-  public componentDidMount() {
-    const { loadFavorite } = this.props;
+  public componentDidMount(): void {
+    const {loadFavorite} = this.props;
 
     loadFavorite();
   }

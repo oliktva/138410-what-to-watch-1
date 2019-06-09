@@ -2,7 +2,7 @@ import React, {Fragment, FunctionComponent, ReactElement} from 'react';
 import PropTypes from 'prop-types';
 
 interface Props {
-  children: ReactElement | ReactElement[];
+  children?: ReactElement | ReactElement[];
 }
 
 const PageWrapper: FunctionComponent<Props> = ({children}): ReactElement => (
@@ -39,7 +39,7 @@ const PageWrapper: FunctionComponent<Props> = ({children}): ReactElement => (
 );
 
 PageWrapper.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element.isRequired)]).isRequired
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element.isRequired)])
 };
 
 export default PageWrapper;

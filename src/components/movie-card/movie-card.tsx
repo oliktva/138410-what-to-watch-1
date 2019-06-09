@@ -18,7 +18,7 @@ interface DispatchProps {
 
 interface OwnProps {
   header: ReactElement;
-  film: FilmProps;
+  film: FilmProps | null;
 }
 
 interface NeedRenderPlayerProps {
@@ -48,8 +48,12 @@ class MovieCard extends PureComponent<Props> {
     this._removeFilmHandler = this._removeFilmHandler.bind(this);
   }
 
-  public render(): ReactElement {
+  public render(): ReactElement | null {
     const {header, film, withPlayer, toggleRenderPlayer} = this.props;
+
+    if (!film) {
+      return null;
+    }
 
     return (
       <Fragment>
@@ -71,7 +75,30 @@ class MovieCard extends PureComponent<Props> {
                   <span className="movie-card__genre">{film.genre}</span>
                   <span className="movie-card__year">{film.released}</span>
                 </p>
-                {this._renderButtons()}
+                <div className="movie-card__buttons">
+                  <button className="btn btn--play movie-card__button" type="button" onClick={this._playHandler}>
+                    <svg viewBox="0 0 19 19" width="19" height="19">
+                      <use href="#play-s" />
+                    </svg>
+                    <span>Play</span>
+                  </button>
+                  <button
+                    className="btn btn--list movie-card__button"
+                    type="button"
+                    onClick={film.isFavorite ? this._removeFilmHandler : this._addToMyListHandler}
+                  >
+                    {film.isFavorite ? (
+                      <svg viewBox="0 0 18 14" width="18" height="14">
+                        <use href="#in-list" />
+                      </svg>
+                    ) : (
+                      <svg viewBox="0 0 19 20" width="19" height="20">
+                        <use href="#add" />
+                      </svg>
+                    )}
+                    <span>My list</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -87,44 +114,17 @@ class MovieCard extends PureComponent<Props> {
   private _addToMyListHandler(): void {
     const {film, addToFavorites} = this.props;
 
-    addToFavorites(film.id);
+    if (film) {
+      addToFavorites(film.id);
+    }
   }
 
   private _removeFilmHandler(): void {
     const {film, removeFromFavorites} = this.props;
 
-    removeFromFavorites(film.id);
-  }
-
-  private _renderButtons(): ReactElement {
-    const {film} = this.props;
-
-    return (
-      <div className="movie-card__buttons">
-        <button className="btn btn--play movie-card__button" type="button" onClick={this._playHandler}>
-          <svg viewBox="0 0 19 19" width="19" height="19">
-            <use href="#play-s" />
-          </svg>
-          <span>Play</span>
-        </button>
-        <button
-          className="btn btn--list movie-card__button"
-          type="button"
-          onClick={film.isFavorite ? this._removeFilmHandler : this._addToMyListHandler}
-        >
-          {film.isFavorite ? (
-            <svg viewBox="0 0 18 14" width="18" height="14">
-              <use href="#in-list" />
-            </svg>
-          ) : (
-            <svg viewBox="0 0 19 20" width="19" height="20">
-              <use href="#add" />
-            </svg>
-          )}
-          <span>My list</span>
-        </button>
-      </div>
-    );
+    if (film) {
+      removeFromFavorites(film.id);
+    }
   }
 }
 

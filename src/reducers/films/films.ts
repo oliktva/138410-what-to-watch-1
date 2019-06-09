@@ -1,7 +1,7 @@
 import {Action as ReduxAction} from 'redux';
 import {ThunkDispatch as ReduxThunkDispatch, ThunkAction as ReduxThunkAction} from 'redux-thunk';
 import {AxiosResponse, AxiosInstance} from 'axios';
-import camelcaseKeys from 'camelcase-keys';
+import {toCamel} from 'convert-keys';
 
 import {GenreProps} from 'src/types/genres';
 import {FilmProps} from 'src/types/films';
@@ -11,6 +11,7 @@ export const SET_GENRE = `SET_GENRE`;
 export const LOAD_FILMS_SUCCESS = `LOAD_FILMS_SUCCESS`;
 export const LOAD_FAVORITE_SUCCESS = `LOAD_FAVORITE_SUCCESS`;
 export const UPDATE_FILM = `UPDATE_FILM`;
+export const LOAD_PROMO = `LOAD_PROMO`;
 
 const ALL_GENRES = `All genres`;
 
@@ -18,6 +19,7 @@ export interface State {
   genre: GenreProps;
   items: FilmProps[];
   favorite: FilmProps[];
+  promo: FilmProps | null;
 }
 
 interface SetFilterAction extends ReduxAction {
@@ -40,7 +42,12 @@ interface UpdateFilmAction extends ReduxAction {
   payload: FilmProps;
 }
 
-export type Action = SetFilterAction | LoadFilmsAction | LoadFavoritesAction | UpdateFilmAction;
+interface LoadFilmPromo extends ReduxAction {
+  type: typeof LOAD_PROMO;
+  payload: FilmProps;
+}
+
+export type Action = SetFilterAction | LoadFilmsAction | LoadFavoritesAction | UpdateFilmAction | LoadFilmPromo;
 
 export type ThunkDispatch = ReduxThunkDispatch<State, AxiosInstance, Action>;
 export type ThunkAction = ReduxThunkAction<Promise<void>, State, AxiosInstance, Action>;
@@ -48,7 +55,8 @@ export type ThunkAction = ReduxThunkAction<Promise<void>, State, AxiosInstance, 
 export const initialState: State = {
   genre: ALL_GENRES,
   items: [],
-  favorite: []
+  favorite: [],
+  promo: null
 };
 
 const updateFilm = (film: FilmProps, filmsList: FilmProps[]): FilmProps[] =>
@@ -81,6 +89,13 @@ export const ActionCreator = {
       type: UPDATE_FILM,
       payload: film
     };
+  },
+
+  loadPromo: (film: FilmProps): LoadFilmPromo => {
+    return {
+      type: LOAD_PROMO,
+      payload: film
+    };
   }
 };
 
@@ -88,8 +103,8 @@ export const Operation = {
   loadFilms: (): ThunkAction => {
     return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
       return api.get(`/films`)
-        .then((response: AxiosResponse<FilmProps[]>): void => {
-          const data = camelcaseKeys(response.data) as FilmProps[];
+        .then((response: AxiosResponse<Record<string, any>[]>): void => {
+          const data = response.data.map((f): FilmProps => toCamel<FilmProps>(f));
 
           dispatch(ActionCreator.loadFilms(data));
         });
@@ -99,8 +114,8 @@ export const Operation = {
   loadFavorite: (): ThunkAction => {
     return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
       return api.get(`/favorite`)
-        .then((response: AxiosResponse<FilmProps[]>): void => {
-          const data = camelcaseKeys(response.data) as FilmProps[];
+        .then((response: AxiosResponse<Record<string, any>[]>): void => {
+          const data = response.data.map((f): FilmProps => toCamel<FilmProps>(f));
 
           dispatch(ActionCreator.loadFavorite(data));
         });
@@ -110,8 +125,8 @@ export const Operation = {
   addToFavorites: (filmId: number): ThunkAction => {
     return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
       return api.post(`/favorite/${filmId}/1`)
-        .then((response: AxiosResponse<FilmProps>): void => {
-          const data = camelcaseKeys(response.data) as FilmProps;
+        .then((response: AxiosResponse<Record<string, any>>): void => {
+          const data = toCamel<FilmProps>(response.data);
 
           dispatch(ActionCreator.updateFilm(data));
         });
@@ -121,13 +136,24 @@ export const Operation = {
   removeFromFavorites: (filmId: number): ThunkAction => {
     return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
       return api.post(`/favorite/${filmId}/0`)
-        .then((response: AxiosResponse<FilmProps>): void => {
-          const data = camelcaseKeys(response.data) as FilmProps;
+        .then((response: AxiosResponse<Record<string, any>>): void => {
+          const data = toCamel<FilmProps>(response.data);
 
           dispatch(ActionCreator.updateFilm(data));
         });
     };
   },
+
+  loadPromo: (): ThunkAction => {
+    return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
+      return api.get(`/films/promo`)
+        .then((response: AxiosResponse<Record<string, any>>): void => {
+          const data = toCamel<FilmProps>(response.data);
+
+          dispatch(ActionCreator.loadPromo(data));
+        });
+    };
+  }
 };
 
 const reducer = (state: State = initialState, action: Action): State => {
@@ -156,6 +182,13 @@ const reducer = (state: State = initialState, action: Action): State => {
         items: updateFilm(action.payload, state.items),
         favorite: updateFilm(action.payload, state.favorite)
       };
+
+    case LOAD_PROMO: {
+      return {
+        ...state,
+        promo: action.payload
+      };
+    }
 
     default:
       return state;

@@ -2,7 +2,7 @@ import React, {PureComponent, ReactElement} from 'react';
 import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {getGenres, getFilmsByGenre} from 'src/reducers/films/selectors';
+import {getGenres, getFilmsByGenre, getPromoFilm} from 'src/reducers/films/selectors';
 import {getUser} from 'src/reducers/user/selectors';
 import {Operation} from 'src/reducers/films/films';
 
@@ -14,18 +14,20 @@ import SmallMovieCardsList from 'src/components/small-movie-cards-list/small-mov
 import GenresList from 'src/components/genres-list/genres-list';
 
 import {State, ThunkDispatch} from 'src/types/reducer';
-import {FilmProps, filmsPropTypes} from 'src/types/films';
+import {FilmProps, filmPropTypes, filmsPropTypes} from 'src/types/films';
 import {GenreProps, genresPropTypes} from 'src/types/genres';
 import {UserProps, UserPropTypes} from 'src/types/user';
 
 interface StateProps {
   filmsByGenre: FilmProps[];
   genres: GenreProps[];
+  promo: FilmProps | null;
   user: UserProps;
 }
 
 interface DispatchProps {
   loadFilms: () => void;
+  loadPromo: () => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -33,7 +35,9 @@ type Props = StateProps & DispatchProps;
 const propTypes = {
   filmsByGenre: filmsPropTypes.isRequired,
   genres: genresPropTypes.isRequired,
+  promo: filmPropTypes,
   loadFilms: PropTypes.func.isRequired,
+  loadPromo: PropTypes.func.isRequired,
   user: UserPropTypes.isRequired
 };
 
@@ -41,32 +45,29 @@ class Main extends PureComponent<Props> {
   public static propTypes = propTypes;
 
   public componentDidMount(): void {
-    const {loadFilms} = this.props;
+    const {loadFilms, loadPromo} = this.props;
 
-    loadFilms();
+    Promise.all([loadFilms(), loadPromo()]);
   }
 
   public render(): ReactElement | null {
-    const {genres, filmsByGenre, user} = this.props;
+    const {genres, filmsByGenre, promo, user} = this.props;
 
     if (filmsByGenre.length === 0) {
       return null;
     }
 
-    const firstFilm = filmsByGenre[0];
-    const films = filmsByGenre.slice(1);
-
     return (
       <PageWrapper>
         <MovieCard
           header={<Header user={user} className="movie-card__head" />}
-          film={firstFilm}
+          film={promo}
         />
         <div className="page-content">
           <section className="catalog">
             <h2 className="catalog__title visually-hidden">Catalog</h2>
             <GenresList genres={genres} />
-            <SmallMovieCardsList films={films} />
+            <SmallMovieCardsList films={filmsByGenre} />
           </section>
           <Footer />
         </div>
@@ -78,11 +79,13 @@ class Main extends PureComponent<Props> {
 const mapStateToProps: MapStateToProps<StateProps, {}, State> = (state: State): StateProps => ({
   genres: getGenres(state),
   filmsByGenre: getFilmsByGenre(state),
+  promo: getPromoFilm(state),
   user: getUser(state)
 });
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: ThunkDispatch): DispatchProps => ({
-  loadFilms: (): Promise<void> => dispatch(Operation.loadFilms())
+  loadFilms: (): Promise<void> => dispatch(Operation.loadFilms()),
+  loadPromo: (): Promise<void> => dispatch(Operation.loadPromo()),
 });
 
 export {Main};
