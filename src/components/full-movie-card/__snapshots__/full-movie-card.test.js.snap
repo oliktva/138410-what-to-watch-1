@@ -1,0 +1,241 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<Fragment>
+  <section
+    className="movie-card movie-card--full"
+    style={
+      Object {
+        "backgroundColor": "#795433",
+      }
+    }
+  >
+    <div
+      className="movie-card__hero"
+    >
+      <BackgroundImage
+        image="https://es31-server.appspot.com/wtw/static/film/background/Pulp_Fiction.jpg"
+        name="Pulp Fiction"
+      />
+      <h1
+        className="visually-hidden"
+      >
+        WTW
+      </h1>
+      <div />
+      <div
+        className="movie-card__wrap"
+      >
+        <div
+          className="movie-card__desc"
+        >
+          <MovieMeta
+            film={
+              Object {
+                "backgroundColor": "#795433",
+                "backgroundImage": "https://es31-server.appspot.com/wtw/static/film/background/Pulp_Fiction.jpg",
+                "description": "The lives of two mob hitmen, a boxer, a gangster & his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+                "director": "Quentin Tarantino",
+                "genre": "Crime",
+                "id": 1,
+                "isFavorite": false,
+                "name": "Pulp Fiction",
+                "posterImage": "https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg",
+                "previewImage": "https://es31-server.appspot.com/wtw/static/film/preview/pulp-fiction.jpg",
+                "previewVideoLink": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+                "rating": 8.9,
+                "released": 1994,
+                "runTime": 153,
+                "scoresCount": 1635992,
+                "starring": Array [
+                  "John Travolta",
+                  "Uma Thurman",
+                  "Samuel L. Jackson",
+                ],
+                "videoLink": "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4",
+              }
+            }
+          />
+          <CardButtons
+            film={
+              Object {
+                "backgroundColor": "#795433",
+                "backgroundImage": "https://es31-server.appspot.com/wtw/static/film/background/Pulp_Fiction.jpg",
+                "description": "The lives of two mob hitmen, a boxer, a gangster & his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+                "director": "Quentin Tarantino",
+                "genre": "Crime",
+                "id": 1,
+                "isFavorite": false,
+                "name": "Pulp Fiction",
+                "posterImage": "https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg",
+                "previewImage": "https://es31-server.appspot.com/wtw/static/film/preview/pulp-fiction.jpg",
+                "previewVideoLink": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+                "rating": 8.9,
+                "released": 1994,
+                "runTime": 153,
+                "scoresCount": 1635992,
+                "starring": Array [
+                  "John Travolta",
+                  "Uma Thurman",
+                  "Samuel L. Jackson",
+                ],
+                "videoLink": "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4",
+              }
+            }
+            isFull={false}
+            onFavoritesToggle={[Function]}
+            onPlayButtonClick={[Function]}
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="movie-card__wrap movie-card__translate-top"
+    >
+      <div
+        className="movie-card__info"
+      >
+        <MoviePoster
+          image="https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg"
+          isBig={true}
+          name="Pulp Fiction"
+        />
+        <div
+          className="movie-card__desc"
+        >
+          <nav
+            className="movie-nav movie-card__nav"
+          >
+            <ul
+              className="movie-nav__list"
+            >
+              <li
+                className="movie-nav__item "
+                key="overview"
+              >
+                <span
+                  className="movie-nav__link"
+                  onClick={[Function]}
+                >
+                  overview
+                </span>
+              </li>
+              <li
+                className="movie-nav__item "
+                key="details"
+              >
+                <span
+                  className="movie-nav__link"
+                  onClick={[Function]}
+                >
+                  details
+                </span>
+              </li>
+              <li
+                className="movie-nav__item "
+                key="reviews"
+              >
+                <span
+                  className="movie-nav__link"
+                  onClick={[Function]}
+                >
+                  reviews
+                </span>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div
+    className="page-content"
+  >
+    <section
+      className="catalog catalog--like-this"
+    >
+      <h2
+        className="catalog__title"
+      >
+        More like this
+      </h2>
+      <WithActiveCard
+        films={
+          Array [
+            Object {
+              "backgroundColor": "#795433",
+              "backgroundImage": "https://es31-server.appspot.com/wtw/static/film/background/Pulp_Fiction.jpg",
+              "description": "The lives of two mob hitmen, a boxer, a gangster & his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+              "director": "Quentin Tarantino",
+              "genre": "Crime",
+              "id": 1,
+              "isFavorite": false,
+              "name": "Pulp Fiction",
+              "posterImage": "https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg",
+              "previewImage": "https://es31-server.appspot.com/wtw/static/film/preview/pulp-fiction.jpg",
+              "previewVideoLink": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+              "rating": 8.9,
+              "released": 1994,
+              "runTime": 153,
+              "scoresCount": 1635992,
+              "starring": Array [
+                "John Travolta",
+                "Uma Thurman",
+                "Samuel L. Jackson",
+              ],
+              "videoLink": "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4",
+            },
+            Object {
+              "backgroundColor": "#9B7E61",
+              "backgroundImage": "https://es31-server.appspot.com/wtw/static/film/background/War_of_the_Worlds.jpg",
+              "description": "As Earth is invaded by alien tripod fighting machines, one family fights for survival.",
+              "director": "Steven Spielberg",
+              "genre": "Adventure",
+              "id": 2,
+              "isFavorite": false,
+              "name": "War of the Worlds",
+              "posterImage": "https://es31-server.appspot.com/wtw/static/film/poster/War_of_the_Worlds.jpg",
+              "previewImage": "https://es31-server.appspot.com/wtw/static/film/preview/war-of-the-worlds.jpg",
+              "previewVideoLink": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+              "rating": 6.5,
+              "released": 2005,
+              "runTime": 116,
+              "scoresCount": 386834,
+              "starring": Array [
+                "Tom Cruise",
+                "Dakota Fanning",
+                "Tim Robbins",
+              ],
+              "videoLink": "http://media.xiph.org/mango/tears_of_steel_1080p.webm",
+            },
+            Object {
+              "backgroundColor": "#A6B7AC",
+              "backgroundImage": "https://es31-server.appspot.com/wtw/static/film/background/gangs_of_new_york.jpg",
+              "description": "In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father's killer.",
+              "director": "Martin Scorsese",
+              "genre": "Crime",
+              "id": 3,
+              "isFavorite": false,
+              "name": "Gangs of new york",
+              "posterImage": "https://es31-server.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg",
+              "previewImage": "https://es31-server.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg",
+              "previewVideoLink": "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
+              "rating": 7.5,
+              "released": 2002,
+              "runTime": 167,
+              "scoresCount": 370881,
+              "starring": Array [
+                "Leonardo DiCaprio",
+                "Cameron Diaz",
+                "Daniel Day-Lewis",
+              ],
+              "videoLink": "http://media.xiph.org/mango/tears_of_steel_1080p.webm",
+            },
+          ]
+        }
+      />
+    </section>
+    <Footer />
+  </div>
+</Fragment>
+`;

@@ -85,7 +85,7 @@ const mapStateToProps: MapStateToProps<StateProps, {}, State> = (state: State): 
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: ThunkDispatch): DispatchProps => ({
   loadFilms: (): Promise<void> => dispatch(Operation.loadFilms()),
-  loadPromo: (): Promise<void> => dispatch(Operation.loadPromo()),
+  loadPromo: (): Promise<void> => dispatch(Operation.loadPromo())
 });
 
 export {Main};

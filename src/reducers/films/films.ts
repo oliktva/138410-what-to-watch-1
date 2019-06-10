@@ -4,7 +4,7 @@ import {AxiosResponse, AxiosInstance} from 'axios';
 import {toCamel} from 'convert-keys';
 
 import {GenreProps} from 'src/types/genres';
-import {FilmProps} from 'src/types/films';
+import {FilmProps, ReviewProps} from 'src/types/films';
 import {ThunkDispatch, ThunkAction, State as AppState} from 'src/types/reducer';
 
 export const SET_GENRE = `SET_GENRE`;
@@ -12,6 +12,7 @@ export const LOAD_FILMS_SUCCESS = `LOAD_FILMS_SUCCESS`;
 export const LOAD_FAVORITE_SUCCESS = `LOAD_FAVORITE_SUCCESS`;
 export const UPDATE_FILM = `UPDATE_FILM`;
 export const LOAD_PROMO = `LOAD_PROMO`;
+export const LOAD_REVIEWS = `LOAD_REVIEWS`;
 
 const ALL_GENRES = `All genres`;
 
@@ -20,6 +21,7 @@ export interface State {
   items: FilmProps[];
   favorite: FilmProps[];
   promo: FilmProps | null;
+  reviews: {[key: number]: ReviewProps[]} | null;
 }
 
 interface SetFilterAction extends ReduxAction {
@@ -42,12 +44,18 @@ interface UpdateFilmAction extends ReduxAction {
   payload: FilmProps;
 }
 
-interface LoadFilmPromo extends ReduxAction {
+interface LoadFilmPromoAction extends ReduxAction {
   type: typeof LOAD_PROMO;
   payload: FilmProps;
 }
 
-export type Action = SetFilterAction | LoadFilmsAction | LoadFavoritesAction | UpdateFilmAction | LoadFilmPromo;
+interface LoadReviewsAction extends ReduxAction {
+  type: typeof LOAD_REVIEWS;
+  payload: {id: number; reviews: ReviewProps[]};
+}
+
+export type Action =
+  SetFilterAction | LoadFilmsAction | LoadFavoritesAction | UpdateFilmAction | LoadFilmPromoAction | LoadReviewsAction;
 
 export type ThunkDispatch = ReduxThunkDispatch<State, AxiosInstance, Action>;
 export type ThunkAction = ReduxThunkAction<Promise<void>, State, AxiosInstance, Action>;
@@ -56,7 +64,8 @@ export const initialState: State = {
   genre: ALL_GENRES,
   items: [],
   favorite: [],
-  promo: null
+  promo: null,
+  reviews: null
 };
 
 const updateFilm = (film: FilmProps, filmsList: FilmProps[]): FilmProps[] =>
@@ -91,11 +100,18 @@ export const ActionCreator = {
     };
   },
 
-  loadPromo: (film: FilmProps): LoadFilmPromo => {
+  loadPromo: (film: FilmProps): LoadFilmPromoAction => {
     return {
       type: LOAD_PROMO,
       payload: film
     };
+  },
+
+  loadReviews: (id: number, reviews: ReviewProps[]): LoadReviewsAction => {
+    return {
+      type: LOAD_REVIEWS,
+      payload: {id, reviews}
+    }
   }
 };
 
@@ -153,6 +169,17 @@ export const Operation = {
           dispatch(ActionCreator.loadPromo(data));
         });
     };
+  },
+
+  loadReviews: (id: number): ThunkAction => {
+    return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
+      return api.get(`/comments/${id}`)
+        .then((response: AxiosResponse<Record<string, any>[]>): void => {
+          const data = response.data.map((r): ReviewProps => toCamel<ReviewProps>(r));
+
+          dispatch(ActionCreator.loadReviews(id, data));
+        });
+    };
   }
 };
 
@@ -188,6 +215,16 @@ const reducer = (state: State = initialState, action: Action): State => {
         ...state,
         promo: action.payload
       };
+    }
+
+    case LOAD_REVIEWS: {
+      return {
+        ...state,
+        reviews: {
+          ...state.reviews,
+          [action.payload.id]: action.payload.reviews
+        }
+      }
     }
 
     default:

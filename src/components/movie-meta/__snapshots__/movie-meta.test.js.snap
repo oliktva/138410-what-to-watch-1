@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<Fragment>
+  <h2
+    className="movie-card__title"
+  >
+    Pulp Fiction
+  </h2>
+  <p
+    className="movie-card__meta"
+  >
+    <span
+      className="movie-card__genre"
+    >
+      Crime
+    </span>
+    <span
+      className="movie-card__year"
+    >
+      1994
+    </span>
+  </p>
+</Fragment>
+`;

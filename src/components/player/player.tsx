@@ -1,6 +1,7 @@
 import React, {PureComponent, Fragment, ReactElement} from 'react';
 import PropTypes from 'prop-types';
 
+import {formatTime} from 'src/helpers/time-helper';
 import withPlayer from 'src/hocs/with-player/with-player';
 import Video from 'src/components/video/video';
 
@@ -39,21 +40,6 @@ const propTypes = {
   setCurrentTime: PropTypes.func.isRequired,
   setFulltime: PropTypes.func.isRequired,
   closePlayer: PropTypes.func.isRequired
-};
-
-const addZeroIfNeed = (value: number): string => {
-  const digitsLength = value.toString().length;
-
-  return digitsLength === 1 ? `0${value}` : value.toString();
-};
-
-const formatTime = (time: number): string => {
-  const date = new Date(time * 1000);
-  const hh = date.getUTCHours();
-  const mm = date.getUTCMinutes();
-  const ss = date.getSeconds();
-
-  return `${hh}:${addZeroIfNeed(mm)}:${addZeroIfNeed(ss)}`;
 };
 
 class Player extends PureComponent<Props> {

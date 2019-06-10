@@ -7,9 +7,13 @@ import {Operation} from 'src/reducers/films/films';
 
 import needRenderPlayer from 'src/hocs/need-render-player/need-render-player';
 import Player from 'src/components/player/player';
+import BackgroundImage from 'src/components/background-image/background-image';
+import MoviePoster from 'src/components/movie-poster/movie-poster';
+import CardButtons from 'src/components/card-buttons/card-buttons';
+import MovieMeta from 'src/components/movie-meta/movie-meta';
 
 import {State, ThunkDispatch} from 'src/types/reducer';
-import {FilmProps, filmPropTypes} from 'src/types/films';
+import {FilmProps, filmPropTypes, ReviewProps} from 'src/types/films';
 
 interface DispatchProps {
   addToFavorites: (filmId: number) => Promise<void>;
@@ -19,6 +23,7 @@ interface DispatchProps {
 interface OwnProps {
   header: ReactElement;
   film: FilmProps | null;
+  reviews: ReviewProps[];
 }
 
 interface NeedRenderPlayerProps {
@@ -43,13 +48,12 @@ class MovieCard extends PureComponent<Props> {
   public constructor(props: Props) {
     super(props);
 
-    this._playHandler = this._playHandler.bind(this);
-    this._addToMyListHandler = this._addToMyListHandler.bind(this);
-    this._removeFilmHandler = this._removeFilmHandler.bind(this);
+    this._handlePlay = this._handlePlay.bind(this);
+    this._handleToggleFavorite = this._handleToggleFavorite.bind(this);
   }
 
   public render(): ReactElement | null {
-    const {header, film, withPlayer, toggleRenderPlayer} = this.props;
+    const {film, header, withPlayer, toggleRenderPlayer} = this.props;
 
     if (!film) {
       return null;
@@ -59,46 +63,19 @@ class MovieCard extends PureComponent<Props> {
       <Fragment>
         {withPlayer && <Player film={film} closePlayer={toggleRenderPlayer} />}
         <section className="movie-card">
-          <div className="movie-card__bg">
-            <img src={film.backgroundImage} alt={film.name} />
-          </div>
+          <BackgroundImage image={film.backgroundImage} name={film.name} />
           <h1 className="visually-hidden">WTW</h1>
           {header}
           <div className="movie-card__wrap">
             <div className="movie-card__info">
-              <div className="movie-card__poster">
-                <img src={film.posterImage} alt={`${film.name} poster`} width="218" height="327" />
-              </div>
+              <MoviePoster image={film.posterImage} name={film.name} />
               <div className="movie-card__desc">
-                <h2 className="movie-card__title">{film.name}</h2>
-                <p className="movie-card__meta">
-                  <span className="movie-card__genre">{film.genre}</span>
-                  <span className="movie-card__year">{film.released}</span>
-                </p>
-                <div className="movie-card__buttons">
-                  <button className="btn btn--play movie-card__button" type="button" onClick={this._playHandler}>
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use href="#play-s" />
-                    </svg>
-                    <span>Play</span>
-                  </button>
-                  <button
-                    className="btn btn--list movie-card__button"
-                    type="button"
-                    onClick={film.isFavorite ? this._removeFilmHandler : this._addToMyListHandler}
-                  >
-                    {film.isFavorite ? (
-                      <svg viewBox="0 0 18 14" width="18" height="14">
-                        <use href="#in-list" />
-                      </svg>
-                    ) : (
-                      <svg viewBox="0 0 19 20" width="19" height="20">
-                        <use href="#add" />
-                      </svg>
-                    )}
-                    <span>My list</span>
-                  </button>
-                </div>
+                <MovieMeta film={film} />
+                <CardButtons
+                  film={film}
+                  onPlayButtonClick={this._handlePlay}
+                  onFavoritesToggle={this._handleToggleFavorite}
+                />
               </div>
             </div>
           </div>
@@ -107,23 +84,19 @@ class MovieCard extends PureComponent<Props> {
     );
   }
 
-  private _playHandler(): void {
+  private _handlePlay(): void {
     this.props.toggleRenderPlayer();
   }
 
-  private _addToMyListHandler(): void {
-    const {film, addToFavorites} = this.props;
+  private _handleToggleFavorite(): void {
+    const {film, addToFavorites, removeFromFavorites} = this.props;
 
     if (film) {
-      addToFavorites(film.id);
-    }
-  }
-
-  private _removeFilmHandler(): void {
-    const {film, removeFromFavorites} = this.props;
-
-    if (film) {
-      removeFromFavorites(film.id);
+      if (film.isFavorite) {
+        removeFromFavorites(film.id);
+      } else {
+        addToFavorites(film.id);
+      }
     }
   }
 }

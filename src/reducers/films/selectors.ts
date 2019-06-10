@@ -3,10 +3,9 @@ import {createSelector} from 'reselect';
 import Namespaces from 'src/reducers/namespaces';
 
 import {State} from 'src/types/reducer';
-import {FilmProps} from 'src/types/films';
+import {FilmProps, ReviewProps} from 'src/types/films';
 import {GenreProps} from 'src/types/genres';
-
-const ALL_GENRES = `All genres`;
+import {ALL_GENRES, getGenresFilms} from 'src/helpers/genre-helpers';
 
 export const getFilms = (state: State): FilmProps[] => {
   return state[Namespaces.FILMS].items;
@@ -24,14 +23,27 @@ export const getPromoFilm = (state: State): FilmProps | null => {
   return state[Namespaces.FILMS].promo;
 };
 
+export const getFilm = (state: State, id: number | string): FilmProps | null => {
+  const allFilms = state[Namespaces.FILMS].items;
+
+  return allFilms.find((f: FilmProps): boolean => f.id.toString() === id) || null;
+};
+
+export const getReviews = (state: State, id: number | string): ReviewProps[] => {
+  const allReviews = state[Namespaces.FILMS].reviews;
+
+  if (allReviews) {
+    const idKey = typeof id === `string` ? parseInt(id) : id;
+    return allReviews[idKey] || [];
+  }
+
+  return [];
+};
+
 export const getFilmsByGenre = createSelector(
   getFilms,
   getGenre,
-  (films: FilmProps[], genre: GenreProps): FilmProps[] => {
-    return genre === ALL_GENRES ?
-      films :
-      films.filter((f: FilmProps): boolean => f.genre === genre);
-  }
+  getGenresFilms
 );
 
 export const getGenres = createSelector(
