@@ -16,7 +16,7 @@ import GenresList from 'src/components/genres-list/genres-list';
 import {State, ThunkDispatch} from 'src/types/reducer';
 import {FilmProps, filmPropTypes, filmsPropTypes} from 'src/types/films';
 import {GenreProps, genresPropTypes} from 'src/types/genres';
-import {UserProps, UserPropTypes} from 'src/types/user';
+import {UserProps, userPropTypes} from 'src/types/user';
 
 interface StateProps {
   filmsByGenre: FilmProps[];
@@ -38,7 +38,7 @@ const propTypes = {
   promo: filmPropTypes,
   loadFilms: PropTypes.func.isRequired,
   loadPromo: PropTypes.func.isRequired,
-  user: UserPropTypes.isRequired
+  user: userPropTypes.isRequired
 };
 
 class Main extends PureComponent<Props> {

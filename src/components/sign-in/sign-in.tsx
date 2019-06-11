@@ -12,14 +12,14 @@ import PropTypes from 'prop-types';
 import paths from 'src/paths';
 import {getUser, getError} from 'src/reducers/user/selectors';
 import {Operation, ActionCreator, Action} from 'src/reducers/user/user';
-import withLoginData from 'src/hocs/with-login-data/with-login-data';
+import withFormFields from 'src/hocs/with-form-fields/with-form-fields';
 
 import PageWrapper from 'src/components/page-wrapper/page-wrapper';
 import Header from 'src/components/header/header';
 import Footer from 'src/components/footer/footer';
 
 import {State, ThunkDispatch} from 'src/types/reducer';
-import {UserProps, UserPropTypes} from 'src/types/user';
+import {UserProps, userPropTypes} from 'src/types/user';
 
 type Value = string | undefined;
 
@@ -34,22 +34,20 @@ interface DispatchProps {
 }
 
 interface OwnProps {
-  email: Value;
-  password: Value;
-  setEmailValue: (value: Value) => void;
-  setPasswordValue: (value: Value) => void;
+  form: {
+    [key: string]: Value;
+  };
+  setFieldValue: (field: string, value: Value) => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps & RouteComponentProps;
 
 const propTypes = {
-  user: UserPropTypes.isRequired,
+  user: userPropTypes.isRequired,
   logInUser: PropTypes.func.isRequired,
-  email: PropTypes.string,
-  password: PropTypes.string,
+  form: PropTypes.shape({}),
   error: PropTypes.string,
-  setEmailValue: PropTypes.func.isRequired,
-  setPasswordValue: PropTypes.func.isRequired,
+  setFieldValue: PropTypes.func.isRequired,
   showError: PropTypes.func.isRequired
 };
 
@@ -60,8 +58,7 @@ class SignIn extends PureComponent<Props> {
     super(props);
 
     this._handleFormSubmit = this._handleFormSubmit.bind(this);
-    this._handleEmailChange = this._handleEmailChange.bind(this);
-    this._handlePasswordChange = this._handlePasswordChange.bind(this);
+    this._handleFieldChange = this._handleFieldChange.bind(this);
   }
 
   public componentDidMount(): void {
@@ -103,7 +100,9 @@ class SignIn extends PureComponent<Props> {
 
 
   private _handleFormSubmit(evt: FormEvent<HTMLFormElement>): void {
-    const {email, password, logInUser, showError, history} = this.props;
+    const {form, logInUser, showError, history} = this.props;
+    const email = form[`user-email`];
+    const password = form[`user-password`];
 
     evt.preventDefault();
 
@@ -120,25 +119,19 @@ class SignIn extends PureComponent<Props> {
     }
   }
 
-  private _handleEmailChange(evt: ChangeEvent<HTMLInputElement>): void {
-    const {setEmailValue} = this.props;
+  private _handleFieldChange(evt: ChangeEvent<HTMLInputElement>): void {
+    const {setFieldValue} = this.props;
     const {target} = evt;
 
     if (target) {
-      setEmailValue(target.value);
-    }
-  }
-
-  private _handlePasswordChange(evt: ChangeEvent<HTMLInputElement>): void {
-    const {setPasswordValue} = this.props;
-    const {target} = evt;
-
-    if (target) {
-      setPasswordValue(target.value);
+      setFieldValue(target.name, target.value);
     }
   }
 
   private _renderEmailField(): ReactElement {
+    const {form} = this.props;
+    const email = form[`user-email`];
+
     return (
       <div className="sign-in__field">
         <input
@@ -147,7 +140,8 @@ class SignIn extends PureComponent<Props> {
           placeholder="Email address"
           name="user-email"
           id="user-email"
-          onChange={this._handleEmailChange}
+          value={email}
+          onChange={this._handleFieldChange}
         />
         <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
       </div>
@@ -155,6 +149,9 @@ class SignIn extends PureComponent<Props> {
   }
 
   private _renderPasswordField(): ReactElement {
+    const {form} = this.props;
+    const password = form[`user-password`];
+
     return (
       <div className="sign-in__field">
         <input
@@ -163,7 +160,8 @@ class SignIn extends PureComponent<Props> {
           placeholder="Password"
           name="user-password"
           id="user-password"
-          onChange={this._handlePasswordChange}
+          value={password}
+          onChange={this._handleFieldChange}
         />
         <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
       </div>
@@ -186,7 +184,7 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = (dispatc
 const ConnectedComponent: any =
   compose(
     connect<StateProps, DispatchProps, OwnProps, State>(mapStateToProps, mapDispatchToProps),
-    withLoginData,
+    withFormFields,
     withRouter
   )(SignIn);
 

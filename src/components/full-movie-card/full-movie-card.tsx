@@ -1,10 +1,8 @@
 import React, {Fragment, PureComponent, ReactElement} from 'react';
 import {connect, MapDispatchToProps} from 'react-redux';
 import {compose} from 'redux';
-import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import paths from 'src/paths';
 import {Operation} from 'src/reducers/films/films';
 import {formatTime, formatLocaleTime} from 'src/helpers/time-helper';
 import {getRatingDescription} from 'src/helpers/rating-helper';
@@ -111,13 +109,14 @@ class FullMovieCard extends PureComponent<Props> {
                   film={film}
                   onPlayButtonClick={this._handlePlay}
                   onFavoritesToggle={this._handleToggleFavorite}
+                  isFull
                 />
               </div>
             </div>
           </div>
           <div className="movie-card__wrap movie-card__translate-top">
             <div className="movie-card__info">
-              <MoviePoster image={film.posterImage} name={film.name} isBig />
+              <MoviePoster image={film.posterImage} name={film.name} kind="big" />
               <div className="movie-card__desc">
                 {this._renderNav()}
                 {activeTab === `overview` && this._renderOverview(film)}

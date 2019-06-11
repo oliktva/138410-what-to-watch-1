@@ -4,7 +4,9 @@ exports[`renders correctly 1`] = `
 <footer
   className="page-footer"
 >
-  <Logo />
+  <Logo
+    isLight={true}
+  />
   <div
     className="copyright"
   >

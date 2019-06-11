@@ -180,6 +180,15 @@ export const Operation = {
           dispatch(ActionCreator.loadReviews(id, data));
         });
     };
+  },
+
+  addReview: (id: number, review: ReviewProps): ThunkAction => {
+    return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
+      return api.post(`/comments/${id}`, review)
+        .then((response: AxiosResponse<Record<string, any>[]>): void => {
+          console.log(response)
+        });
+    };
   }
 };
 

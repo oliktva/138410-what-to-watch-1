@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="movie-card__poster "
+  className="movie-card__poster  movie-card__poster--small"
 >
   <img
     alt="test name poster"

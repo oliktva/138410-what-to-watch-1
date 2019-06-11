@@ -7,7 +7,7 @@ import paths from 'src/paths';
 import {getUser} from 'src/reducers/user/selectors';
 
 import {State} from 'src/types/reducer';
-import {UserProps, UserPropTypes} from 'src/types/user';
+import {UserProps, userPropTypes} from 'src/types/user';
 
 interface StateProps {
   user: UserProps;
@@ -16,7 +16,7 @@ interface StateProps {
 type Props = StateProps & RouteComponentProps;
 
 const propTypes = {
-  user: UserPropTypes.isRequired
+  user: userPropTypes.isRequired
 };
 
 const needLogin = (Component: any): ComponentClass<any> => {

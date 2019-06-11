@@ -4,7 +4,9 @@ exports[`renders correctly 1`] = `
 <header
   className="page-header test"
 >
-  <Logo />
+  <Logo
+    isLight={true}
+  />
   <div
     className="user-block"
   >
