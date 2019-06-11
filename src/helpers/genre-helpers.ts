@@ -7,4 +7,4 @@ export const getGenresFilms = (films: FilmProps[], genre: GenreProps): FilmProps
   return genre === ALL_GENRES ?
     films :
     films.filter((f: FilmProps): boolean => f.genre === genre);
-}
+};

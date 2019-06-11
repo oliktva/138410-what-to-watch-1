@@ -5,7 +5,7 @@ import {compose} from 'redux';
 import PropTypes from 'prop-types';
 
 import {Operation} from 'src/reducers/films/films';
-import {getFilm, getReviews, getFilms} from 'src/reducers/films/selectors';
+import {getFilm, getReviews} from 'src/reducers/films/selectors';
 import {getUser} from 'src/reducers/user/selectors';
 import needLogin from 'src/hocs/need-login/need-login';
 
@@ -14,7 +14,7 @@ import Header from 'src/components/header/header';
 import MovieCardReview from 'src/components/movie-card-review/movie-card-review';
 
 import {State, ThunkDispatch} from 'src/types/reducer';
-import {FilmProps, filmPropTypes, filmsPropTypes, reviewsPropTypes, ReviewProps} from 'src/types/films';
+import {FilmProps, filmPropTypes, reviewsPropTypes, ReviewProps} from 'src/types/films';
 import {UserProps, userPropTypes} from 'src/types/user';
 
 interface StateProps {
@@ -40,7 +40,7 @@ const propTypes = {
   loadFilms: PropTypes.func.isRequired,
   loadReviews: PropTypes.func.isRequired,
   addReview: PropTypes.func.isRequired
-}
+};
 
 class Review extends PureComponent<Props> {
   public static propTypes = propTypes;
@@ -48,7 +48,7 @@ class Review extends PureComponent<Props> {
   public componentDidMount(): void {
     const {loadFilms, loadReviews, match: {params: {id}}} = this.props;
 
-    Promise.all([loadFilms(), loadReviews(parseInt(id))]);
+    Promise.all([loadFilms(), loadReviews(parseInt(id, 10))]);
   }
 
   public render(): ReactElement | null {
@@ -76,7 +76,7 @@ class Review extends PureComponent<Props> {
           addReview={addReview}
         />
       </PageWrapper>
-    )
+    );
   }
 }
 

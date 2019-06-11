@@ -19,7 +19,7 @@ export const formatTime = (time: number, {withSeconds}: {withSeconds: boolean} =
 
 export const formatLocaleTime = (time: string): string => {
   const date = new Date(time);
-  const options = {month: 'long', day: 'numeric', year: 'numeric'};
+  const options = {month: `long`, day: `numeric`, year: `numeric`};
 
-  return date.toLocaleDateString('en-GB', options);
-}
+  return date.toLocaleDateString(`en-GB`, options);
+};

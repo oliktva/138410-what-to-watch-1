@@ -5,7 +5,8 @@ import toJson from 'enzyme-to-json';
 import {history as mockHistory} from 'src/fixtures/history';
 
 import ReviewForm from './review-form';
-import {film, review} from 'src/fixtures/films';
+import {film} from 'src/fixtures/films';
+import {review} from 'src/fixtures/reviews';
 
 Enzyme.configure({adapter: new Adapter()});
 

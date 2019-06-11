@@ -6,6 +6,6 @@ export const getRatingDescription = (rating: number): string => {
   } else if (rating <= 8) {
     return `Good`;
   }
-  
+
   return `Awesome`;
-}
+};

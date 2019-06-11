@@ -4,7 +4,8 @@ import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
 import {Movie} from './movie';
-import {films, film, reviews} from 'src/fixtures/films';
+import {films, film} from 'src/fixtures/films';
+import {reviews} from 'src/fixtures/reviews';
 import {user} from 'src/fixtures/user';
 
 Enzyme.configure({adapter: new Adapter()});

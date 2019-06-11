@@ -12,9 +12,9 @@ import paths from 'src/paths';
 import withFormFields from 'src/hocs/with-form-fields/with-form-fields';
 import withDisable from 'src/hocs/with-disabled/with-disabled';
 
-import { ReviewProps } from 'src/types/films';
+import {ReviewProps} from 'src/types/films';
 
-const RATINGS = ['1', '2', '3', '4', '5'];
+const RATINGS = [`1`, `2`, `3`, `4`, `5`];
 const RATING_KEY = `rating`;
 const REVIEW_TEXT_KEY = `review-text`;
 const REVIEW_TEXT_MIN = 50;
@@ -23,10 +23,10 @@ const REVIEW_TEXT_MAX = 400;
 type Value = string | undefined;
 
 interface OwnProps {
-  id: number,
-  userReview: ReviewProps | null,
+  id: number;
+  userReview: ReviewProps | null;
   form: {
-    [key: string]: Value
+    [key: string]: Value;
   };
   setFieldValue: (field: string, value: Value) => void;
   addReview: (id: number, comment: string, rating: string) => Promise<void>;
@@ -45,7 +45,7 @@ class ReviewForm extends PureComponent<Props> {
   }
 
   public componentDidMount(): void {
-    const { userReview, setFieldValue } = this.props;
+    const {userReview, setFieldValue} = this.props;
 
     if (userReview) {
       setFieldValue(RATING_KEY, userReview.rating.toString());
@@ -61,7 +61,7 @@ class ReviewForm extends PureComponent<Props> {
         <form className="add-review__form" onSubmit={this._handleFormSubmit}>
           <div className="rating">
             <div className="rating__stars">
-              {RATINGS.map((r: string) => this._renderRating(r))}
+              {RATINGS.map((r: string): ReactElement => this._renderRating(r))}
             </div>
           </div>
           <div className="add-review__text">
@@ -105,9 +105,9 @@ class ReviewForm extends PureComponent<Props> {
       addReview(id, reviewText, rating)
         .then((): void => {
           toggleDisabled({isDisabled: false});
-          history.push(paths.film(id))
+          history.push(paths.film(id));
         })
-        .catch(() => {
+        .catch((): void => {
           toggleDisabled({isDisabled: false});
         });
     }
@@ -129,7 +129,7 @@ class ReviewForm extends PureComponent<Props> {
         maxLength={REVIEW_TEXT_MAX}
         disabled={isDisabled}
       />
-    )
+    );
   }
 
   private _renderRating(ratingValue: string): ReactElement {
@@ -150,7 +150,7 @@ class ReviewForm extends PureComponent<Props> {
         />
         <label className="rating__label" htmlFor={`star-${ratingValue}`}>Rating {ratingValue}</label>
       </Fragment>
-    )
+    );
   }
 }
 

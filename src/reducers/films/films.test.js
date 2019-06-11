@@ -12,7 +12,8 @@ import {
   LOAD_REVIEWS
 } from './films';
 
-import {films, film, reviews, review} from 'src/fixtures/films';
+import {films, film} from 'src/fixtures/films';
+import {reviews, review} from 'src/fixtures/reviews';
 import {genre} from 'src/fixtures/genres';
 
 describe(`ActionCreator`, () => {

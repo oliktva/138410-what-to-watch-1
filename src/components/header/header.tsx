@@ -9,7 +9,7 @@ import Logo from 'src/components/logo/logo';
 import Breadcrumbs from 'src/components/breadcrumbs/breadcrumbs';
 
 import {UserProps, userPropTypes} from 'src/types/user';
-import {FilmProps, filmPropTypes } from 'src/types/films';
+import {FilmProps, filmPropTypes} from 'src/types/films';
 
 interface Props {
   user: UserProps;
@@ -38,7 +38,7 @@ const Header: FunctionComponent<Props> = ({user, className, heading, film, withB
     </div>
   </header>
 );
-userPropTypes
+
 Header.propTypes = {
   user: userPropTypes.isRequired,
   heading: PropTypes.string,

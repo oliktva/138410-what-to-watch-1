@@ -36,7 +36,7 @@ const withFormFields = (Component: any): ComponentClass<any> => {
     }
 
     private _setFieldValue(field: string, value: Value): void {
-      this.setState((state: State) => ({
+      this.setState((state: State): State => ({
         form: {
           ...state.form,
           [field]: value

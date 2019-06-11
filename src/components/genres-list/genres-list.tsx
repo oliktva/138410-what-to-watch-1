@@ -1,13 +1,12 @@
-import React, {FunctionComponent, ReactElement} from 'react';
+import React, {PureComponent, ReactElement} from 'react';
 import {Dispatch} from 'redux';
 import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
-import PropTypes from 'prop-types';
 
 import {ActionCreator, Action} from 'src/reducers/films/films';
 import {getGenre} from 'src/reducers/films/selectors';
 
 import {State} from 'src/types/reducer';
-import {GenreProps, genrePropTypes, genresPropTypes} from 'src/types/genres';
+import {GenreProps} from 'src/types/genres';
 
 interface StateProps {
   active: GenreProps;
@@ -25,25 +24,42 @@ type Props = StateProps & DispatchProps & OwnProps;
 
 const GENRES_NUMBER = 10; // 9 + 1 (All genres)
 
-const GenresList: FunctionComponent<Props> = (props): ReactElement => {
-  const {genres, active, setFilterByGenre} = props;
+class GenresList extends PureComponent<Props> {
+  public constructor(props: Props) {
+    super(props);
 
-  return (
-    <ul className="catalog__genres-list">
-      {genres.slice(0, GENRES_NUMBER).map((genre: GenreProps): JSX.Element => {
-        const className = genre === active ?
-          `catalog__genres-item catalog__genres-item--active` :
-          `catalog__genres-item`;
+    this._handleTabClick = this._handleTabClick.bind(this);
+  }
 
-        return (
-          <li className={className} key={genre} onClick={(): void => setFilterByGenre(genre)}>
-            <span className="catalog__genres-link">{genre}</span>
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
+  public render(): ReactElement {
+    const {genres, active} = this.props;
+
+    return (
+      <ul className="catalog__genres-list">
+        {genres.slice(0, GENRES_NUMBER).map((genre: GenreProps): JSX.Element => {
+          const activeClass = `catalog__genres-item--active`;
+          const empty = ``;
+
+          return (
+            <li
+              className={`catalog__genres-item ${genre === active ? activeClass : empty}`}
+              key={genre}
+              onClick={genre === active ? undefined : this._handleTabClick(genre)}
+            >
+              <span className="catalog__genres-link">{genre}</span>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+
+  private _handleTabClick(genre: GenreProps): () => void {
+    const {setFilterByGenre} = this.props;
+
+    return (): void => setFilterByGenre(genre);
+  }
+}
 
 const mapStateToProps: MapStateToProps<StateProps, OwnProps, State> = (state: State): StateProps => ({
   active: getGenre(state)
@@ -52,12 +68,6 @@ const mapStateToProps: MapStateToProps<StateProps, OwnProps, State> = (state: St
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = (dispatch: Dispatch): DispatchProps => ({
   setFilterByGenre: (genre: GenreProps): Action => dispatch(ActionCreator.setFilterByGenre(genre))
 });
-
-GenresList.propTypes = {
-  genres: genresPropTypes.isRequired,
-  active: genrePropTypes.isRequired,
-  setFilterByGenre: PropTypes.func.isRequired
-};
 
 export {GenresList};
 

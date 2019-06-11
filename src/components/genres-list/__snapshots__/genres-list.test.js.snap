@@ -7,7 +7,6 @@ exports[`renders correctly 1`] = `
   <li
     className="catalog__genres-item catalog__genres-item--active"
     key="All genres"
-    onClick={[Function]}
   >
     <span
       className="catalog__genres-link"
@@ -16,7 +15,7 @@ exports[`renders correctly 1`] = `
     </span>
   </li>
   <li
-    className="catalog__genres-item"
+    className="catalog__genres-item "
     key="Drama"
     onClick={[Function]}
   >
@@ -27,7 +26,7 @@ exports[`renders correctly 1`] = `
     </span>
   </li>
   <li
-    className="catalog__genres-item"
+    className="catalog__genres-item "
     key="Adventure"
     onClick={[Function]}
   >
@@ -38,7 +37,7 @@ exports[`renders correctly 1`] = `
     </span>
   </li>
   <li
-    className="catalog__genres-item"
+    className="catalog__genres-item "
     key="Thriller"
     onClick={[Function]}
   >

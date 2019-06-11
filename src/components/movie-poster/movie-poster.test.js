@@ -4,7 +4,6 @@ import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
 import MoviePoster from './movie-poster';
-import {film} from 'src/fixtures/films';
 
 Enzyme.configure({adapter: new Adapter()});
 

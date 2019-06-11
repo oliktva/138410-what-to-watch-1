@@ -20,7 +20,7 @@ import Footer from 'src/components/footer/footer';
 import {State, ThunkDispatch} from 'src/types/reducer';
 import {FilmProps, filmPropTypes, filmsPropTypes, ReviewProps, reviewsPropTypes} from 'src/types/films';
 
-const TABS = ['overview', 'details', 'reviews'];
+const TABS = [`overview`, `details`, `reviews`];
 
 interface DispatchProps {
   addToFavorites: (filmId: number) => Promise<void>;
@@ -65,7 +65,7 @@ const propTypes = {
 
 const defaultProps = {
   isFull: false
-}
+};
 
 class FullMovieCard extends PureComponent<Props> {
   public static propTypes = propTypes;
@@ -150,9 +150,7 @@ class FullMovieCard extends PureComponent<Props> {
   private _handleTabClick(tab: string): () => void {
     const {setActiveTab} = this.props;
 
-    return () => {
-      setActiveTab(tab);
-    }
+    return setActiveTab.bind(this, tab);
   }
 
   private _renderStarring(starring: string[], {isLine}: {isLine: boolean} = {isLine: false}): ReactElement[] {
@@ -167,20 +165,22 @@ class FullMovieCard extends PureComponent<Props> {
 
   private _renderNav(): ReactElement {
     const {activeTab} = this.props;
+    const activeClass = `movie-nav__item--active`;
+    const empty = ``;
 
     return (
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          {TABS.map(tab => (
-            <li key={tab} className={`movie-nav__item ${tab === activeTab ? 'movie-nav__item--active' : ''}`}>
-              <span className="movie-nav__link" onClick={this._handleTabClick(tab)}>{tab}</span>
+          {TABS.map((tab: string): ReactElement => (
+            <li key={tab} className={`movie-nav__item ${tab === activeTab ? activeClass : empty}`}>
+              <span className="movie-nav__link" onClick={tab === activeTab ? undefined : this._handleTabClick(tab)}>{tab}</span>
             </li>
           ))}
         </ul>
       </nav>
     );
   }
-  
+
   private _renderOverview(film: FilmProps): ReactElement {
     return (
       <Fragment>
@@ -254,8 +254,8 @@ class FullMovieCard extends PureComponent<Props> {
   }
 
   private _renderReviews(reviews: ReviewProps[]): ReactElement {
-    const firstColumnsReviews = reviews.filter((_, index: number): boolean => (index)%2 === 0);
-    const secondColumnsReviews = reviews.filter((_, index: number): boolean => (index)%2 === 1);
+    const firstColumnsReviews = reviews.filter((_, index: number): boolean => index % 2 === 0);
+    const secondColumnsReviews = reviews.filter((_, index: number): boolean => index % 2 === 1);
 
     return (
       <div className="movie-card__reviews movie-card__row">
@@ -269,7 +269,7 @@ class FullMovieCard extends PureComponent<Props> {
     );
   }
 
-  private _renderMoreLikeThis(relatedFilms: FilmProps[]) {
+  private _renderMoreLikeThis(relatedFilms: FilmProps[]): ReactElement {
     return (
       <div className="page-content">
         <section className="catalog catalog--like-this">

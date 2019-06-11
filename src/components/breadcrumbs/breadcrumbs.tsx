@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, ReactElement} from 'react';
 import {Link} from 'react-router-dom';
 
 import paths from 'src/paths';
@@ -9,7 +9,7 @@ interface Props {
   film: FilmProps;
 }
 
-const Breadcrumbs: FunctionComponent<Props> = ({ film }) => {
+const Breadcrumbs: FunctionComponent<Props> = ({film}): ReactElement => {
   return (
     <nav className="breadcrumbs">
       <ul className="breadcrumbs__list">

@@ -33,7 +33,7 @@ export const getReviews = (state: State, id: number | string): ReviewProps[] => 
   const allReviews = state[Namespaces.FILMS].reviews;
 
   if (allReviews) {
-    const idKey = typeof id === `string` ? parseInt(id) : id;
+    const idKey = typeof id === `string` ? parseInt(id, 10) : id;
     return allReviews[idKey] || [];
   }
 

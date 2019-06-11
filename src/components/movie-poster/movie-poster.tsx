@@ -17,10 +17,10 @@ MoviePoster.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   kind: PropTypes.oneOf([`small`, `big`, `default`])
-}
+};
 
 MoviePoster.defaultProps = {
   kind: `default`
-}
+};
 
 export default MoviePoster;

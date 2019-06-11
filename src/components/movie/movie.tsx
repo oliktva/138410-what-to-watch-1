@@ -18,7 +18,7 @@ import {UserProps, userPropTypes} from 'src/types/user';
 
 interface StateProps {
   film: FilmProps | null;
-  films: FilmProps[],
+  films: FilmProps[];
   reviews: ReviewProps[];
   user: UserProps;
 }
@@ -39,7 +39,7 @@ const propTypes = {
   user: userPropTypes.isRequired,
   loadFilms: PropTypes.func.isRequired,
   loadReviews: PropTypes.func.isRequired
-}
+};
 
 class Movie extends PureComponent<Props> {
   public static propTypes = propTypes;
@@ -47,7 +47,7 @@ class Movie extends PureComponent<Props> {
   public componentDidMount(): void {
     const {loadFilms, loadReviews, match: {params: {id}}} = this.props;
 
-    Promise.all([loadFilms(), loadReviews(parseInt(id))]);
+    Promise.all([loadFilms(), loadReviews(parseInt(id, 10))]);
   }
 
   public render(): ReactElement | null {
@@ -58,9 +58,9 @@ class Movie extends PureComponent<Props> {
     }
 
     const relatedFilms = getGenresFilms(films, film.genre)
-      .filter((f: FilmProps) => f.id !== film.id)
+      .filter((f: FilmProps): boolean => f.id !== film.id)
       .slice(0, 4);
-    
+
     const sortedReviews = reviews.sort((r1: ReviewProps, r2: ReviewProps): number => {
       if (r1.date < r2.date) {
         return 1;
@@ -69,7 +69,7 @@ class Movie extends PureComponent<Props> {
       }
 
       return 0;
-    })
+    });
 
     return (
       <PageWrapper>
@@ -80,7 +80,7 @@ class Movie extends PureComponent<Props> {
           relatedFilms={relatedFilms}
         />
       </PageWrapper>
-    )
+    );
   }
 }
 

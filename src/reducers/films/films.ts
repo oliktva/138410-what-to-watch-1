@@ -111,7 +111,7 @@ export const ActionCreator = {
     return {
       type: LOAD_REVIEWS,
       payload: {id, reviews}
-    }
+    };
   }
 };
 
@@ -186,7 +186,7 @@ export const Operation = {
     return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
       return api.post(`/comments/${id}`, {
         comment: reviewText,
-        rating: parseInt(rating)
+        rating: parseInt(rating, 10)
       }).then((response: AxiosResponse<Record<string, any>[]>): void => {
         const data = response.data.map((r): ReviewProps => toCamel<ReviewProps>(r));
 
@@ -237,7 +237,7 @@ const reducer = (state: State = initialState, action: Action): State => {
           ...state.reviews,
           [action.payload.id]: action.payload.reviews
         }
-      }
+      };
     }
 
     default:

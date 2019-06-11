@@ -1,5 +1,4 @@
 import React, {FunctionComponent, ReactElement, Fragment} from 'react';
-import PropTypes from 'prop-types';
 
 import {FilmProps, filmPropTypes} from 'src/types/films';
 
@@ -19,6 +18,6 @@ const MovieMeta: FunctionComponent<Props> = ({film}): ReactElement => (
 
 MovieMeta.propTypes = {
   film: filmPropTypes.isRequired
-}
+};
 
 export default MovieMeta;

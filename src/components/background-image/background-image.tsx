@@ -15,6 +15,6 @@ const BackgroundImage: FunctionComponent<Props> = ({image, name}): ReactElement 
 BackgroundImage.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired
-}
+};
 
 export default BackgroundImage;

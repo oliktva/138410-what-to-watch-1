@@ -46,10 +46,10 @@ CardButtons.propTypes = {
   isFull: PropTypes.bool,
   onPlayButtonClick: PropTypes.func.isRequired,
   onFavoritesToggle: PropTypes.func.isRequired
-}
+};
 
 CardButtons.defaultProps = {
   isFull: false
-}
+};
 
 export default CardButtons;

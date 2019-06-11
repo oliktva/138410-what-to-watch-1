@@ -529,7 +529,8 @@ main {
   position: relative;
   padding-bottom: 15px;
   -webkit-transition: font-weight;
-  transition: font-weight; }
+  transition: font-weight;
+  cursor: pointer; }
   .catalog__genres-link::after {
     content: '';
     position: absolute;
@@ -845,7 +846,8 @@ main {
   text-decoration: none;
   position: relative;
   padding-bottom: 19px;
-  text-transform: capitalize; }
+  text-transform: capitalize;
+  cursor: pointer; }
   .movie-nav__link::after {
     content: '';
     position: absolute;
