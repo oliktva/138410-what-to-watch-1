@@ -1,4 +1,6 @@
-export const films = [{
+import {FilmProps} from 'src/types/films';
+
+export const films: FilmProps[] = [{
   name: `Pulp Fiction`,
   posterImage: `https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg`,
   previewImage: `https://es31-server.appspot.com/wtw/static/film/preview/pulp-fiction.jpg`,
@@ -54,4 +56,4 @@ export const films = [{
   previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
 }];
 
-export const film = films[0];
+export const film: FilmProps = films[0];

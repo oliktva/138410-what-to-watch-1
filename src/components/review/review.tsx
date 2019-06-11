@@ -14,7 +14,8 @@ import Header from 'src/components/header/header';
 import MovieCardReview from 'src/components/movie-card-review/movie-card-review';
 
 import {State, ThunkDispatch} from 'src/types/reducer';
-import {FilmProps, filmPropTypes, reviewsPropTypes, ReviewProps} from 'src/types/films';
+import {FilmProps, filmPropTypes} from 'src/types/films';
+import {reviewsPropTypes, ReviewProps} from 'src/types/reviews';
 import {UserProps, userPropTypes} from 'src/types/user';
 
 interface StateProps {

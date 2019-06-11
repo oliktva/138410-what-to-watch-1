@@ -12,7 +12,7 @@ import paths from 'src/paths';
 import withFormFields from 'src/hocs/with-form-fields/with-form-fields';
 import withDisable from 'src/hocs/with-disabled/with-disabled';
 
-import {ReviewProps} from 'src/types/films';
+import {ReviewProps} from 'src/types/reviews';
 
 const RATINGS = [`1`, `2`, `3`, `4`, `5`];
 const RATING_KEY = `rating`;

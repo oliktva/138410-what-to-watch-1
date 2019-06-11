@@ -3,7 +3,8 @@ import {createSelector} from 'reselect';
 import Namespaces from 'src/reducers/namespaces';
 
 import {State} from 'src/types/reducer';
-import {FilmProps, ReviewProps} from 'src/types/films';
+import {FilmProps} from 'src/types/films';
+import {ReviewProps} from 'src/types/reviews';
 import {GenreProps} from 'src/types/genres';
 import {ALL_GENRES, getGenresFilms} from 'src/helpers/genre-helpers';
 

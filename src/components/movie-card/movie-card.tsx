@@ -13,7 +13,8 @@ import CardButtons from 'src/components/card-buttons/card-buttons';
 import MovieMeta from 'src/components/movie-meta/movie-meta';
 
 import {State, ThunkDispatch} from 'src/types/reducer';
-import {FilmProps, filmPropTypes, ReviewProps} from 'src/types/films';
+import {FilmProps, filmPropTypes} from 'src/types/films';
+import {ReviewProps} from 'src/types/reviews';
 
 interface DispatchProps {
   addToFavorites: (filmId: number) => Promise<void>;

@@ -1,4 +1,6 @@
-export const reviews = [{
+import {ReviewProps} from 'src/types/reviews';
+
+export const reviews: ReviewProps[] = [{
   comment: `This is comment`,
   date: `54367894`,
   id: 1,
@@ -27,4 +29,4 @@ export const reviews = [{
   }
 }];
 
-export const review = reviews[0];
+export const review: ReviewProps = reviews[0];

@@ -18,7 +18,8 @@ import SmallFullMovieCardsList from 'src/components/small-movie-cards-list/small
 import Footer from 'src/components/footer/footer';
 
 import {State, ThunkDispatch} from 'src/types/reducer';
-import {FilmProps, filmPropTypes, filmsPropTypes, ReviewProps, reviewsPropTypes} from 'src/types/films';
+import {FilmProps, filmPropTypes, filmsPropTypes} from 'src/types/films';
+import {ReviewProps, reviewsPropTypes} from 'src/types/reviews';
 
 const TABS = [`overview`, `details`, `reviews`];
 

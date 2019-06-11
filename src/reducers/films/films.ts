@@ -4,7 +4,8 @@ import {AxiosResponse, AxiosInstance} from 'axios';
 import {toCamel} from 'convert-keys';
 
 import {GenreProps} from 'src/types/genres';
-import {FilmProps, ReviewProps} from 'src/types/films';
+import {FilmProps} from 'src/types/films';
+import {ReviewProps} from 'src/types/reviews';
 import {ThunkDispatch, ThunkAction, State as AppState} from 'src/types/reducer';
 
 export const SET_GENRE = `SET_GENRE`;
@@ -182,11 +183,11 @@ export const Operation = {
     };
   },
 
-  addReview: (id: number, reviewText: string, rating: string): ThunkAction => {
+  addReview: (id: number, reviewText: string, rating: string | number): ThunkAction => {
     return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
       return api.post(`/comments/${id}`, {
         comment: reviewText,
-        rating: parseInt(rating, 10)
+        rating: typeof rating === `string` ? parseInt(rating, 10) : rating
       }).then((response: AxiosResponse<Record<string, any>[]>): void => {
         const data = response.data.map((r): ReviewProps => toCamel<ReviewProps>(r));
 
@@ -219,6 +220,7 @@ const reducer = (state: State = initialState, action: Action): State => {
     case UPDATE_FILM:
       return {
         ...state,
+        promo: state.promo ? updateFilm(action.payload, [state.promo])[0] : state.promo,
         items: updateFilm(action.payload, state.items),
         favorite: updateFilm(action.payload, state.favorite)
       };

@@ -1,6 +1,6 @@
-import MockAdapter from "axios-mock-adapter";
+import MockAdapter from 'axios-mock-adapter';
 
-import configureAPI from 'src/api';
+import configureAPI from '../../api';
 import {
   Operation,
   ActionCreator,
@@ -12,9 +12,9 @@ import {
   LOAD_REVIEWS
 } from './films';
 
-import {films, film} from 'src/fixtures/films';
-import {reviews, review} from 'src/fixtures/reviews';
-import {genre} from 'src/fixtures/genres';
+import {films, film} from '../../fixtures/films';
+import {reviews, review} from '../../fixtures/reviews';
+import {genre} from '../../fixtures/genres';
 
 describe(`ActionCreator`, () => {
   it(`setFilterByGenre`, () => {
@@ -66,7 +66,7 @@ describe(`ActionCreator`, () => {
 describe(`Operator`, () => {
   it(`load films from server`, () => {
     const dispatch = jest.fn();
-    const api = configureAPI(dispatch);
+    const api = configureAPI();
     const apiMock = new MockAdapter(api);
     const loader = Operation.loadFilms();
 
@@ -86,7 +86,7 @@ describe(`Operator`, () => {
 
   it(`load favorite from server`, () => {
     const dispatch = jest.fn();
-    const api = configureAPI(dispatch);
+    const api = configureAPI();
     const apiMock = new MockAdapter(api);
     const loader = Operation.loadFavorite();
 
@@ -106,7 +106,7 @@ describe(`Operator`, () => {
 
   it(`add to favorites`, () => {
     const dispatch = jest.fn();
-    const api = configureAPI(dispatch);
+    const api = configureAPI();
     const apiMock = new MockAdapter(api);
     const loader = Operation.addToFavorites(film.id);
 
@@ -126,7 +126,7 @@ describe(`Operator`, () => {
 
   it(`remove from favorites`, () => {
     const dispatch = jest.fn();
-    const api = configureAPI(dispatch);
+    const api = configureAPI();
     const apiMock = new MockAdapter(api);
     const loader = Operation.removeFromFavorites(film.id);
 
@@ -146,7 +146,7 @@ describe(`Operator`, () => {
 
   it(`load promo from server`, () => {
     const dispatch = jest.fn();
-    const api = configureAPI(dispatch);
+    const api = configureAPI();
     const apiMock = new MockAdapter(api);
     const loader = Operation.loadPromo();
 
@@ -166,7 +166,7 @@ describe(`Operator`, () => {
 
   it(`load reviews from server`, () => {
     const dispatch = jest.fn();
-    const api = configureAPI(dispatch);
+    const api = configureAPI();
     const apiMock = new MockAdapter(api);
     const loader = Operation.loadReviews(film.id);
 
@@ -189,7 +189,7 @@ describe(`Operator`, () => {
 
   it(`add review to server`, () => {
     const dispatch = jest.fn();
-    const api = configureAPI(dispatch);
+    const api = configureAPI();
     const apiMock = new MockAdapter(api);
     const loader = Operation.addReview(film.id, review.comment, review.rating);
 

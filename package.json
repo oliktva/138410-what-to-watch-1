@@ -14,8 +14,8 @@
     "@babel/core": "7.4.4",
     "@babel/preset-env": "7.4.4",
     "@babel/preset-react": "7.0.0",
-    "@types/enzyme": "3.9.1",
-    "@types/jest": "24.0.12",
+    "@types/enzyme": "3.9.3",
+    "@types/jest": "24.0.13",
     "@typescript-eslint/eslint-plugin": "1.7.0",
     "@typescript-eslint/parser": "1.7.0",
     "axios-mock-adapter": "1.16.0",
@@ -64,6 +64,7 @@
     "transform": {
       "^.+\\.jsx?$": "babel-jest",
       "^.+\\.tsx?$": "ts-jest"
-    }
+    },
+    "testRegex": ".test.(js?|jsx?|tsx?)$"
   }
 }

@@ -30,7 +30,7 @@ describe(`ActionCreator`, () => {
 describe(`Operator`, () => {
   it(`load user`, () => {
     const dispatch = jest.fn();
-    const api = configureAPI(dispatch);
+    const api = configureAPI();
     const apiMock = new MockAdapter(api);
     const loader = Operation.loadUser();
 
@@ -50,7 +50,7 @@ describe(`Operator`, () => {
 
   it(`log in user to app`, () => {
     const dispatch = jest.fn();
-    const api = configureAPI(dispatch);
+    const api = configureAPI();
     const apiMock = new MockAdapter(api);
     const loader = Operation.logInUser(email, password);
 
@@ -70,7 +70,7 @@ describe(`Operator`, () => {
 
   it(`log in user with error`, () => {
     const dispatch = jest.fn();
-    const api = configureAPI(dispatch);
+    const api = configureAPI();
     const apiMock = new MockAdapter(api);
     const loader = Operation.logInUser(email, password);
 

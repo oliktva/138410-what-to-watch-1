@@ -4,7 +4,8 @@ import BackgroundImage from 'src/components/background-image/background-image';
 import MoviePoster from 'src/components/movie-poster/movie-poster';
 import ReviewForm from 'src/components/review-form/review-form';
 
-import {FilmProps, ReviewProps} from 'src/types/films';
+import {FilmProps} from 'src/types/films';
+import {ReviewProps} from 'src/types/reviews';
 
 interface Props {
   film: FilmProps;

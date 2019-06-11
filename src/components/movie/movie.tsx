@@ -13,7 +13,8 @@ import Header from 'src/components/header/header';
 import FullMovieCard from 'src/components/full-movie-card/full-movie-card';
 
 import {State, ThunkDispatch} from 'src/types/reducer';
-import {FilmProps, filmPropTypes, filmsPropTypes, reviewsPropTypes, ReviewProps} from 'src/types/films';
+import {FilmProps, filmPropTypes, filmsPropTypes} from 'src/types/films';
+import {reviewsPropTypes, ReviewProps} from 'src/types/reviews';
 import {UserProps, userPropTypes} from 'src/types/user';
 
 interface StateProps {

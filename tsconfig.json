@@ -18,11 +18,17 @@
     "baseUrl": ".",
     "paths": {
       "*": ["*"]
-    }
+    },
+    "types": [
+      "jest",
+      "node"
+    ]
   },
   "include": ["./src/**/*"],
   "exclude": [
     "node_modules",
-    "public"
+    "public",
+    "**/fixtures",
+    "**/*.test.ts"
   ]
 }

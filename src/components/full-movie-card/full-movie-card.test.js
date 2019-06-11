@@ -20,7 +20,7 @@ it(`renders correctly`, () => {
     toggleRenderPlayer={jest.fn()}
     addToFavorites={jest.fn()}
     removeFromFavorites={jest.fn()}
-    activeTab={tabs}
+    activeTab={tabs[0]}
     setActiveTab={jest.fn()}
   />);
 
