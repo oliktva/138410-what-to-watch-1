@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {Operation} from 'src/reducers/films/films';
 import {getFilm, getReviews, getFilms} from 'src/reducers/films/selectors';
 import {getUser} from 'src/reducers/user/selectors';
-import withLoginData from 'src/hocs/with-login-data/with-login-data';
+import needLogin from 'src/hocs/need-login/need-login';
 
 import PageWrapper from 'src/components/page-wrapper/page-wrapper';
 import Header from 'src/components/header/header';
@@ -19,7 +19,6 @@ import {UserProps, userPropTypes} from 'src/types/user';
 
 interface StateProps {
   film: FilmProps | null;
-  films: FilmProps[],
   reviews: ReviewProps[];
   user: UserProps;
 }
@@ -27,7 +26,7 @@ interface StateProps {
 interface DispatchProps {
   loadFilms: () => void;
   loadReviews: (id: number) => void;
-  addReview: (id: number, review: ReviewProps) => void;
+  addReview: (id: number, reviewText: string, rating: string) => Promise<void>;
 }
 
 type OwnProps = RouteComponentProps<{id: string}>;
@@ -35,7 +34,6 @@ type OwnProps = RouteComponentProps<{id: string}>;
 type Props = StateProps & DispatchProps & OwnProps;
 
 const propTypes = {
-  films: filmsPropTypes,
   film: filmPropTypes,
   reviews: reviewsPropTypes.isRequired,
   user: userPropTypes.isRequired,
@@ -54,13 +52,13 @@ class Review extends PureComponent<Props> {
   }
 
   public render(): ReactElement | null {
-    const {film, films, reviews, user} = this.props;
+    const {film, reviews, user, addReview} = this.props;
 
     if (!film || reviews.length === 0) {
       return null;
     }
 
-    const review = reviews.find((r: ReviewProps): boolean => r.user.id === user.id) || null;
+    const userReview = reviews.find((r: ReviewProps): boolean => r.user.id === user.id) || null;
 
     const header = <Header
       user={user}
@@ -74,8 +72,8 @@ class Review extends PureComponent<Props> {
         <MovieCardReview
           header={header}
           film={film}
-          review={review}
-          addReview={() => {}}
+          userReview={userReview}
+          addReview={addReview}
         />
       </PageWrapper>
     )
@@ -84,7 +82,6 @@ class Review extends PureComponent<Props> {
 
 
 const mapStateToProps: MapStateToProps<StateProps, OwnProps, State> = (state: State, ownProps: OwnProps): StateProps => ({
-  films: getFilms(state),
   film: getFilm(state, ownProps.match.params.id),
   reviews: getReviews(state, ownProps.match.params.id),
   user: getUser(state)
@@ -93,14 +90,14 @@ const mapStateToProps: MapStateToProps<StateProps, OwnProps, State> = (state: St
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = (dispatch: ThunkDispatch): DispatchProps => ({
   loadFilms: (): Promise<void> => dispatch(Operation.loadFilms()),
   loadReviews: (id: number): Promise<void> => dispatch(Operation.loadReviews(id)),
-  addReview: (id: number, review: ReviewProps): Promise<void> => dispatch(Operation.addReview(id, review))
+  addReview: (id: number, reviewText: string, rating: string): Promise<void> => dispatch(Operation.addReview(id, reviewText, rating))
 });
 
 export {Review};
 
 const ConnectedComponent: any = compose(
   connect<StateProps, DispatchProps, OwnProps, State>(mapStateToProps, mapDispatchToProps),
-  withLoginData
+  needLogin
 )(Review);
 
 export default ConnectedComponent;

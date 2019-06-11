@@ -8,6 +8,7 @@ exports[`renders correctly 1`] = `
     <Header
       className="user-page__head"
       heading="My list"
+      isLightLogo={true}
       user={
         Object {
           "avatarUrl": "img/1.png",
@@ -16,6 +17,7 @@ exports[`renders correctly 1`] = `
           "name": "Oliver.conner",
         }
       }
+      withBreadcrumbs={false}
     />
     <section
       className="catalog"

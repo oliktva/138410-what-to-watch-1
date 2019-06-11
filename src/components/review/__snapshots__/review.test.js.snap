@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<PageWrapper>
+  <MovieCardReview
+    addReview={[MockFunction]}
+    film={
+      Object {
+        "backgroundColor": "#795433",
+        "backgroundImage": "https://es31-server.appspot.com/wtw/static/film/background/Pulp_Fiction.jpg",
+        "description": "The lives of two mob hitmen, a boxer, a gangster & his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+        "director": "Quentin Tarantino",
+        "genre": "Crime",
+        "id": 1,
+        "isFavorite": false,
+        "name": "Pulp Fiction",
+        "posterImage": "https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg",
+        "previewImage": "https://es31-server.appspot.com/wtw/static/film/preview/pulp-fiction.jpg",
+        "previewVideoLink": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "rating": 8.9,
+        "released": 1994,
+        "runTime": 153,
+        "scoresCount": 1635992,
+        "starring": Array [
+          "John Travolta",
+          "Uma Thurman",
+          "Samuel L. Jackson",
+        ],
+        "videoLink": "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4",
+      }
+    }
+    header={
+      <Header
+        className=""
+        film={
+          Object {
+            "backgroundColor": "#795433",
+            "backgroundImage": "https://es31-server.appspot.com/wtw/static/film/background/Pulp_Fiction.jpg",
+            "description": "The lives of two mob hitmen, a boxer, a gangster & his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+            "director": "Quentin Tarantino",
+            "genre": "Crime",
+            "id": 1,
+            "isFavorite": false,
+            "name": "Pulp Fiction",
+            "posterImage": "https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg",
+            "previewImage": "https://es31-server.appspot.com/wtw/static/film/preview/pulp-fiction.jpg",
+            "previewVideoLink": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+            "rating": 8.9,
+            "released": 1994,
+            "runTime": 153,
+            "scoresCount": 1635992,
+            "starring": Array [
+              "John Travolta",
+              "Uma Thurman",
+              "Samuel L. Jackson",
+            ],
+            "videoLink": "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4",
+          }
+        }
+        isLightLogo={false}
+        user={
+          Object {
+            "avatarUrl": "img/1.png",
+            "email": "Oliver.conner@gmail.com",
+            "id": 1,
+            "name": "Oliver.conner",
+          }
+        }
+        withBreadcrumbs={true}
+      />
+    }
+    userReview={null}
+  />
+</PageWrapper>
+`;

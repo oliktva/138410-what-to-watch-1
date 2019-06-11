@@ -32,18 +32,18 @@ describe(`Operator`, () => {
     const dispatch = jest.fn();
     const api = configureAPI(dispatch);
     const apiMock = new MockAdapter(api);
-    const userLoader = Operation.loadUser();
+    const loader = Operation.loadUser();
 
     apiMock
       .onGet(`/login`)
       .reply(200, [{fake: true}]);
 
-    return userLoader(dispatch, jest.fn(), api)
+    return loader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: LOG_IN_USER,
-          payload: [{fake: true}],
+          payload: [{fake: true}]
         });
       });
   });
@@ -52,18 +52,18 @@ describe(`Operator`, () => {
     const dispatch = jest.fn();
     const api = configureAPI(dispatch);
     const apiMock = new MockAdapter(api);
-    const userLoginer = Operation.logInUser(email, password);
+    const loader = Operation.logInUser(email, password);
 
     apiMock
       .onPost(`/login`, {email, password})
       .reply(200, [{fake: true}]);
 
-    return userLoginer(dispatch, jest.fn(), api)
+    return loader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: LOG_IN_USER,
-          payload: [{fake: true}],
+          payload: [{fake: true}]
         });
       });
   });
@@ -72,13 +72,13 @@ describe(`Operator`, () => {
     const dispatch = jest.fn();
     const api = configureAPI(dispatch);
     const apiMock = new MockAdapter(api);
-    const userLoginer = Operation.logInUser(email, password);
+    const loader = Operation.logInUser(email, password);
 
     apiMock
       .onPost(`/login`)
       .reply(400);
 
-    return userLoginer(dispatch, jest.fn(), api)
+    return loader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {

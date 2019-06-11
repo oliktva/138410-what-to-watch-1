@@ -35,7 +35,7 @@ type Props = OwnProps & NeedRenderPlayerProps & DispatchProps;
 
 const propTypes = {
   header: PropTypes.element.isRequired,
-  film: filmPropTypes.isRequired,
+  film: filmPropTypes,
   withPlayer: PropTypes.bool.isRequired,
   toggleRenderPlayer: PropTypes.func.isRequired,
   addToFavorites: PropTypes.func.isRequired,

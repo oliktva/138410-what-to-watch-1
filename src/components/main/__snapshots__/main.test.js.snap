@@ -6,6 +6,7 @@ exports[`renders correctly 1`] = `
     header={
       <Header
         className="movie-card__head"
+        isLightLogo={true}
         user={
           Object {
             "avatarUrl": "img/1.png",
@@ -14,6 +15,7 @@ exports[`renders correctly 1`] = `
             "name": "Oliver.conner",
           }
         }
+        withBreadcrumbs={false}
       />
     }
   />

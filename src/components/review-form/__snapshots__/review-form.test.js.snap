@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<WithDisabled
+  addReview={[MockFunction]}
+  form={Object {}}
+  history={
+    Object {
+      "goBack": [MockFunction],
+      "push": [MockFunction],
+    }
+  }
+  id={1}
+  isDisabled={false}
+  setFieldValue={[Function]}
+  toggleDisabled={[MockFunction]}
+  userReview={
+    Object {
+      "comment": "This is comment",
+      "date": "54367894",
+      "id": 1,
+      "rating": 8,
+      "user": Object {
+        "id": 2,
+        "name": "Joe",
+      },
+    }
+  }
+/>
+`;

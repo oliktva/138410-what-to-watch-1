@@ -31,6 +31,7 @@ exports[`renders correctly 1`] = `
     header={
       <Header
         className="movie-card__head"
+        isLightLogo={true}
         user={
           Object {
             "avatarUrl": "img/1.png",
@@ -39,6 +40,7 @@ exports[`renders correctly 1`] = `
             "name": "Oliver.conner",
           }
         }
+        withBreadcrumbs={false}
       />
     }
     relatedFilms={
@@ -82,22 +84,22 @@ exports[`renders correctly 1`] = `
         },
         Object {
           "comment": "This is comment",
-          "date": "54367892",
-          "id": 2,
-          "rating": 6,
-          "user": Object {
-            "id": 2,
-            "name": "Ivan",
-          },
-        },
-        Object {
-          "comment": "This is comment",
           "date": "54367893",
           "id": 3,
           "rating": 7,
           "user": Object {
             "id": 2,
             "name": "Tatiana",
+          },
+        },
+        Object {
+          "comment": "This is comment",
+          "date": "54367892",
+          "id": 2,
+          "rating": 6,
+          "user": Object {
+            "id": 2,
+            "name": "Ivan",
           },
         },
       ]

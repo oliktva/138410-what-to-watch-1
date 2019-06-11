@@ -51,7 +51,7 @@ exports[`renders correctly renders with player 1`] = `
       >
         <MoviePoster
           image="https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg"
-          isBig={false}
+          kind="default"
           name="Pulp Fiction"
         />
         <div
@@ -144,7 +144,7 @@ exports[`renders correctly renders without player 1`] = `
       >
         <MoviePoster
           image="https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg"
-          isBig={false}
+          kind="default"
           name="Pulp Fiction"
         />
         <div

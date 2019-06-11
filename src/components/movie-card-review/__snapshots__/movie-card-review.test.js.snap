@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<Fragment>
+  <section
+    className="movie-card movie-card--full"
+  >
+    <div
+      className="movie-card__hero"
+    >
+      <BackgroundImage
+        image="https://es31-server.appspot.com/wtw/static/film/background/Pulp_Fiction.jpg"
+        name="Pulp Fiction"
+      />
+      <h1
+        className="visually-hidden"
+      >
+        WTW
+      </h1>
+      <div />
+      <MoviePoster
+        image="https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg"
+        kind="small"
+        name="Pulp Fiction"
+      />
+    </div>
+    <WithFormFields
+      addReview={[MockFunction]}
+      id={1}
+      userReview={
+        Object {
+          "comment": "This is comment",
+          "date": "54367894",
+          "id": 1,
+          "rating": 8,
+          "user": Object {
+            "id": 2,
+            "name": "Joe",
+          },
+        }
+      }
+    />
+  </section>
+</Fragment>
+`;

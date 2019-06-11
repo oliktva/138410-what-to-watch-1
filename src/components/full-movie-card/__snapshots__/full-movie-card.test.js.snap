@@ -82,7 +82,7 @@ exports[`renders correctly 1`] = `
                 "videoLink": "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4",
               }
             }
-            isFull={false}
+            isFull={true}
             onFavoritesToggle={[Function]}
             onPlayButtonClick={[Function]}
           />
@@ -97,7 +97,7 @@ exports[`renders correctly 1`] = `
       >
         <MoviePoster
           image="https://es31-server.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg"
-          isBig={true}
+          kind="big"
           name="Pulp Fiction"
         />
         <div

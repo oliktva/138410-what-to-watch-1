@@ -9,14 +9,14 @@ import {FilmProps, filmPropTypes, reviewPropTypes, ReviewProps} from 'src/types/
 
 interface Props {
   film: FilmProps;
-  review: ReviewProps | null;
-  addReview: (review: ReviewProps) => void;
+  userReview: ReviewProps | null;
+  addReview: (id: number, comment: string, rating: string) => Promise<void>;
   header: ReactElement;
 }
 
 const propTypes = {
   film: filmPropTypes.isRequired,
-  review: reviewPropTypes,
+  userReview: reviewPropTypes,
   addReview: PropTypes.func.isRequired,
   header: PropTypes.element.isRequired
 }
@@ -25,7 +25,7 @@ class MovieCardReview extends PureComponent<Props> {
   public static propTypes = propTypes;
 
   public render(): ReactElement | null {
-    const {film, review, header} = this.props;
+    const {film, userReview, header, addReview} = this.props;
 
     return (
       <Fragment>
@@ -36,7 +36,7 @@ class MovieCardReview extends PureComponent<Props> {
             {header}
             <MoviePoster image={film.posterImage} name={film.name} kind="small" />
           </div>
-          <ReviewForm />
+          <ReviewForm id={film.id} addReview={addReview} userReview={userReview} />
         </section>
       </Fragment>
     )

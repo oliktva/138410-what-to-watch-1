@@ -14,8 +14,8 @@ it(`renders correctly`, () => {
     history={mockHistory}
     user={testUser}
     logInUser={jest.fn()}
-    setEmailValue={jest.fn()}
-    setPasswordValue={jest.fn()}
+    setFieldValue={jest.fn()}
+    form={{}}
     showError={jest.fn()}
   />);
   expect(toJson(main)).toMatchSnapshot();

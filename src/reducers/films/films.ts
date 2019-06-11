@@ -182,12 +182,16 @@ export const Operation = {
     };
   },
 
-  addReview: (id: number, review: ReviewProps): ThunkAction => {
+  addReview: (id: number, reviewText: string, rating: string): ThunkAction => {
     return (dispatch: ThunkDispatch, _getState: () => AppState, api: AxiosInstance): Promise<void> => {
-      return api.post(`/comments/${id}`, review)
-        .then((response: AxiosResponse<Record<string, any>[]>): void => {
-          console.log(response)
-        });
+      return api.post(`/comments/${id}`, {
+        comment: reviewText,
+        rating: parseInt(rating)
+      }).then((response: AxiosResponse<Record<string, any>[]>): void => {
+        const data = response.data.map((r): ReviewProps => toCamel<ReviewProps>(r));
+
+        dispatch(ActionCreator.loadReviews(id, data));
+      });
     };
   }
 };
