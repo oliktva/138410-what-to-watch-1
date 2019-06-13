@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<nav
+  className="breadcrumbs"
+>
+  <ul
+    className="breadcrumbs__list"
+  >
+    <li
+      className="breadcrumbs__item"
+    >
+      <Link
+        className="breadcrumbs__link"
+        to="/film/1"
+      >
+        Pulp Fiction
+      </Link>
+    </li>
+    <li
+      className="breadcrumbs__item"
+    >
+      <span
+        className="breadcrumbs__link"
+      >
+        Add review
+      </span>
+    </li>
+  </ul>
+</nav>
+`;

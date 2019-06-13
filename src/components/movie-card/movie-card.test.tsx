@@ -5,7 +5,8 @@ import toJson from 'enzyme-to-json';
 
 import {MovieCard} from './movie-card';
 
-import {film} from 'src/fixtures/films';
+import {film} from '../../fixtures/films';
+import {reviews} from '../../fixtures/reviews';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -16,6 +17,7 @@ describe(`renders correctly`, () => {
       <MovieCard
         header={header}
         film={film}
+        reviews={reviews}
         withPlayer={false}
         toggleRenderPlayer={jest.fn()}
         addToFavorites={jest.fn()}
@@ -32,6 +34,7 @@ describe(`renders correctly`, () => {
       <MovieCard
         header={header}
         film={film}
+        reviews={reviews}
         withPlayer={true}
         toggleRenderPlayer={jest.fn()}
         addToFavorites={jest.fn()}

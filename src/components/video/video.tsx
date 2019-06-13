@@ -13,6 +13,7 @@ interface Props {
   setCurrentTime: (time: number) => void;
   setFulltime: (time: number) => void;
   closeFullscreen: () => void;
+  togglePlaying: () => void;
 }
 
 const propTypes = {

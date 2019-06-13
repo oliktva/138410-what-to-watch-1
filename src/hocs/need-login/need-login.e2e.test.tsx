@@ -5,7 +5,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import {needLogin} from './need-login';
 import paths from 'src/paths';
 import {user as testUser} from 'src/fixtures/user';
-import {history as mockHistory} from 'src/fixtures/history';
+import {history as mockHistory} from 'src/fixtures/router';
 
 Enzyme.configure({adapter: new Adapter()});
 

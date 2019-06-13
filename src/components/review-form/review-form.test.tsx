@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
-import {history as mockHistory} from 'src/fixtures/history';
+import {history as mockHistory} from 'src/fixtures/router';
 
 import ReviewForm from './review-form';
 import {film} from 'src/fixtures/films';

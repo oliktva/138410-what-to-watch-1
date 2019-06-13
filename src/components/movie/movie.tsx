@@ -85,6 +85,7 @@ class Movie extends PureComponent<Props> {
   }
 }
 
+export {Movie};
 
 const mapStateToProps: MapStateToProps<StateProps, OwnProps, State> = (state: State, ownProps: OwnProps): StateProps => ({
   films: getFilms(state),
@@ -97,8 +98,6 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = (dispatc
   loadFilms: (): Promise<void> => dispatch(Operation.loadFilms()),
   loadReviews: (id: number): Promise<void> => dispatch(Operation.loadReviews(id))
 });
-
-export {Movie};
 
 const ConnectedComponent: any =
   connect<StateProps, DispatchProps, OwnProps, State>(mapStateToProps, mapDispatchToProps)(Movie as any);

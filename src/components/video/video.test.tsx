@@ -14,8 +14,13 @@ it(`renders correctly`, () => {
       src={film.previewVideoLink}
       preview={film.previewImage}
       isPlaying={false}
-      onPlay={jest.fn()}
-      onPause={jest.fn()}
+      isFullscreen={false}
+      synchronizePlaying={jest.fn()}
+      togglePlaying={jest.fn()}
+      setCurrentTime={jest.fn()}
+      closeFullscreen={jest.fn()}
+      setFulltime={jest.fn()}
+      needReset={false}
     />);
 
   expect(toJson(tree)).toMatchSnapshot();

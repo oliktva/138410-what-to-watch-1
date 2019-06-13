@@ -5,13 +5,15 @@ import toJson from 'enzyme-to-json';
 
 import {SignIn} from './sign-in';
 import {user as testUser} from 'src/fixtures/user';
-import {history as mockHistory} from 'src/fixtures/history';
+import {history as mockHistory} from 'src/fixtures/router';
 
 Enzyme.configure({adapter: new Adapter()});
 
 it(`renders correctly`, () => {
   const main = shallow(<SignIn
-    history={mockHistory}
+    history={mockHistory as any}
+    location={{} as any}
+    match={{} as any}
     user={testUser}
     logInUser={jest.fn()}
     setFieldValue={jest.fn()}

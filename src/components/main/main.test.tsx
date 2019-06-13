@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
 import {Main} from './main';
-import {films} from 'src/fixtures/films';
+import {films, film} from 'src/fixtures/films';
 import {genres} from 'src/fixtures/genres';
 import {user} from 'src/fixtures/user';
 
@@ -17,6 +17,7 @@ it(`renders correctly`, () => {
     user={user}
     loadFilms={jest.fn()}
     loadPromo={jest.fn()}
+    promo={film}
   />);
   expect(toJson(main)).toMatchSnapshot();
 });

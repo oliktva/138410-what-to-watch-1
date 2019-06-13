@@ -7,6 +7,7 @@ import {Movie} from './movie';
 import {films, film} from 'src/fixtures/films';
 import {reviews} from 'src/fixtures/reviews';
 import {user} from 'src/fixtures/user';
+import {match} from 'src/fixtures/router';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -18,7 +19,9 @@ it(`renders correctly`, () => {
     user={user}
     loadFilms={jest.fn()}
     loadReviews={jest.fn()}
-    match={{params: {id: `3`}}}
+    location={{} as any}
+    history={{} as any}
+    match={match}
   />);
 
   expect(toJson(movie)).toMatchSnapshot();

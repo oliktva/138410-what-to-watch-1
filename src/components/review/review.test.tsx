@@ -7,6 +7,8 @@ import {Review} from './review';
 import {film} from 'src/fixtures/films';
 import {reviews} from 'src/fixtures/reviews';
 import {user} from 'src/fixtures/user';
+import {match} from 'src/fixtures/router';
+const mock: any = jest.fn();
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -18,9 +20,9 @@ it(`renders correctly`, () => {
     loadFilms={jest.fn()}
     loadReviews={jest.fn()}
     addReview={jest.fn()}
-    match={{
-      params: {id: 1}
-    }}
+    match={match}
+    location={mock}
+    history={mock}
   />);
 
   expect(toJson(movieCardReview)).toMatchSnapshot();
