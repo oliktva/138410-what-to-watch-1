@@ -137,14 +137,8 @@ class FullMovieCard extends PureComponent<Props> {
     return setActiveTab.bind(this, tab);
   }
 
-  private _renderStarring(starring: string[], {isLine}: {isLine: boolean} = {isLine: false}): ReactElement[] {
-    return starring.map((s: string, index: number): ReactElement => {
-      if (index === starring.length - 1) {
-        return isLine ? <Fragment key={s}>{s} and other</Fragment> : <Fragment key={s}>{s}</Fragment>;
-      } else {
-        return isLine ? <Fragment key={s}>{s}, </Fragment> : <Fragment key={s}>{s}, <br/></Fragment>;
-      }
-    });
+  private _renderStarring(starring: string[], {isLine}: {isLine: boolean} = {isLine: false}): ReactElement[] | string {
+    return isLine ? `${starring.join(`, `)} and other` : starring.join(`,\n`);
   }
 
   private _renderNav(): ReactElement {
