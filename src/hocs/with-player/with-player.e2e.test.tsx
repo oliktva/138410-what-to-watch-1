@@ -11,17 +11,18 @@ describe(`player actions`, () => {
     const MockComponent = () => <div />;
     const MockComponentWrapped = withPlayer(MockComponent);
 
-    const card = shallow(<MockComponentWrapped />);
-    let isPlaying = card.state().isPlaying;
+    const component = shallow(<MockComponentWrapped />);
+    const instance = component.instance() as any;
+    let isPlaying = instance.state.isPlaying;
 
     expect(isPlaying).toEqual(false);
 
-    card.props().play();
-    isPlaying = card.state().isPlaying;
+    component.props().play();
+    isPlaying = instance.state.isPlaying;
     expect(isPlaying).toEqual(true);
 
-    card.props().stop();
-    isPlaying = card.state().isPlaying;
+    component.props().stop();
+    isPlaying = instance.state.isPlaying;
     expect(isPlaying).toEqual(false);
   });
 
@@ -29,17 +30,18 @@ describe(`player actions`, () => {
     const MockComponent = () => <div />;
     const MockComponentWrapped = withPlayer(MockComponent);
 
-    const card = shallow(<MockComponentWrapped />);
-    let isFullscreen = card.state().isFullscreen;
+    const component = shallow(<MockComponentWrapped />);
+    const instance = component.instance() as any;
+    let isFullscreen = instance.state.isFullscreen;
 
     expect(isFullscreen).toEqual(false);
 
-    card.props().openFullscreen();
-    isFullscreen = card.state().isFullscreen;
+    component.props().openFullscreen();
+    isFullscreen = instance.state.isFullscreen;
     expect(isFullscreen).toEqual(true);
 
-    card.props().closeFullscreen();
-    isFullscreen = card.state().isFullscreen;
+    component.props().closeFullscreen();
+    isFullscreen = instance.state.isFullscreen;
     expect(isFullscreen).toEqual(false);
   });
 
@@ -47,13 +49,14 @@ describe(`player actions`, () => {
     const MockComponent = () => <div />;
     const MockComponentWrapped = withPlayer(MockComponent);
 
-    const card = shallow(<MockComponentWrapped />);
-    let currentTime = card.state().currentTime;
+    const component = shallow(<MockComponentWrapped />);
+    const instance = component.instance() as any;
+    let currentTime = instance.state.currentTime;
 
     expect(currentTime).toEqual(0);
 
-    card.props().setCurrentTime(10);
-    currentTime = card.state().currentTime;
+    component.props().setCurrentTime(10);
+    currentTime = instance.state.currentTime;
     expect(currentTime).toEqual(10);
   });
 
@@ -61,13 +64,14 @@ describe(`player actions`, () => {
     const MockComponent = () => <div />;
     const MockComponentWrapped = withPlayer(MockComponent);
 
-    const card = shallow(<MockComponentWrapped />);
-    let fulltime = card.state().fulltime;
+    const component = shallow(<MockComponentWrapped />);
+    const instance = component.instance() as any;
+    let fulltime = instance.state.fulltime;
 
     expect(fulltime).toEqual(0);
 
-    card.props().setFulltime(10);
-    fulltime = card.state().fulltime;
+    component.props().setFulltime(10);
+    fulltime = instance.state.fulltime;
     expect(fulltime).toEqual(10);
   });
 });

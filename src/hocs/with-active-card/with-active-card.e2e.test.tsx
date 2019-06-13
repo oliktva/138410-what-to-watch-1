@@ -12,16 +12,17 @@ it(`sets active card correctly`, () => {
   const MockComponent = () => <div />;
   const MockComponentWrapped = withActiveCard(MockComponent);
 
-  const card = shallow(<MockComponentWrapped />);
-  let activeCard = card.props().activeCard;
+  const component = shallow(<MockComponentWrapped />);
+  const instance = component.instance() as any;
+  let activeCard = instance.state.activeCard;
 
   expect(activeCard).toEqual(null);
 
-  card.props().setActiveCard(film);
-  activeCard = card.props().activeCard;
+  component.props().setActiveCard(film);
+  activeCard = instance.state.activeCard;
   expect(activeCard).toEqual(film);
 
-  card.props().resetActiveCard();
-  activeCard = card.props().activeCard;
+  component.props().resetActiveCard();
+  activeCard = instance.state.activeCard;
   expect(activeCard).toEqual(null);
 });

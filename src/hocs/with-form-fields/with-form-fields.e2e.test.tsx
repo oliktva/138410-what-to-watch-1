@@ -13,16 +13,17 @@ it(`sets field value correctly`, () => {
   const MockComponentWrapped = withFormFields(MockComponent);
 
   const component = shallow(<MockComponentWrapped />);
-  let {email, password} = component.props().form;
+  const instance = component.instance() as any;
+  let {email, password} = instance.state.form;
 
   expect(email).toEqual(undefined);
   expect(password).toEqual(undefined);
 
   component.props().setFieldValue(`email`, emailValue);
-  email = component.props().form.email;
+  email = instance.state.form.email;
   expect(email).toEqual(emailValue);
 
   component.props().setFieldValue(`password`, passwordValue);
-  password = component.props().form.password;
+  password = instance.state.form.password;
   expect(password).toEqual(passwordValue);
 });

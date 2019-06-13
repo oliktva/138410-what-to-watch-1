@@ -10,13 +10,14 @@ it(`renders player correctly`, () => {
   const MockComponent = () => <div />;
   const MockComponentWrapped = needRenderPlayer(MockComponent);
 
-  const card = shallow(<MockComponentWrapped />);
+  const component = shallow(<MockComponentWrapped />);
+  const instance = component.instance() as any;
 
-  expect(card.state().withPlayer).toEqual(false);
+  expect(instance.state.withPlayer).toEqual(false);
 
-  card.props().toggleRenderPlayer();
-  expect(card.state().withPlayer).toEqual(true);
+  instance._toggleRenderPlayer();
+  expect(instance.state.withPlayer).toEqual(true);
 
-  card.props().toggleRenderPlayer();
-  expect(card.state().withPlayer).toEqual(false);
+  instance._toggleRenderPlayer();
+  expect(instance.state.withPlayer).toEqual(false);
 });

@@ -10,23 +10,25 @@ it(`paginates correctly`, () => {
   const MockComponent = () => <div />;
   const MockComponentWrapped = withPagination(MockComponent);
 
-  const card = shallow(<MockComponentWrapped />);
-  let page = card.state().page;
-  let perPage = card.props().maxItemsPerPage;
+  const component = shallow(<MockComponentWrapped />);
+  const instance = component.instance() as any;
+
+  let page = instance.state.page;
+  let perPage = component.props().maxItemsPerPage;
 
   expect(page).toEqual(1);
   expect(perPage).toEqual(ITEMS_PER_PAGE);
 
-  card.props().goToNextPage();
-  page = card.state().page;
-  perPage = card.props().maxItemsPerPage;
+  component.props().goToNextPage();
+  page = instance.state.page;
+  perPage = component.props().maxItemsPerPage;
   expect(page).toEqual(2);
   expect(perPage).toEqual(2 * ITEMS_PER_PAGE);
 
 
-  card.props().resetPage();
-  page = card.state().page;
-  perPage = card.props().maxItemsPerPage;
+  component.props().resetPage();
+  page = instance.state.page;
+  perPage = component.props().maxItemsPerPage;
   expect(page).toEqual(1);
   expect(perPage).toEqual(ITEMS_PER_PAGE);
 });

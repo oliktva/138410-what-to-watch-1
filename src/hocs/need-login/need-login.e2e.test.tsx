@@ -14,7 +14,8 @@ it(`checks user and renders component`, () => {
   const MockComponentWrapped = needLogin(MockComponent);
 
   const component = shallow(<MockComponentWrapped user={testUser} history={mockHistory} />);
-  let {user} = component.props();
+  const instance = component.instance() as any;
+  const {user} = instance.props;
 
   expect(user).toEqual(testUser);
 });

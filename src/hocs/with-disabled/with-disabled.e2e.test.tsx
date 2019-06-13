@@ -11,11 +11,12 @@ it(`toggles disabled correctly`, () => {
   const MockComponentWrapped = withDisabled(MockComponent);
 
   const component = shallow(<MockComponentWrapped />);
-  let isDisabled = component.props().isDisabled;
+  const instance = component.instance() as any;
+  let isDisabled = instance.state.isDisabled;
 
   expect(isDisabled).toEqual(false);
 
   component.props().toggleDisabled({isDisabled: true});
-  isDisabled = component.props().isDisabled;
+  isDisabled = instance.state.isDisabled;
   expect(isDisabled).toEqual(true);
 });
