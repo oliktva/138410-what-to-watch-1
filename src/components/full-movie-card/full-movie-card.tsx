@@ -119,7 +119,10 @@ class FullMovieCard extends PureComponent<Props> {
             </div>
           </div>
         </section>
-        {this._renderMoreLikeThis(relatedFilms)}
+        <div className="page-content">
+          {this._renderMoreLikeThis(relatedFilms)}
+          <Footer />
+        </div>
       </Fragment>
     );
   }
@@ -261,15 +264,16 @@ class FullMovieCard extends PureComponent<Props> {
     );
   }
 
-  private _renderMoreLikeThis(relatedFilms: FilmProps[]): ReactElement {
+  private _renderMoreLikeThis(relatedFilms: FilmProps[]): ReactElement | null {
+    if (relatedFilms.length === 0) {
+      return null;
+    }
+
     return (
-      <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-          <SmallFullMovieCardsList films={relatedFilms} />
-        </section>
-        <Footer />
-      </div>
+      <section className="catalog catalog--like-this">
+        <h2 className="catalog__title">More like this</h2>
+        <SmallFullMovieCardsList films={relatedFilms} />
+      </section>
     );
   }
 
