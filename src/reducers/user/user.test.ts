@@ -1,14 +1,13 @@
 import MockAdapter from "axios-mock-adapter";
 
-import configureAPI from 'src/api';
 import {
   Operation,
   ActionCreator,
   LOG_IN_USER,
   LOG_IN_USER_ERROR
 } from './user';
-
-import {user, email, password} from 'src/fixtures/user';
+import configureAPI from '../../api';
+import {user, email, password} from '../../fixtures/user';
 
 describe(`ActionCreator`, () => {
   it(`logInUser`, () => {

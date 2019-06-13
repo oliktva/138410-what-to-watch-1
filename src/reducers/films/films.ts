@@ -1,6 +1,6 @@
 import {Action as ReduxAction} from 'redux';
 import {ThunkDispatch as ReduxThunkDispatch, ThunkAction as ReduxThunkAction} from 'redux-thunk';
-import {AxiosResponse, AxiosInstance} from 'axios';
+import {AxiosResponse, AxiosInstance, AxiosError} from 'axios';
 import {toCamel} from 'convert-keys';
 
 import {GenreProps} from 'src/types/genres';

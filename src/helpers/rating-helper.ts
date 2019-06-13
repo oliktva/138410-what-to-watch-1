@@ -9,3 +9,8 @@ export const getRatingDescription = (rating: number): string => {
 
   return `Awesome`;
 };
+
+export const getRatingDecimal = (rating: number): string => {
+  const decimalRating = Math.floor(rating * 10) / 10;
+  return decimalRating.toLocaleString();
+};

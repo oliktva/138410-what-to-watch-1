@@ -1,7 +1,10 @@
 import React, {Fragment, PureComponent, ReactElement} from 'react';
 import {connect, MapDispatchToProps} from 'react-redux';
 import {compose} from 'redux';
+import {AxiosError} from 'axios';
+import {withRouter, RouteComponentProps} from 'react-router';
 
+import paths from 'src/paths';
 import {Operation} from 'src/reducers/films/films';
 
 import needRenderPlayer from 'src/hocs/need-render-player/need-render-player';
@@ -31,7 +34,7 @@ interface NeedRenderPlayerProps {
   toggleRenderPlayer: () => void;
 }
 
-type Props = OwnProps & NeedRenderPlayerProps & DispatchProps;
+type Props = OwnProps & NeedRenderPlayerProps & RouteComponentProps & DispatchProps;
 
 class MovieCard extends PureComponent<Props> {
   public constructor(props: Props) {
@@ -78,13 +81,18 @@ class MovieCard extends PureComponent<Props> {
   }
 
   private _handleToggleFavorite(): void {
-    const {film, addToFavorites, removeFromFavorites} = this.props;
+    const {film, addToFavorites, removeFromFavorites, history} = this.props;
 
     if (film) {
       if (film.isFavorite) {
         removeFromFavorites(film.id);
       } else {
-        addToFavorites(film.id);
+        addToFavorites(film.id)
+          .catch((error: AxiosError) => {
+            if (error.response && error.response.status === 403) {
+              history.push(paths.login());
+            }
+          });
       }
     }
   }
@@ -100,7 +108,8 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = (dispatc
 const ConnectedComponent: any =
   compose(
     connect<{}, DispatchProps, OwnProps, State>(null, mapDispatchToProps),
-    needRenderPlayer
+    needRenderPlayer,
+    withRouter
   )(MovieCard);
 
 export default ConnectedComponent;

@@ -4,10 +4,10 @@ import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
 import {Movie} from './movie';
-import {films, film} from 'src/fixtures/films';
-import {reviews} from 'src/fixtures/reviews';
-import {user} from 'src/fixtures/user';
-import {match} from 'src/fixtures/router';
+import {films, film} from '../../fixtures/films';
+import {reviews} from '../../fixtures/reviews';
+import {user} from '../../fixtures/user';
+import {match} from '../../fixtures/router';
 
 Enzyme.configure({adapter: new Adapter()});
 

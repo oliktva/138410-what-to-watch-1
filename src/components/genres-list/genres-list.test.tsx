@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
 import {GenresList} from './genres-list';
-import {genres} from 'src/fixtures/genres';
+import {genres} from '../../fixtures/genres';
 
 Enzyme.configure({adapter: new Adapter()});
 

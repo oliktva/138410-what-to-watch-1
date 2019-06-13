@@ -5,7 +5,7 @@ import toJson from 'enzyme-to-json';
 
 import {Player} from './player';
 
-import {film} from 'src/fixtures/films';
+import {film} from '../../fixtures/films';
 
 Enzyme.configure({adapter: new Adapter()});
 

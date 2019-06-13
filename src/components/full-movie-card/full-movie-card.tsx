@@ -1,10 +1,13 @@
 import React, {Fragment, PureComponent, ReactElement} from 'react';
 import {connect, MapDispatchToProps} from 'react-redux';
 import {compose} from 'redux';
+import {AxiosError} from 'axios';
+import {withRouter, RouteComponentProps} from 'react-router';
 
+import paths from 'src/paths';
 import {Operation} from 'src/reducers/films/films';
 import {formatTime, formatLocaleTime} from 'src/helpers/time-helper';
-import {getRatingDescription} from 'src/helpers/rating-helper';
+import {getRatingDescription, getRatingDecimal} from 'src/helpers/rating-helper';
 import withActiveTab from 'src/hocs/with-active-tab/with-active-tab';
 
 import needRenderPlayer from 'src/hocs/need-render-player/need-render-player';
@@ -37,16 +40,14 @@ interface NeedRenderPlayerProps {
   toggleRenderPlayer: () => void;
 }
 
-interface PartProps {
+interface OwnProps {
   header: ReactElement;
   film: FilmProps | null;
   reviews: ReviewProps[];
   relatedFilms: FilmProps[];
 }
 
-type OwnProps = PartProps & WithActiveTabProps & NeedRenderPlayerProps;
-
-type Props = OwnProps & DispatchProps;
+type Props = OwnProps & WithActiveTabProps & NeedRenderPlayerProps & RouteComponentProps & DispatchProps;
 
 const defaultProps = {
   isFull: false
@@ -61,6 +62,14 @@ class FullMovieCard extends PureComponent<Props> {
     this._handlePlay = this._handlePlay.bind(this);
     this._handleToggleFavorite = this._handleToggleFavorite.bind(this);
     this._handleTabClick = this._handleTabClick.bind(this);
+  }
+
+  public componentDidUpdate(prevProps: Props) {
+    const {film, setActiveTab} = this.props;
+
+    if (prevProps.film && film && prevProps.film.id !== film.id) {
+      setActiveTab(TABS[0]);
+    }
   }
 
   public render(): ReactElement | null {
@@ -120,13 +129,18 @@ class FullMovieCard extends PureComponent<Props> {
   }
 
   private _handleToggleFavorite(): void {
-    const {film, addToFavorites, removeFromFavorites} = this.props;
+    const {history, film, addToFavorites, removeFromFavorites} = this.props;
 
     if (film) {
       if (film.isFavorite) {
         removeFromFavorites(film.id);
       } else {
-        addToFavorites(film.id);
+        addToFavorites(film.id)
+          .catch((error: AxiosError) => {
+            if (error.response && error.response.status === 403) {
+              history.push(paths.login());
+            }
+          });
       }
     }
   }
@@ -166,7 +180,7 @@ class FullMovieCard extends PureComponent<Props> {
           <div className="movie-rating__score">{film.rating}</div>
           <p className="movie-rating__meta">
             <span className="movie-rating__level">{getRatingDescription(film.rating)}</span>
-            <span className="movie-rating__count">{film.scoresCount.toLocaleString()} ratings</span>
+            <span className="movie-rating__count">{getRatingDecimal(film.scoresCount)} ratings</span>
           </p>
         </div>
 
@@ -272,7 +286,8 @@ const ConnectedComponent: any =
   compose(
     connect<{}, DispatchProps, OwnProps, State>(null, mapDispatchToProps),
     needRenderPlayer,
-    withActiveTab(TABS)
+    withActiveTab(TABS),
+    withRouter
   )(FullMovieCard);
 
 export default ConnectedComponent;

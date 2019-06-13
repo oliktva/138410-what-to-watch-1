@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
 import Header from './header';
-import {user} from 'src/fixtures/user';
+import {user} from '../../fixtures/user';
 
 Enzyme.configure({adapter: new Adapter()});
 

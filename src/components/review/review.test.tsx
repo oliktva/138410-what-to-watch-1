@@ -4,10 +4,10 @@ import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
 import {Review} from './review';
-import {film} from 'src/fixtures/films';
-import {reviews} from 'src/fixtures/reviews';
-import {user} from 'src/fixtures/user';
-import {match} from 'src/fixtures/router';
+import {film} from '../../fixtures/films';
+import {reviews} from '../../fixtures/reviews';
+import {user} from '../../fixtures/user';
+import {match} from '../../fixtures/router';
 const mock: any = jest.fn();
 
 Enzyme.configure({adapter: new Adapter()});

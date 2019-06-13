@@ -3,7 +3,7 @@ import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
-import {film} from 'src/fixtures/films';
+import {film} from '../../fixtures/films';
 
 import CardButtons from './card-buttons';
 

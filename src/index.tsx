@@ -10,6 +10,7 @@ import configureAPI from 'src/api';
 import reducer, {initialState} from 'src/reducers/reducer';
 
 import App from 'src/components/app/app';
+import ScrollToTop from './components/scroll-to-top/scroll-to-top';
 
 const api = configureAPI();
 const store = createStore(
@@ -22,7 +23,9 @@ const target = document.querySelector(`#root`);
 render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
     </BrowserRouter>
   </Provider>,
   target

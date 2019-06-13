@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import withFormFields from './with-form-fields';
 
-import {email as emailValue, password as passwordValue} from 'src/fixtures/user';
+import {email as emailValue, password as passwordValue} from '../../fixtures/user';
 
 Enzyme.configure({adapter: new Adapter()});
 

@@ -4,9 +4,10 @@ import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
 import {FullMovieCard} from './full-movie-card';
-import {films, film} from 'src/fixtures/films';
-import {reviews} from 'src/fixtures/reviews';
-import {tabs} from 'src/fixtures/tabs';
+import {films, film} from '../../fixtures/films';
+import {reviews} from '../../fixtures/reviews';
+import {tabs} from '../../fixtures/tabs';
+import {history} from '../../fixtures/router';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -22,6 +23,9 @@ it(`renders correctly`, () => {
     removeFromFavorites={jest.fn()}
     activeTab={tabs[0]}
     setActiveTab={jest.fn()}
+    history={history as any}
+    match={{} as any}
+    location={{} as any}
   />);
 
   expect(toJson(fullMovieCard)).toMatchSnapshot();

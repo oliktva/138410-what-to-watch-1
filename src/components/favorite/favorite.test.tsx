@@ -5,8 +5,8 @@ import toJson from 'enzyme-to-json';
 
 import {Favorite} from './favorite';
 
-import {films} from 'src/fixtures/films';
-import {user} from 'src/fixtures/user';
+import {films} from '../../fixtures/films';
+import {user} from '../../fixtures/user';
 
 Enzyme.configure({adapter: new Adapter()});
 

@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import withActiveCard from './with-active-card';
 
-import {film} from 'src/fixtures/films';
+import {film} from '../../fixtures/films';
 
 Enzyme.configure({adapter: new Adapter()});
 

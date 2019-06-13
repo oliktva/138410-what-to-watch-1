@@ -7,6 +7,7 @@ import {MovieCard} from './movie-card';
 
 import {film} from '../../fixtures/films';
 import {reviews} from '../../fixtures/reviews';
+import {history} from '../../fixtures/router';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -22,6 +23,9 @@ describe(`renders correctly`, () => {
         toggleRenderPlayer={jest.fn()}
         addToFavorites={jest.fn()}
         removeFromFavorites={jest.fn()}
+        history={history as any}
+        match={{} as any}
+        location={{} as any}
       />
     );
 
@@ -39,6 +43,9 @@ describe(`renders correctly`, () => {
         toggleRenderPlayer={jest.fn()}
         addToFavorites={jest.fn()}
         removeFromFavorites={jest.fn()}
+        history={history as any}
+        match={{} as any}
+        location={{} as any}
       />
     );
 
