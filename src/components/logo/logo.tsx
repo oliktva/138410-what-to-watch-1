@@ -1,6 +1,5 @@
 import React, {FunctionComponent, ReactElement} from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import paths from 'src/paths';
 
@@ -20,10 +19,6 @@ const Logo: FunctionComponent<Props> = ({isLight}): ReactElement => {
       </Link>
     </div>
   );
-};
-
-Logo.propTypes = {
-  isLight: PropTypes.bool
 };
 
 Logo.defaultProps = {

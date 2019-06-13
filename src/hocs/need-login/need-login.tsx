@@ -7,7 +7,7 @@ import paths from 'src/paths';
 import {getUser} from 'src/reducers/user/selectors';
 
 import {State} from 'src/types/reducer';
-import {UserProps, userPropTypes} from 'src/types/user';
+import {UserProps} from 'src/types/user';
 
 interface StateProps {
   user: UserProps;
@@ -15,17 +15,11 @@ interface StateProps {
 
 type Props = StateProps & RouteComponentProps;
 
-const propTypes = {
-  user: userPropTypes.isRequired
-};
-
 const needLogin = (Component: any): ComponentClass<any> => {
   type P = ReturnType<typeof Component>;
   type T = Exclude<P, Props>;
 
   class NeedLogin extends PureComponent<T> {
-    public static propTypes = propTypes;
-
     public componentDidMount(): void {
       const {user, history} = this.props;
 

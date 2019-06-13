@@ -1,5 +1,4 @@
 import React, {FunctionComponent, ReactElement} from 'react';
-import PropTypes from 'prop-types';
 
 interface Props {
   image: string;
@@ -11,10 +10,5 @@ const BackgroundImage: FunctionComponent<Props> = ({image, name}): ReactElement 
     <img src={image} alt={name} />
   </div>
 );
-
-BackgroundImage.propTypes = {
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
-};
 
 export default BackgroundImage;

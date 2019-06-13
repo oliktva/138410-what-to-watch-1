@@ -1,7 +1,6 @@
 import React, {Fragment, PureComponent, ReactElement} from 'react';
 import {connect, MapDispatchToProps} from 'react-redux';
 import {compose} from 'redux';
-import PropTypes from 'prop-types';
 
 import {Operation} from 'src/reducers/films/films';
 import {formatTime, formatLocaleTime} from 'src/helpers/time-helper';
@@ -18,8 +17,8 @@ import SmallFullMovieCardsList from 'src/components/small-movie-cards-list/small
 import Footer from 'src/components/footer/footer';
 
 import {State, ThunkDispatch} from 'src/types/reducer';
-import {FilmProps, filmPropTypes, filmsPropTypes} from 'src/types/films';
-import {ReviewProps, reviewsPropTypes} from 'src/types/reviews';
+import {FilmProps} from 'src/types/films';
+import {ReviewProps} from 'src/types/reviews';
 
 const TABS = [`overview`, `details`, `reviews`];
 
@@ -49,27 +48,11 @@ type OwnProps = PartProps & WithActiveTabProps & NeedRenderPlayerProps;
 
 type Props = OwnProps & DispatchProps;
 
-const propTypes = {
-  header: PropTypes.element.isRequired,
-  film: filmPropTypes.isRequired,
-  relatedFilms: filmsPropTypes.isRequired,
-  reviews: reviewsPropTypes.isRequired,
-  withPlayer: PropTypes.bool.isRequired,
-  toggleRenderPlayer: PropTypes.func.isRequired,
-  addToFavorites: PropTypes.func.isRequired,
-  removeFromFavorites: PropTypes.func.isRequired,
-  isFull: PropTypes.bool,
-  tabs: PropTypes.arrayOf(PropTypes.string),
-  activeTab: PropTypes.string,
-  setActiveTab: PropTypes.func
-};
-
 const defaultProps = {
   isFull: false
 };
 
 class FullMovieCard extends PureComponent<Props> {
-  public static propTypes = propTypes;
   public static defaultProps = defaultProps;
 
   public constructor(props: Props) {

@@ -1,5 +1,4 @@
 import React, {Fragment, FunctionComponent, ReactElement} from 'react';
-import PropTypes from 'prop-types';
 
 interface Props {
   children?: ReactElement | ReactElement[];
@@ -37,9 +36,5 @@ const PageWrapper: FunctionComponent<Props> = ({children}): ReactElement => (
     {children}
   </Fragment>
 );
-
-PageWrapper.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element.isRequired)])
-};
 
 export default PageWrapper;

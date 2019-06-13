@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import paths from 'src/paths';
 
-import {FilmProps, filmPropTypes} from 'src/types/films';
+import {FilmProps} from 'src/types/films';
 
 interface Props {
   film: FilmProps;
@@ -22,10 +22,6 @@ const Breadcrumbs: FunctionComponent<Props> = ({film}): ReactElement => {
       </ul>
     </nav>
   );
-};
-
-Breadcrumbs.propTypes = {
-  film: filmPropTypes.isRequired
 };
 
 export default Breadcrumbs;

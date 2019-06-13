@@ -1,6 +1,5 @@
 import React, {PureComponent, ReactElement} from 'react';
 import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
-import PropTypes from 'prop-types';
 
 import {getGenres, getFilmsByGenre, getPromoFilm} from 'src/reducers/films/selectors';
 import {getUser} from 'src/reducers/user/selectors';
@@ -14,9 +13,9 @@ import SmallMovieCardsList from 'src/components/small-movie-cards-list/small-mov
 import GenresList from 'src/components/genres-list/genres-list';
 
 import {State, ThunkDispatch} from 'src/types/reducer';
-import {FilmProps, filmPropTypes, filmsPropTypes} from 'src/types/films';
-import {GenreProps, genresPropTypes} from 'src/types/genres';
-import {UserProps, userPropTypes} from 'src/types/user';
+import {FilmProps} from 'src/types/films';
+import {GenreProps} from 'src/types/genres';
+import {UserProps} from 'src/types/user';
 
 interface StateProps {
   filmsByGenre: FilmProps[];
@@ -32,18 +31,7 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps;
 
-const propTypes = {
-  filmsByGenre: filmsPropTypes.isRequired,
-  genres: genresPropTypes.isRequired,
-  promo: filmPropTypes,
-  loadFilms: PropTypes.func.isRequired,
-  loadPromo: PropTypes.func.isRequired,
-  user: userPropTypes.isRequired
-};
-
 class Main extends PureComponent<Props> {
-  public static propTypes = propTypes;
-
   public componentDidMount(): void {
     const {loadFilms, loadPromo} = this.props;
 

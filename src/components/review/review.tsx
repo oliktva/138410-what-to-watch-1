@@ -2,7 +2,6 @@ import React, {PureComponent, ReactElement} from 'react';
 import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
 import {RouteComponentProps} from 'react-router';
 import {compose} from 'redux';
-import PropTypes from 'prop-types';
 
 import {Operation} from 'src/reducers/films/films';
 import {getFilm, getReviews} from 'src/reducers/films/selectors';
@@ -14,9 +13,9 @@ import Header from 'src/components/header/header';
 import MovieCardReview from 'src/components/movie-card-review/movie-card-review';
 
 import {State, ThunkDispatch} from 'src/types/reducer';
-import {FilmProps, filmPropTypes} from 'src/types/films';
-import {reviewsPropTypes, ReviewProps} from 'src/types/reviews';
-import {UserProps, userPropTypes} from 'src/types/user';
+import {FilmProps} from 'src/types/films';
+import {ReviewProps} from 'src/types/reviews';
+import {UserProps} from 'src/types/user';
 
 interface StateProps {
   film: FilmProps | null;
@@ -34,18 +33,7 @@ type OwnProps = RouteComponentProps<{id: string}>;
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-const propTypes = {
-  film: filmPropTypes,
-  reviews: reviewsPropTypes.isRequired,
-  user: userPropTypes.isRequired,
-  loadFilms: PropTypes.func.isRequired,
-  loadReviews: PropTypes.func.isRequired,
-  addReview: PropTypes.func.isRequired
-};
-
 class Review extends PureComponent<Props> {
-  public static propTypes = propTypes;
-
   public componentDidMount(): void {
     const {loadFilms, loadReviews, match: {params: {id}}} = this.props;
 

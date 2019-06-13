@@ -1,5 +1,4 @@
 import React, {FunctionComponent, ReactElement} from 'react';
-import PropTypes from 'prop-types';
 
 interface Props {
   image: string;
@@ -12,12 +11,6 @@ const MoviePoster: FunctionComponent<Props> = ({image, name, kind}): ReactElemen
     <img src={image} alt={`${name} poster`} width="218" height="327" />
   </div>
 );
-
-MoviePoster.propTypes = {
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  kind: PropTypes.oneOf([`small`, `big`, `default`])
-};
 
 MoviePoster.defaultProps = {
   kind: `default`

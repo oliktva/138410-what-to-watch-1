@@ -1,11 +1,10 @@
 import React, {PureComponent, Fragment, ReactElement} from 'react';
-import PropTypes from 'prop-types';
 
 import {formatTime} from 'src/helpers/time-helper';
 import withPlayer from 'src/hocs/with-player/with-player';
 import Video from 'src/components/video/video';
 
-import {FilmProps, filmPropTypes} from 'src/types/films';
+import {FilmProps} from 'src/types/films';
 
 interface OwnProps {
   film: FilmProps;
@@ -27,24 +26,7 @@ interface WithPlayerProps {
 
 type Props = OwnProps & WithPlayerProps;
 
-const propTypes = {
-  film: filmPropTypes.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  isFullscreen: PropTypes.bool.isRequired,
-  fulltime: PropTypes.number.isRequired,
-  currentTime: PropTypes.number.isRequired,
-  play: PropTypes.func.isRequired,
-  stop: PropTypes.func.isRequired,
-  openFullscreen: PropTypes.func.isRequired,
-  closeFullscreen: PropTypes.func.isRequired,
-  setCurrentTime: PropTypes.func.isRequired,
-  setFulltime: PropTypes.func.isRequired,
-  closePlayer: PropTypes.func.isRequired
-};
-
 class Player extends PureComponent<Props> {
-  public static propTypes = propTypes;
-
   public constructor(props: Props) {
     super(props);
 

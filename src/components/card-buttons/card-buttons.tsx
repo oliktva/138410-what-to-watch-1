@@ -1,10 +1,9 @@
 import React, {FunctionComponent, ReactElement} from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import paths from 'src/paths';
 
-import {FilmProps, filmPropTypes} from 'src/types/films';
+import {FilmProps} from 'src/types/films';
 
 interface Props {
   film: FilmProps;
@@ -40,13 +39,6 @@ const CardButtons: FunctionComponent<Props> = ({film, isFull, onPlayButtonClick,
     {isFull && <Link to={paths.review(film.id)} className="btn movie-card__button">Add review</Link>}
   </div>
 );
-
-CardButtons.propTypes = {
-  film: filmPropTypes.isRequired,
-  isFull: PropTypes.bool,
-  onPlayButtonClick: PropTypes.func.isRequired,
-  onFavoritesToggle: PropTypes.func.isRequired
-};
 
 CardButtons.defaultProps = {
   isFull: false

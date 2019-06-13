@@ -1,11 +1,10 @@
 import React, {FunctionComponent, ReactElement} from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import paths from 'src/paths';
 import Video from 'src/components/video/video';
 
-import {FilmProps, filmPropTypes} from 'src/types/films';
+import {FilmProps} from 'src/types/films';
 
 interface Props {
   film: FilmProps;
@@ -37,13 +36,6 @@ const SmallMovieCard: FunctionComponent<Props> = (props): ReactElement => {
       </Link>
     </article>
   );
-};
-
-SmallMovieCard.propTypes = {
-  film: filmPropTypes.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  onMouseEnter: PropTypes.func,
-  onMouseLeave: PropTypes.func,
 };
 
 SmallMovieCard.defaultProps = {

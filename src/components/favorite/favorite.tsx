@@ -10,7 +10,7 @@ import Header from 'src/components/header/header';
 import Footer from 'src/components/footer/footer';
 import SmallMovieCard from 'src/components/small-movie-card/small-movie-card';
 
-import {UserProps, userPropTypes} from 'src/types/user';
+import {UserProps} from 'src/types/user';
 import {State, ThunkDispatch} from 'src/types/reducer';
 import {Operation} from 'src/reducers/films/films';
 import {FilmProps} from 'src/types/films';
@@ -29,13 +29,7 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-const propTypes = {
-  user: userPropTypes.isRequired
-};
-
 class Favorite extends PureComponent<Props> {
-  public static propTypes = propTypes;
-
   public componentDidMount(): void {
     const {loadFavorite} = this.props;
 

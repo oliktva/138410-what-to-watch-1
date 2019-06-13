@@ -1,5 +1,4 @@
 import React, {FunctionComponent, ReactElement} from 'react';
-import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import paths from 'src/paths';
@@ -8,8 +7,8 @@ import {SERVER_URL} from 'src/api';
 import Logo from 'src/components/logo/logo';
 import Breadcrumbs from 'src/components/breadcrumbs/breadcrumbs';
 
-import {UserProps, userPropTypes} from 'src/types/user';
-import {FilmProps, filmPropTypes} from 'src/types/films';
+import {UserProps} from 'src/types/user';
+import {FilmProps} from 'src/types/films';
 
 interface Props {
   user: UserProps;
@@ -38,15 +37,6 @@ const Header: FunctionComponent<Props> = ({user, className, heading, film, withB
     </div>
   </header>
 );
-
-Header.propTypes = {
-  user: userPropTypes.isRequired,
-  heading: PropTypes.string,
-  className: PropTypes.string,
-  withBreadcrumbs: PropTypes.bool,
-  film: filmPropTypes,
-  isLightLogo: PropTypes.bool,
-};
 
 Header.defaultProps = {
   className: ``,

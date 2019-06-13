@@ -1,12 +1,11 @@
 import React, {Fragment, PureComponent, ReactElement} from 'react';
 import {compose} from 'redux';
-import PropTypes from 'prop-types';
 
 import withActiveCard from 'src/hocs/with-active-card/with-active-card';
 import withPagination from 'src/hocs/with-pagination/with-pagination';
 import SmallMovieCard from 'src/components/small-movie-card/small-movie-card';
 
-import {FilmProps, filmPropTypes, filmsPropTypes} from 'src/types/films';
+import {FilmProps} from 'src/types/films';
 
 interface OwnProps {
   films: FilmProps[];
@@ -26,19 +25,7 @@ interface WithPaginationProps {
 
 type Props = OwnProps & WithActiveProps & WithPaginationProps;
 
-const propTypes = {
-  films: filmsPropTypes.isRequired,
-  activeCard: filmPropTypes,
-  setActiveCard: PropTypes.func.isRequired,
-  resetActiveCard: PropTypes.func.isRequired,
-  maxItemsPerPage: PropTypes.number.isRequired,
-  goToNextPage: PropTypes.func.isRequired,
-  resetPage: PropTypes.func.isRequired
-};
-
 class SmallMovieCardsList extends PureComponent<Props> {
-  public static propTypes = propTypes;
-
   private _timeoutId: number | null = null;
 
   public componentDidUpdate(prevProps: Props): void {

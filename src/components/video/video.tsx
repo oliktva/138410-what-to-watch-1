@@ -1,5 +1,4 @@
 import React, {PureComponent, RefObject, ReactElement} from 'react';
-import PropTypes from 'prop-types';
 
 type VideoProps = HTMLVideoElement | null;
 
@@ -16,18 +15,6 @@ interface Props {
   togglePlaying: () => void;
 }
 
-const propTypes = {
-  src: PropTypes.string.isRequired,
-  preview: PropTypes.string.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  isFullscreen: PropTypes.bool,
-  needReset: PropTypes.bool,
-  synchronizePlaying: PropTypes.func,
-  setCurrentTime: PropTypes.func,
-  closeFullscreen: PropTypes.func,
-  setFulltime: PropTypes.func
-};
-
 const defaultProps = {
   needReset: true,
   isFullscreen: false,
@@ -39,7 +26,6 @@ const defaultProps = {
 };
 
 class Video extends PureComponent<Props> {
-  public static propTypes = propTypes;
   public static defaultProps = defaultProps;
 
   private _videoRef: RefObject<HTMLVideoElement>;

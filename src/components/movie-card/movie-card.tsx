@@ -1,7 +1,6 @@
 import React, {Fragment, PureComponent, ReactElement} from 'react';
 import {connect, MapDispatchToProps} from 'react-redux';
 import {compose} from 'redux';
-import PropTypes from 'prop-types';
 
 import {Operation} from 'src/reducers/films/films';
 
@@ -13,7 +12,7 @@ import CardButtons from 'src/components/card-buttons/card-buttons';
 import MovieMeta from 'src/components/movie-meta/movie-meta';
 
 import {State, ThunkDispatch} from 'src/types/reducer';
-import {FilmProps, filmPropTypes} from 'src/types/films';
+import {FilmProps} from 'src/types/films';
 import {ReviewProps} from 'src/types/reviews';
 
 interface DispatchProps {
@@ -34,18 +33,7 @@ interface NeedRenderPlayerProps {
 
 type Props = OwnProps & NeedRenderPlayerProps & DispatchProps;
 
-const propTypes = {
-  header: PropTypes.element.isRequired,
-  film: filmPropTypes,
-  withPlayer: PropTypes.bool.isRequired,
-  toggleRenderPlayer: PropTypes.func.isRequired,
-  addToFavorites: PropTypes.func.isRequired,
-  removeFromFavorites: PropTypes.func.isRequired
-};
-
 class MovieCard extends PureComponent<Props> {
-  public static propTypes = propTypes;
-
   public constructor(props: Props) {
     super(props);
 

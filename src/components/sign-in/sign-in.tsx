@@ -7,7 +7,6 @@ import React, {
 import {connect, MapStateToProps, MapDispatchToProps} from 'react-redux';
 import {compose} from 'redux';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import paths from 'src/paths';
 import {getUser, getError} from 'src/reducers/user/selectors';
@@ -19,7 +18,7 @@ import Header from 'src/components/header/header';
 import Footer from 'src/components/footer/footer';
 
 import {State, ThunkDispatch} from 'src/types/reducer';
-import {UserProps, userPropTypes} from 'src/types/user';
+import {UserProps} from 'src/types/user';
 
 type Value = string | undefined;
 
@@ -42,18 +41,7 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps & RouteComponentProps;
 
-const propTypes = {
-  user: userPropTypes.isRequired,
-  logInUser: PropTypes.func.isRequired,
-  form: PropTypes.shape({}),
-  error: PropTypes.string,
-  setFieldValue: PropTypes.func.isRequired,
-  showError: PropTypes.func.isRequired
-};
-
 class SignIn extends PureComponent<Props> {
-  public static propTypes = propTypes;
-
   public constructor(props: Props) {
     super(props);
 
