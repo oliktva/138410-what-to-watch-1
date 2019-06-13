@@ -38,6 +38,7 @@ exports[`renders correctly 1`] = `
               onChange={[Function]}
               placeholder="Email address"
               type="email"
+              value=""
             />
             <label
               className="sign-in__label visually-hidden"
@@ -56,6 +57,7 @@ exports[`renders correctly 1`] = `
               onChange={[Function]}
               placeholder="Password"
               type="password"
+              value=""
             />
             <label
               className="sign-in__label visually-hidden"
