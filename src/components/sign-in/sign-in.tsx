@@ -20,6 +20,9 @@ import Footer from 'src/components/footer/footer';
 import {State, ThunkDispatch} from 'src/types/reducer';
 import {UserProps} from 'src/types/user';
 
+const EMAIL_KEY = `user-email`;
+const PASSWORD_KEY = `user-password`;
+
 type Value = string | undefined;
 
 interface StateProps {
@@ -89,8 +92,8 @@ class SignIn extends PureComponent<Props> {
 
   private _handleFormSubmit(evt: FormEvent<HTMLFormElement>): void {
     const {form, logInUser, showError, history} = this.props;
-    const email = form[`user-email`];
-    const password = form[`user-password`];
+    const email = form[EMAIL_KEY];
+    const password = form[PASSWORD_KEY];
 
     evt.preventDefault();
 
@@ -118,7 +121,7 @@ class SignIn extends PureComponent<Props> {
 
   private _renderEmailField(): ReactElement {
     const {form} = this.props;
-    const email = form[`user-email`];
+    const email = form[EMAIL_KEY] || ``;
 
     return (
       <div className="sign-in__field">
@@ -126,7 +129,7 @@ class SignIn extends PureComponent<Props> {
           className="sign-in__input"
           type="email"
           placeholder="Email address"
-          name="user-email"
+          name={EMAIL_KEY}
           id="user-email"
           value={email}
           onChange={this._handleFieldChange}
@@ -138,7 +141,7 @@ class SignIn extends PureComponent<Props> {
 
   private _renderPasswordField(): ReactElement {
     const {form} = this.props;
-    const password = form[`user-password`];
+    const password = form[PASSWORD_KEY] || ``;
 
     return (
       <div className="sign-in__field">
@@ -146,7 +149,7 @@ class SignIn extends PureComponent<Props> {
           className="sign-in__input"
           type="password"
           placeholder="Password"
-          name="user-password"
+          name={PASSWORD_KEY}
           id="user-password"
           value={password}
           onChange={this._handleFieldChange}

@@ -115,7 +115,7 @@ class ReviewForm extends PureComponent<Props> {
 
   private _renderText(): ReactElement {
     const {form, isDisabled} = this.props;
-    const reviewText = form[`review-text`];
+    const reviewText = form[REVIEW_TEXT_KEY] || ``;
 
     return (
       <textarea
@@ -134,7 +134,7 @@ class ReviewForm extends PureComponent<Props> {
 
   private _renderRating(ratingValue: string): ReactElement {
     const {form, isDisabled} = this.props;
-    const rating = form.rating;
+    const rating = form[RATING_KEY];
 
     return (
       <Fragment key={`rating-${ratingValue}`}>
