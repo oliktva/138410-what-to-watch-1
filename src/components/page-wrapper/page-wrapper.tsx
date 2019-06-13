@@ -1,7 +1,7 @@
-import React, {Fragment, FunctionComponent, ReactElement, ReactNode} from 'react';
+import React, {Fragment, FunctionComponent, ReactElement} from 'react';
 
 interface Props {
-  children?: ReactNode;
+  children?: ReactElement | ReactElement[];
 }
 
 const PageWrapper: FunctionComponent<Props> = ({children}): ReactElement => (

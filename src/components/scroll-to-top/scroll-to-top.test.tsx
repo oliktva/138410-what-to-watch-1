@@ -9,10 +9,10 @@ Enzyme.configure({adapter: new Adapter()});
 
 it(`renders correctly`, () => {
   const backgroundImage = shallow(
-  <ScrollToTop location={{pathname: '/test'} as any} history={{} as any} match={{} as any}>
-    <div />
-  </ScrollToTop>
-);
+    <ScrollToTop location={{pathname: `/test`} as any} history={{} as any} match={{} as any}>
+      <div />
+    </ScrollToTop>
+  );
 
   expect(toJson(backgroundImage)).toMatchSnapshot();
 });

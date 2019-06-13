@@ -1,14 +1,14 @@
-import React, {PureComponent, ReactNode} from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
+import {PureComponent, ReactElement} from 'react';
+import {withRouter, RouteComponentProps} from 'react-router';
 
 interface OwnProps {
-  children?: ReactNode;
-} 
+  children: ReactElement;
+}
 
 type Props = OwnProps & RouteComponentProps;
 
 class ScrollToTop extends PureComponent<Props> {
-  componentDidUpdate(prevProps: Props) {
+  public componentDidUpdate(prevProps: Props): void {
     const {location} = this.props;
 
     if (location.pathname !== prevProps.location.pathname) {
@@ -16,7 +16,7 @@ class ScrollToTop extends PureComponent<Props> {
     }
   }
 
-  render() {
+  public render(): ReactElement {
     const {children} = this.props;
 
     return children;
