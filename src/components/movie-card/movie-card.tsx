@@ -47,19 +47,15 @@ class MovieCard extends PureComponent<Props> {
   public render(): ReactElement | null {
     const {film, header, withPlayer, toggleRenderPlayer} = this.props;
 
-    if (!film) {
-      return null;
-    }
-
     return (
       <Fragment>
-        {withPlayer && <Player film={film} closePlayer={toggleRenderPlayer} />}
+        {film && withPlayer && <Player film={film} closePlayer={toggleRenderPlayer} />}
         <section className="movie-card">
-          <BackgroundImage image={film.backgroundImage} name={film.name} />
+          {film && <BackgroundImage image={film.backgroundImage} name={film.name} />}
           <h1 className="visually-hidden">WTW</h1>
           {header}
           <div className="movie-card__wrap">
-            <div className="movie-card__info">
+            {film && <div className="movie-card__info">
               <MoviePoster image={film.posterImage} name={film.name} />
               <div className="movie-card__desc">
                 <MovieMeta film={film} />
@@ -69,7 +65,7 @@ class MovieCard extends PureComponent<Props> {
                   onFavoritesToggle={this._handleToggleFavorite}
                 />
               </div>
-            </div>
+            </div>}
           </div>
         </section>
       </Fragment>

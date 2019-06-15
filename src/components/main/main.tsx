@@ -38,12 +38,8 @@ class Main extends PureComponent<Props> {
     Promise.all([loadFilms(), loadPromo()]);
   }
 
-  public render(): ReactElement | null {
+  public render(): ReactElement {
     const {genres, filmsByGenre, promo, user} = this.props;
-
-    if (filmsByGenre.length === 0) {
-      return null;
-    }
 
     return (
       <PageWrapper>
@@ -54,8 +50,8 @@ class Main extends PureComponent<Props> {
         <div className="page-content">
           <section className="catalog">
             <h2 className="catalog__title visually-hidden">Catalog</h2>
-            <GenresList genres={genres} />
-            <SmallMovieCardsList films={filmsByGenre} />
+            {genres.length > 0 && <GenresList genres={genres} />}
+            {filmsByGenre.length > 0 && <SmallMovieCardsList films={filmsByGenre} />}
           </section>
           <Footer />
         </div>
