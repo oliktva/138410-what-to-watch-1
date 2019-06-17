@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<PageWrapper>
+  <div
+    className="user-page"
+  >
+    <Header
+      className=""
+      isLightLogo={true}
+      withBreadcrumbs={false}
+    />
+    <div
+      className="page-content"
+    >
+      <h1>
+        Internal server error
+      </h1>
+      <p>
+        Please try again later
+      </p>
+      <Footer />
+    </div>
+  </div>
+</PageWrapper>
+`;

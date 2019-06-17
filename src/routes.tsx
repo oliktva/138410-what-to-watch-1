@@ -8,7 +8,7 @@ import SignIn from 'src/components/sign-in/sign-in';
 import Favorite from 'src/components/favorite/favorite';
 import Movie from 'src/components/movie/movie';
 import Review from 'src/components/review/review';
-
+import Error from 'src/components/error/error';
 
 const Routes = (): JSX.Element => (
   <Switch>
@@ -17,6 +17,7 @@ const Routes = (): JSX.Element => (
     <Route path={paths.mylist()} component={Favorite} />
     <Route path={paths.review(`:id`)} component={Review} />
     <Route path={paths.film(`:id`)} component={Movie} />
+    <Route path={paths.error()} component={Error} />
   </Switch>
 );
 
