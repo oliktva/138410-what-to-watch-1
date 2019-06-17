@@ -1,6 +1,7 @@
 import axios, {AxiosInstance, AxiosResponse, AxiosError} from 'axios';
 
 export const SERVER_URL = `https://es31-server.appspot.com`;
+export const ERROR_STATUSES = [404, 500, 503, 504];
 
 const configureAPI = (onServerError: () => void): AxiosInstance => {
   const instance = axios.create({
@@ -11,7 +12,7 @@ const configureAPI = (onServerError: () => void): AxiosInstance => {
 
   const onSuccess = (response: AxiosResponse) => response;
   const onFail = (error: AxiosError) => {
-    if (error.response && error.response.status === 500) {
+    if (error.response === void 0 || ERROR_STATUSES.includes(error.response.status)) {
       onServerError();
     }
 
