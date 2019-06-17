@@ -14,7 +14,7 @@ exports[`renders correctly 1`] = `
       className="page-content"
     >
       <h1>
-        Internal server error
+        Error
       </h1>
       <p>
         Please try again later

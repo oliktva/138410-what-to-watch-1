@@ -9,7 +9,7 @@ const Error: FunctionComponent = () => (
     <div className="user-page">
       <Header />
       <div className="page-content">
-        <h1>Internal server error</h1>
+        <h1>Error</h1>
         <p>Please try again later</p>
         <Footer />
       </div>
